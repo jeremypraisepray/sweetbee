@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..700;1,6..72,200..700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+  a { color: #00707A; text-decoration: none; }
+  a:hover { color: #0F4E56; }
+  doc-page:not(:defined) { visibility: hidden; }
+  ::selection { background: #F4E07B; color: #17130F; }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+
+<doc-page margin="0.7in">
+
+  <div slot="header" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:9px;border-bottom:1px solid rgba(23,19,15,.16);font-family:Archivo, Helvetica, Arial, sans-serif;font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078">
+    <span style="color:#00707A">Sweet Bee Bakehouse</span>
+    <span>Website Redesign &mdash; Creative Direction &amp; UX/UI</span>
+  </div>
+
+  <div slot="footer" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:9px;border-top:1px solid rgba(23,19,15,.16);font-family:Archivo, Helvetica, Arial, sans-serif;font-size:7.5pt;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#B0A79E">
+    <span>Design phase &mdash; for review, not for build</span>
+    <span>Pearland, Texas</span>
+  </div>
+
+  <div style="font-family:Archivo, Helvetica, Arial, sans-serif;color:#17130F;font-size:10.5pt;line-height:1.62">
+
+    <div style="padding:6pt 0 0">
+      <img src="assets/wordmark-dark.png" alt="Sweet Bee Bakehouse" style="height:52px;width:auto;display:block;margin-bottom:34pt" />
+      <div style="font-size:8pt;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A;margin-bottom:16pt">Design blueprint &mdash; v1</div>
+      <h1 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:46pt;line-height:.98;letter-spacing:-.022em">Let the food<br /><span style="font-style:italic;color:#0F4E56">be the hero.</span></h1>
+      <p style="margin:20pt 0 0;max-width:44em;font-size:12pt;line-height:1.6;color:#4A423B">Creative direction, visual system and UX for a complete redesign of sweetbeebakehouse.com. This document is the written half of the deliverable; the interactive half is the working concept, <strong style="font-weight:600">Sweet Bee Bakehouse.dc.html</strong>, which contains live desktop comps of Home and Menu plus mobile screens.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18pt;margin-top:26pt;padding-top:14pt;border-top:1px solid rgba(23,19,15,.18)">
+        <div>
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-bottom:5pt">Prepared for</div>
+          <div style="font-family:Newsreader, Georgia, serif;font-size:13pt">Ally B., Sweet Bee Bakehouse</div>
+        </div>
+        <div>
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-bottom:5pt">Phase</div>
+          <div style="font-family:Newsreader, Georgia, serif;font-size:13pt">Design &rarr; review &rarr; iteration</div>
+        </div>
+        <div>
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-bottom:5pt">Not in scope yet</div>
+          <div style="font-family:Newsreader, Georgia, serif;font-size:13pt">Stack, CMS, build, handoff spec</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:34pt;padding:18pt 22pt;background:#FBF7F1;border-left:2px solid #00707A;break-inside:avoid">
+      <div style="font-size:7.5pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#00707A;margin-bottom:9pt">Contents</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5pt 30pt;font-size:10pt;color:#4A423B">
+        <div>01 &nbsp;Creative concept</div>
+        <div>07 &nbsp;Footer</div>
+        <div>02 &nbsp;Design system</div>
+        <div>08 &nbsp;Motion storyboard</div>
+        <div>03 &nbsp;Homepage blueprint</div>
+        <div>09 &nbsp;Asset plan</div>
+        <div>04 &nbsp;Menu page blueprint</div>
+        <div>10 &nbsp;Copy direction</div>
+        <div>05 &nbsp;Secondary pages</div>
+        <div>11 &nbsp;Responsive strategy</div>
+        <div>06 &nbsp;Navigation</div>
+        <div>12 &nbsp;Distinctive design moments</div>
+      </div>
+    </div>
+
+    <!-- 01 -->
+    <div style="break-before:page;padding-top:6pt">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">01</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Creative concept</h2>
+      </div>
+
+      <h3 style="margin:20pt 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:19pt;line-height:1.15">The Case</h3>
+      <p style="margin:0 0 12pt;max-width:44em">The organising idea is the pastry case itself. Every screen behaves the way the case behaves: a small number of extraordinary objects, arranged deliberately, described on tiny handwritten-feeling labels, rotating without warning. Ally's edge isn't that she bakes well &mdash; plenty of bakeries bake well &mdash; it's that <em>you never know what's going to be in there.</em> Scarcity, surprise and craft are the brand, so they become the interaction model, not just the photography.</p>
+      <p style="margin:0 0 12pt;max-width:44em">Three references stack: a modern food publication (editorial pacing, oversized type, asymmetry, generous white), a neighbourhood bakehouse (warm cream paper, real handwriting, hours you have to plan around), and a working studio (visible process, three-day dough, unfinished ideas made public). The site reads as a magazine that happens to sell croissants, published by someone who is clearly in the kitchen.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20pt;margin:20pt 0 0;break-inside:avoid">
+        <div style="padding:14pt 16pt;background:#FBF7F1">
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;margin-bottom:8pt">The three ideas that carry it</div>
+          <div style="font-size:10pt;line-height:1.6;color:#4A423B">
+            <div style="padding:6pt 0;border-bottom:1px solid rgba(23,19,15,.12)"><strong style="font-weight:600;color:#17130F">The label.</strong> The little case tags become the site's one recurring UI object &mdash; off-white, hairline border, gold rule, rotated a degree or two.</div>
+            <div style="padding:6pt 0;border-bottom:1px solid rgba(23,19,15,.12)"><strong style="font-weight:600;color:#17130F">The rotation.</strong> Seasonal-ness is designed in: a live &ldquo;in the case today&rdquo; line, seasonal marks, copy that admits things sell out.</div>
+            <div style="padding:6pt 0"><strong style="font-weight:600;color:#17130F">The lamination.</strong> Layered compositions &mdash; images overlapping frames, type crossing images, panels sliding past each other.</div>
+          </div>
+        </div>
+        <div style="padding:14pt 16pt;background:#0F4E56;color:#FBF7F1">
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#F4E07B;margin-bottom:8pt">The quality test</div>
+          <p style="margin:0 0 9pt;font-size:10pt;line-height:1.6;color:rgba(251,247,241,.82)">Could this site belong to another bakery with the logo swapped? No &mdash; because the structural ideas are Sweet Bee's own: a menu built as a case rather than a list, a headline about improvising after lamination, a press section called <em>A little buzz</em>, prices that admit a crab rangoon croissant exists.</p>
+          <div style="font-family:Newsreader, Georgia, serif;font-style:italic;font-size:14pt;color:#F4E07B">&ldquo;Everything looks better than you expected.&rdquo;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div style="margin-top:30pt;padding-top:6pt;break-before:page">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">02</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Design system</h2>
+      </div>
+
+      <h3 style="margin:20pt 0 10pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:16pt">Colour</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10pt;break-inside:avoid">
+        <div>
+          <div style="height:54pt;background:#00707A"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Stormy Teal</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#00707A</div>
+          <div style="font-size:8pt;color:#6C645C;margin-top:3pt">Primary action, eyebrows, active states</div>
+        </div>
+        <div>
+          <div style="height:54pt;background:#0F4E56"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Deep Teal</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#0F4E56</div>
+          <div style="font-size:8pt;color:#6C645C;margin-top:3pt">Full-bleed statement panels, footer</div>
+        </div>
+        <div>
+          <div style="height:54pt;background:#F4E07B"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Light Gold</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#F4E07B</div>
+          <div style="font-size:8pt;color:#6C645C;margin-top:3pt">Hairline rules, on-teal CTA, accents</div>
+        </div>
+        <div>
+          <div style="height:54pt;background:#FFAE32"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Golden Orange</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#FFAE32</div>
+          <div style="font-size:8pt;color:#6C645C;margin-top:3pt">Hover only &mdash; never a resting state</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10pt;margin-top:14pt;break-inside:avoid">
+        <div>
+          <div style="height:40pt;background:#FBF7F1;border:1px solid rgba(23,19,15,.14)"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Cream &mdash; page</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#FBF7F1</div>
+        </div>
+        <div>
+          <div style="height:40pt;background:#FFFDFA;border:1px solid rgba(23,19,15,.14)"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Paper &mdash; labels</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#FFFDFA</div>
+        </div>
+        <div>
+          <div style="height:40pt;background:#17130F"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Ink</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#17130F</div>
+        </div>
+        <div>
+          <div style="height:40pt;background:#4A423B"></div>
+          <div style="font-size:8.5pt;font-weight:600;margin-top:6pt">Body / muted</div>
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:8pt;color:#8A8078">#4A423B &middot; #8A8078</div>
+        </div>
+      </div>
+      <p style="margin:12pt 0 0;max-width:44em;font-size:9.5pt;color:#4A423B">Balance holds at roughly 75% cream, paper and photography / 15% teal family / 8% gold, with ink for type. Teal appears as whole panels rather than tints everywhere; gold never fills a large area except as a CTA sitting on deep teal, where it is the highest-contrast thing on screen. Ink on cream is 15.6:1; cream on deep teal is 8.7:1; ink on gold is 12.4:1 &mdash; every combination clears AA at body size and AAA at display size.</p>
+
+      <h3 style="margin:22pt 0 10pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:16pt">Typography</h3>
+      <div style="border-top:1px solid rgba(23,19,15,.18);break-inside:avoid">
+        <div style="display:grid;grid-template-columns:150pt 1fr;gap:18pt;padding:12pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:center">
+          <div>
+            <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;margin-bottom:4pt">Editorial display</div>
+            <div style="font-family:Newsreader, Georgia, serif;font-size:13pt">Newsreader</div>
+            <div style="font-size:8.5pt;color:#8A8078">200&ndash;500, roman + italic</div>
+          </div>
+          <div style="font-family:Newsreader, Georgia, serif;font-size:25pt;line-height:1;letter-spacing:-.02em">We laminate. <span style="font-style:italic;color:#0F4E56">Then we improvise.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:150pt 1fr;gap:18pt;padding:12pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:center">
+          <div>
+            <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;margin-bottom:4pt">Utility sans</div>
+            <div style="font-size:13pt;font-weight:600">Archivo</div>
+            <div style="font-size:8.5pt;color:#8A8078">400 / 500 / 600</div>
+          </div>
+          <div>
+            <div style="font-size:7.5pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#4A423B;margin-bottom:6pt">Small uppercase eyebrow &mdash; .18em tracking</div>
+            <div style="font-size:10.5pt;line-height:1.6;color:#4A423B">Body copy, menu descriptions, prices, hours, navigation. Set 16&ndash;18px on the web at 1.65&ndash;1.72 line-height, never below 14px.</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:150pt 1fr;gap:18pt;padding:12pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:center">
+          <div>
+            <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;margin-bottom:4pt">Brand script</div>
+            <div style="font-family:Newsreader, Georgia, serif;font-size:13pt">Existing wordmark</div>
+            <div style="font-size:8.5pt;color:#8A8078">Image asset only</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16pt">
+            <img src="assets/wordmark-dark.png" alt="Sweet Bee Bakehouse wordmark" style="height:34px;width:auto;display:block" />
+            <div style="font-size:9.5pt;color:#4A423B;max-width:22em">Header, footer, story sign-off, packaging moments. Three appearances per page maximum. Never set as live text.</div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:12pt 0 0;max-width:44em;font-size:9.5pt;color:#4A423B">Display sizes step 90 / 78 / 62 / 44px on desktop and compress to 50 / 44 / 38px on mobile &mdash; the ratio between display and body widens on large screens rather than everything scaling together. Headlines break by hand (<code style="font-family:ui-monospace, Menlo, monospace;font-size:9pt">&lt;br&gt;</code> plus <code style="font-family:ui-monospace, Menlo, monospace;font-size:9pt">text-wrap: balance</code>) because line breaks are part of the composition.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22pt;margin-top:22pt;break-inside:avoid">
+        <div>
+          <h3 style="margin:0 0 10pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:16pt">Buttons</h3>
+          <div style="display:flex;flex-direction:column;gap:10pt;align-items:flex-start">
+            <div style="display:inline-flex;align-items:center;gap:8pt;background:#00707A;color:#FBF7F1;font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:10pt 15pt;border-radius:2px">Explore the Menu &rarr;</div>
+            <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#17130F;padding-bottom:5pt;border-bottom:1.5px solid #F4E07B;display:inline-block">Order Online &#8599;</div>
+            <div style="display:inline-flex;align-items:center;gap:8pt;background:#F4E07B;color:#17130F;font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:10pt 15pt;border-radius:2px">Get Directions &rarr;</div>
+          </div>
+          <p style="margin:10pt 0 0;font-size:9.5pt;color:#4A423B">Three treatments only: filled teal (primary), gold-underlined type with an arrow (secondary), gold fill (primary on teal panels). 2px radius, never pills. Minimum 48px tall on touch.</p>
+        </div>
+        <div>
+          <h3 style="margin:0 0 10pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:16pt">The label object</h3>
+          <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:9pt 12pt;box-shadow:0 8px 20px rgba(23,19,15,.1);transform:rotate(-1.2deg)">
+            <div style="font-size:7pt;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:5pt">Seasonal</div>
+            <div style="height:1px;background:#F4E07B;margin-bottom:7pt"></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14pt">
+              <div style="font-family:Newsreader, Georgia, serif;font-size:14pt">Pistachio Cream</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:11pt;color:#4A423B">$7</div>
+            </div>
+          </div>
+          <p style="margin:10pt 0 0;font-size:9.5pt;color:#4A423B">Paper card, hairline border, gold rule, soft shadow, 0.6&ndash;1.4&deg; rotation, always overlapping the image it names. This is the signature component and the only place rotation is allowed.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18pt;margin-top:22pt;break-inside:avoid">
+        <div>
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;margin-bottom:6pt">Spacing &amp; radius</div>
+          <p style="margin:0;font-size:9.5pt;color:#4A423B">8px base; sections breathe at 104&ndash;152px vertical on desktop, 56&ndash;72px on mobile. 48px page gutter, 1440px measure. Radius is 2px everywhere &mdash; images, buttons, panels. Nothing is a rounded card.</p>
+        </div>
+        <div>
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;margin-bottom:6pt">Photography</div>
+          <p style="margin:0;font-size:9.5pt;color:#4A423B">No filters, no grain, no dark overlays on food. Type sits beside or below photography, not on top of it &mdash; the one exception is the mobile hero, where a bottom-anchored gradient covers the video's lower third only. Ratios deliberately vary: 3:4, 1:1, 4:5, full-bleed.</p>
+        </div>
+        <div>
+          <div style="font-size:7.5pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;margin-bottom:6pt">Icon &amp; motion</div>
+          <p style="margin:0;font-size:9.5pt;color:#4A423B">The bee is a signature, not decoration: favicon, one hero eyebrow, one section marker, footer. Arrows and hairlines do the rest. Motion is 240&ndash;560ms, cubic-bezier(.2,.7,.2,1), opacity and small translation only, and fully removable under reduced-motion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div style="break-before:page;padding-top:6pt">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">03</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Homepage blueprint</h2>
+      </div>
+      <p style="margin:14pt 0 0;max-width:44em">Nine movements, paced deliberately: two loud, one quiet, one loud, and so on. Full-bleed teal appears exactly twice on the page &mdash; the statement and the visit panel &mdash; so both land.</p>
+
+      <div style="margin-top:20pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">01</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Hero &mdash; asymmetric split</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Purpose</div><div style="color:#4A423B">Establish craft and personality in one viewport, without utility clutter.</div>
+          <div style="font-weight:600;color:#8A8078">Layout</div><div style="color:#4A423B">Type column left (1fr), vertical video right (470&times;626) with a gold hairline frame offset 16px behind it. A case label breaks the video's left edge.</div>
+          <div style="font-weight:600;color:#8A8078">Imagery</div><div style="color:#4A423B">Bakery video, muted, looping, no controls. Photo fallback: chocolate croissants.</div>
+          <div style="font-weight:600;color:#8A8078">Type</div><div style="color:#4A423B">90px Newsreader, second line italic in deep teal. Bee glyph + &ldquo;A bakehouse in Pearland, Texas&rdquo; eyebrow above.</div>
+          <div style="font-weight:600;color:#8A8078">Copy</div><div style="color:#4A423B"><strong style="font-weight:600;color:#17130F">Your neighborhood croissant maker.</strong> Plain-spoken and local; the craft shows in the photography, not the claim.</div>
+          <div style="font-weight:600;color:#8A8078">Interaction</div><div style="color:#4A423B">Type rises 18px on load; video cross-fades in over 1.2s. CTAs: filled teal + gold-underlined. Hours and address sit as a quiet metadata line at the bottom.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">Video becomes a 430px full-bleed block with the headline over its lower third; CTAs stack full-width below.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">02</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">&ldquo;In the case today&rdquo; band</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Purpose</div><div style="color:#4A423B">Prove the site is alive and the case rotates. A single teal rule of today's five items.</div>
+          <div style="font-weight:600;color:#8A8078">Behaviour</div><div style="color:#4A423B">Static on desktop, centred; horizontally scrollable on mobile. Editable weekly &mdash; the one piece of content Ally is asked to touch. Not a marquee.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">03</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">What's in the case?</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Purpose</div><div style="color:#4A423B">Product discovery without product cards.</div>
+          <div style="font-weight:600;color:#8A8078">Layout</div><div style="color:#4A423B">Horizontal drag rail, six items, every image a different size and ratio (392&times;522, 308&times;412, 344&times;344&hellip;), baseline-aligned to the bottom so the tops stagger like a real case. Each image gets a hairline rule and a rotated label.</div>
+          <div style="font-weight:600;color:#8A8078">Type</div><div style="color:#4A423B">78px &ldquo;What's in the case?&rdquo; left; short prose plus &ldquo;See the full menu &rarr;&rdquo; right, baseline-aligned.</div>
+          <div style="font-weight:600;color:#8A8078">Interaction</div><div style="color:#4A423B">Drag / wheel / trackpad scroll, 3px hairline scrollbar. Hover lifts the label 2px and deepens its shadow. Rail intentionally overflows the gutter so it reads as continuing.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">Same rail, smaller crops, snap points, edge peek of the next item.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">04</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Brand statement &mdash; deep teal</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Purpose</div><div style="color:#4A423B">The one page-wide colour moment; the reset between product energy and story.</div>
+          <div style="font-weight:600;color:#8A8078">Layout</div><div style="color:#4A423B">118px type, left-aligned, with the punchline pushed to the right edge in gold italic &mdash; the line break is the joke's timing.</div>
+          <div style="font-weight:600;color:#8A8078">Copy</div><div style="color:#4A423B"><strong style="font-weight:600;color:#17130F">We could have stopped at butter. We didn't.</strong> Below, small: &ldquo;Somewhere between the traditional and the frankly unhinged is a croissant filled with crab rangoon. That's where we live.&rdquo;</div>
+          <div style="font-weight:600;color:#8A8078">Interaction</div><div style="color:#4A423B">Two-stage reveal on scroll: first line, then &ldquo;We didn't.&rdquo; 160ms later. Nothing else moves.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">50px, three lines, punchline right-aligned. Panel keeps its full-bleed weight.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">05</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">The seasonal board &mdash; editorial spread</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Purpose</div><div style="color:#4A423B">Show range and craft; make lamination feel tactile.</div>
+          <div style="font-weight:600;color:#8A8078">Layout</div><div style="color:#4A423B">One 760px-tall pistachio image at 1.15fr with a 266&times;332 crab rangoon crop breaking out of its bottom-right corner. Right column: eyebrow, 62px headline, two paragraphs, a two-stat rule (&ldquo;3 days&rdquo; / &ldquo;Thu&ndash;Sat&rdquo;), then a small captioned fig &amp; ricotta image &mdash; deliberately below the fold of the section.</div>
+          <div style="font-weight:600;color:#8A8078">Interaction</div><div style="color:#4A423B">Slow parallax: the small crop drifts ~24px against the large image. No hover state; this section is for reading.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">Recomposes rather than stacks: full-bleed crab rangoon image, then text, then the fig crop inline. The overlap is dropped rather than shrunk.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">06</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Hi, I'm Ally</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Purpose</div><div style="color:#4A423B">The credibility that only a person can give. Paper-white background so it reads as a different chapter.</div>
+          <div style="font-weight:600;color:#8A8078">Imagery</div><div style="color:#4A423B">The supplied portrait of Ally plating peach desserts &mdash; 520&times;650, offset teal hairline frame behind it. Real, in-kitchen, unposed enough to be believable.</div>
+          <div style="font-weight:600;color:#8A8078">Copy</div><div style="color:#4A423B">First person, three short paragraphs: edible art, the cottage-bakery origin in East Pearland, and &ldquo;If you see something odd in the case, that's on purpose. Ask me about it.&rdquo; Signed off with the script wordmark.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">Full-bleed portrait, headline and copy beneath; frame offset removed.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">07</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">A little buzz &mdash; press</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Layout</div><div style="color:#4A423B">Editorial index, not a logo wall: hairline-ruled rows of publication / one-line context / &ldquo;Press&rdquo; tag. No borrowed logos, no star ratings.</div>
+          <div style="font-weight:600;color:#8A8078">Interaction</div><div style="color:#4A423B">Row indents 14px on hover &mdash; the only movement. Rows link out when a URL exists.</div>
+          <div style="font-weight:600;color:#8A8078">Open</div><div style="color:#4A423B">CultureMap Tastemaker and Texas Monthly citations need exact titles, dates and links from Ally before build; the section carries a visible note until then.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <div style="display:flex;align-items:baseline;gap:10pt;padding-bottom:6pt;border-bottom:1px solid rgba(23,19,15,.2)">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">08</div>
+          <h3 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Visit &mdash; half photo, half teal</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:9pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Layout</div><div style="color:#4A423B">50/50 to the full width: the pastry-case counter photograph against a deep-teal information panel, 760px minimum.</div>
+          <div style="font-weight:600;color:#8A8078">Content</div><div style="color:#4A423B">&ldquo;Come look in the case.&rdquo; Hours as ruled rows with closed days dimmed rather than hidden; address in 22px Newsreader; gold <em>Get Directions</em> and underlined <em>Order Ahead</em>.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">Photo above, teal panel below at full width; the two CTAs become stacked full-width buttons.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div style="break-before:page;padding-top:6pt">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">04</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Menu page blueprint</h2>
+      </div>
+      <p style="margin:14pt 0 0;max-width:44em">The signature experience: <strong style="font-weight:600">a digital pastry case</strong>. A scannable list on the left, a large photographic panel on the right that changes as you move down the list, and the case label as the connective object between them. Twenty-six items stay browsable in one screenful of scrolling while any single item can become a full photograph on demand.</p>
+
+      <div style="margin-top:20pt;break-inside:avoid">
+        <h3 style="margin:0 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Hero</h3>
+        <p style="margin:0;font-size:9.5pt;line-height:1.55;color:#4A423B">112px &ldquo;Everything in the case.&rdquo; left; the overhead case photograph (440&times;540) right, captioned <em>Thursday, 10:04 a.m.</em> &mdash; a timestamp rather than a caption, reinforcing that this is a snapshot of a rotating case. Supporting line: &ldquo;The classics, the seasonal experiments, and whatever Ally couldn't stop thinking about this week.&rdquo;</p>
+      </div>
+
+      <div style="margin-top:16pt;break-inside:avoid">
+        <h3 style="margin:0 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Current favorites</h3>
+        <p style="margin:0;font-size:9.5pt;line-height:1.55;color:#4A423B">Three oversized items before the list, at three different heights (520 / 404 / 600px), bottom-aligned, each labelled. Curated, credited as &ldquo;three that keep selling out&rdquo; &mdash; editorial recommendation, not a bestseller widget. Rotates with the season.</p>
+      </div>
+
+      <div style="margin-top:16pt;break-inside:avoid">
+        <h3 style="margin:0 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Category navigation</h3>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Structure</div><div style="color:#4A423B">All &middot; Originals &middot; Seasonal &middot; Sweets. Sticky below the header at 78px, on a translucent paper bar with a hairline base.</div>
+          <div style="font-weight:600;color:#8A8078">States</div><div style="color:#4A423B">Active is a filled teal chip; inactive is a 5%-ink chip. Colour is not the only signal &mdash; the live item count beside the bar updates too. Keyboard-focusable with a 2px gold focus ring.</div>
+          <div style="font-weight:600;color:#8A8078">Behaviour</div><div style="color:#4A423B">Filters in place with a 300ms fade; the photo panel resets to the first item of the new category. Group headings (&ldquo;Croissants &mdash; Seasonal&rdquo;) remain in <em>All</em>, so filtering is a convenience rather than the only way to navigate.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">Horizontally scrollable chip row, swipeable, sticky under a 250px photo strip.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16pt;break-inside:avoid">
+        <h3 style="margin:0 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Item row &amp; photo panel</h3>
+        <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;font-size:9.5pt;line-height:1.55">
+          <div style="font-weight:600;color:#8A8078">Row</div><div style="color:#4A423B">27px Newsreader name, optional <em>Seasonal</em> outline tag, dotted leader, 20px price, 14px description below. Compact by design &mdash; the leader dots are the one menu cliché worth keeping because they make prices scannable.</div>
+          <div style="font-weight:600;color:#8A8078">Desktop</div><div style="color:#4A423B">Hover or focus indents the row 16px, tints it 5% teal, and cross-fades the sticky 500&times;640 panel to that item's photograph over 560ms using two stacked layers, so images never flash.</div>
+          <div style="font-weight:600;color:#8A8078">No photo</div><div style="color:#4A423B">Items without photography (about half) show a paper-toned panel with the item name, the bee mark, and &ldquo;Photograph coming &mdash; it looks considerably better in person.&rdquo; The gap becomes charm instead of a broken state.</div>
+          <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">The panel becomes a sticky photo strip above the list; tapping a row updates it and expands the description. Every fact &mdash; name, price, description, seasonal status &mdash; is present without any hover.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16pt;break-inside:avoid">
+        <h3 style="margin:0 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Availability &amp; order CTA</h3>
+        <p style="margin:0 0 8pt;font-size:9.5pt;line-height:1.55;color:#4A423B">A teal-tinted note closes the list: &ldquo;The case changes often. Seasonal flavors rotate when Ally gets an idea, and Saturday afternoons are unpredictable. Half the fun is not knowing what's on the tray.&rdquo; Set at reading size, not fine print.</p>
+        <p style="margin:0;font-size:9.5pt;line-height:1.55;color:#4A423B">Then a deep-teal band: <strong style="font-weight:600">&ldquo;Want it waiting for you?&rdquo;</strong> with a gold <em>Pre-order on Hotplate</em> button. Hotplate is always an outbound link with an external-link mark &mdash; no fake cart, no invented checkout.</p>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div style="break-before:page;padding-top:6pt">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">05</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Secondary pages</h2>
+      </div>
+
+      <div style="margin-top:18pt;break-inside:avoid">
+        <h3 style="margin:0 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Our Story</h3>
+        <p style="margin:0;font-size:9.5pt;line-height:1.55;color:#4A423B">Lives on the homepage as an anchored chapter rather than a thin standalone page, and is reachable from the nav as <em>Our Story</em>. If Ally later has more to tell &mdash; process, the move from cottage to storefront, the people &mdash; it graduates to its own page built from three blocks: the portrait chapter, a three-day lamination sequence with process photography, and a &ldquo;what's next&rdquo; note. Recommended additional shoot: hands laminating dough, the oven, the 6 a.m. tray.</p>
+      </div>
+
+      <div style="margin-top:16pt;break-inside:avoid">
+        <h3 style="margin:0 0 8pt;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:17pt">Visit</h3>
+        <p style="margin:0;font-size:9.5pt;line-height:1.55;color:#4A423B">Also anchored on the homepage, and the destination for the nav's <em>Visit</em>. Location first: address, the three open days, directions. Add on the standalone version a static map image linking to Google Maps, parking and suite-A wayfinding (&ldquo;the door is around the side&rdquo;-type help if true), Instagram, and a single email link for inquiries. No contact form &mdash; the honest funnels are Hotplate, Instagram DMs and the cake inquiry. Email and phone still need confirming.</p>
+      </div>
+
+    </div>
+
+    <!-- 06 + 07 -->
+    <div style="margin-top:26pt;padding-top:6pt">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">06</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Navigation</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:14pt;font-size:9.5pt;line-height:1.55;break-inside:avoid">
+        <div style="font-weight:600;color:#8A8078">Structure</div><div style="color:#4A423B">Wordmark left; Home &middot; Menu &middot; Our Story &middot; Visit centre-right in 11px uppercase Archivo at .15em; a hairline divider; then <em>Order Online</em> as the only filled element in the bar. Order Online is a different species of object, not a heavier link.</div>
+        <div style="font-weight:600;color:#8A8078">Scroll</div><div style="color:#4A423B">78px tall, translucent cream with a 14px backdrop blur, gaining its hairline base once the page moves. It never shrinks, hides, or re-animates on scroll direction.</div>
+        <div style="font-weight:600;color:#8A8078">States</div><div style="color:#4A423B">Hover and current page both draw a 1.5px gold underline; current page also sets ink at full strength. Keyboard focus is a 2px gold ring with 2px offset. Touch targets 44px minimum.</div>
+        <div style="font-weight:600;color:#8A8078">Mobile</div><div style="color:#4A423B">Wordmark plus a two-line mark. Opening cross-fades in a full-height cream sheet: four 32px Newsreader links stacked, a gold rule, then Order Online as a full-width teal button and Instagram beneath. Sheet fades and the list rises 12px over 260ms &mdash; no slide-in drawer, no hamburger-to-X spin.</div>
+      </div>
+
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F;margin-top:28pt">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">07</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Footer</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:82pt 1fr;gap:6pt 14pt;margin-top:14pt;font-size:9.5pt;line-height:1.55;break-inside:avoid">
+        <div style="font-weight:600;color:#8A8078">Concept</div><div style="color:#4A423B">The last brand moment. Deep teal, cream type, and the script wordmark at 52px &mdash; the largest the script appears anywhere on the site &mdash; paired across the top rule with a gold italic line: <em>&ldquo;Get here before they're gone.&rdquo;</em></div>
+        <div style="font-weight:600;color:#8A8078">Contents</div><div style="color:#4A423B">Four columns: Find us (address + directions), Hours (closed days shown dimmed), Explore (Menu, Our Story, Visit), Follow &amp; order (Instagram, Hotplate). Baseline: bee mark + &ldquo;Sweet Bee Bakehouse &mdash; Pearland, Texas&rdquo;.</div>
+        <div style="font-weight:600;color:#8A8078">Details</div><div style="color:#4A423B">Gold links on hover only; no newsletter box, no social icon row, no &ldquo;website by&rdquo;. Mobile stacks to two columns then one, keeping address and hours first.</div>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div style="break-before:page;padding-top:6pt">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">08</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Motion storyboard</h2>
+      </div>
+      <p style="margin:14pt 0 16pt;max-width:44em">Six moments carry the whole experience. Everything else is static on purpose &mdash; the site is designed to be beautiful with motion switched off, and under <code style="font-family:ui-monospace, Menlo, monospace;font-size:9pt">prefers-reduced-motion</code> each of these degrades to an instant state change with no loss of information.</p>
+      <div style="border-top:1px solid rgba(23,19,15,.18);break-inside:avoid">
+        <div style="display:grid;grid-template-columns:16pt 1fr 92pt;gap:14pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:baseline">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">01</div>
+          <div><strong style="font-weight:600">Hero settle.</strong> <span style="color:#4A423B">Headline rises 18px into place while the video cross-fades up from black. One beat, then stillness.</span></div>
+          <div style="font-size:8.5pt;color:#8A8078;text-align:right">900&ndash;1200ms, once</div>
+        </div>
+        <div style="display:grid;grid-template-columns:16pt 1fr 92pt;gap:14pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:baseline">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">02</div>
+          <div><strong style="font-weight:600">Menu photo cross-fade.</strong> <span style="color:#4A423B">The most important interaction on the site: two stacked layers swap opacity as you move down the list, so the panel dissolves between pastries instead of blinking.</span></div>
+          <div style="font-size:8.5pt;color:#8A8078;text-align:right">560ms, per item</div>
+        </div>
+        <div style="display:grid;grid-template-columns:16pt 1fr 92pt;gap:14pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:baseline">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">03</div>
+          <div><strong style="font-weight:600">Row indent.</strong> <span style="color:#4A423B">The hovered menu row slides 16px right and takes a 5% teal wash &mdash; the digital equivalent of pulling one label forward in the case.</span></div>
+          <div style="font-size:8.5pt;color:#8A8078;text-align:right">300ms</div>
+        </div>
+        <div style="display:grid;grid-template-columns:16pt 1fr 92pt;gap:14pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:baseline">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">04</div>
+          <div><strong style="font-weight:600">Statement punchline.</strong> <span style="color:#4A423B">&ldquo;We could have stopped at butter.&rdquo; clip-reveals upward, then &ldquo;We didn't.&rdquo; arrives 160ms later. Comic timing, done with a delay.</span></div>
+          <div style="font-size:8.5pt;color:#8A8078;text-align:right">2 &times; 520ms</div>
+        </div>
+        <div style="display:grid;grid-template-columns:16pt 1fr 92pt;gap:14pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12);align-items:baseline">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">05</div>
+          <div><strong style="font-weight:600">Case drag.</strong> <span style="color:#4A423B">Momentum-scrolled rail with labels lifting 2px as they pass under the cursor. The only horizontal movement on the homepage.</span></div>
+          <div style="font-size:8.5pt;color:#8A8078;text-align:right">Input-driven</div>
+        </div>
+        <div style="display:grid;grid-template-columns:16pt 1fr 92pt;gap:14pt;padding:10pt 0;align-items:baseline">
+          <div style="font-family:ui-monospace, Menlo, monospace;font-size:9pt;color:#00707A">06</div>
+          <div><strong style="font-weight:600">Bee transition.</strong> <span style="color:#4A423B">Between page loads the bee mark fades in centred on cream for ~400ms. The one place the icon animates, and the only branded transition.</span></div>
+          <div style="font-size:8.5pt;color:#8A8078;text-align:right">400ms max</div>
+        </div>
+      </div>
+      <p style="margin:12pt 0 0;max-width:44em;font-size:9.5pt;color:#4A423B">Explicitly excluded: scroll hijacking, parallax on more than one section, counters, marquees, spinning bees, custom cursors, and any entrance animation on body copy.</p>
+    </div>
+
+    <!-- 09 -->
+    <div style="margin-top:28pt;padding-top:6pt;break-before:page">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">09</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Asset plan</h2>
+      </div>
+      <p style="margin:14pt 0 14pt;max-width:44em">Every supplied asset has one job. Where more than one photograph could work, the ranking is given first choice &rarr; alternate.</p>
+      <div style="border-top:1px solid rgba(23,19,15,.18);break-inside:avoid">
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Hero</div>
+          <div style="font-size:9.5pt;color:#4A423B"><strong style="font-weight:600;color:#17130F">bakery.mp4</strong> as a vertical crop, muted loop &mdash; motion, hands and steam do what a still can't. Alternates: choc-croissants.jpg, then pistachio.jpg. Needs a 6&ndash;10s silent loop cut plus a poster frame.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Case rail</div>
+          <div style="font-size:9.5pt;color:#4A423B">pistachio &middot; choc-croissants &middot; crab-rangoon &middot; buckeye-buns &middot; macarons &middot; fig-ricotta &mdash; ordered for colour rhythm: green, brown, gold, dark, pastel, cream.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Editorial spread</div>
+          <div style="font-size:9.5pt;color:#4A423B"><strong style="font-weight:600;color:#17130F">pistachio.jpg</strong> as the hero-scale image (the striped bi-colour tray is the single most arresting asset supplied), crab-rangoon.jpg as the breakout crop, fig-ricotta.jpg as the small caption image.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Story</div>
+          <div style="font-size:9.5pt;color:#4A423B"><strong style="font-weight:600;color:#17130F">ally.jpg</strong> &mdash; the only portrait, and a good one: Ally in apron holding a plated peach dessert, kitchen visible. Crop to 4:5 at 22% from the top. Also reused, cropped tighter, on the Cakes hero.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Menu &mdash; originals</div>
+          <div style="font-size:9.5pt;color:#4A423B">choc-croissants.jpg (Chocolate). Missing: Traditional Butter, Almond Raspberry, Guava Cream Cheese, Ham &amp; Cheese, Cinnamon Roll &mdash; five shots needed.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Menu &mdash; seasonal</div>
+          <div style="font-size:9.5pt;color:#4A423B">crab-rangoon, fig-ricotta, pistachio, sandwiches (Turkey). Missing: Banoffee, Pepperoni Hot Honey, Raspberry Pain Suisse.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Menu &mdash; sweets</div>
+          <div style="font-size:9.5pt;color:#4A423B">macarons.jpg, buckeye-buns.jpg. Thirteen sweets have no photograph &mdash; the paper-panel fallback covers them, but three or four more shots would carry the category.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Location</div>
+          <div style="font-size:9.5pt;color:#4A423B"><strong style="font-weight:600;color:#17130F">case-counter.jpg</strong> for the Visit panel; case-overhead.jpg for the menu hero. Both are interiors, which is what &ldquo;come here&rdquo; needs.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Brand marks</div>
+          <div style="font-size:9.5pt;color:#4A423B">wordmark-dark (header, story sign-off), wordmark-light (footer), bee-disc (eyebrows, menu note), bee-glyph (statement, footer baseline, favicon). Ideally re-supplied as SVG.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100pt 1fr;gap:14pt;padding:9pt 0">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FFAE32">Gaps</div>
+          <div style="font-size:9.5pt;color:#4A423B">No process/lamination sequence, no exterior storefront shot, no vertical 9:16 stills for the mobile hero fallback. These are the shot list for the next round.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div style="margin-top:28pt;padding-top:6pt;break-before:page">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">10</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Copy direction</h2>
+      </div>
+      <p style="margin:14pt 0 14pt;max-width:44em">Voice: a specific person who is very good at this and slightly amused by it. Short sentences. Concrete nouns &mdash; butter, wonton, Broadway, Saturday. Never &ldquo;crafted with love&rdquo;.</p>
+      <div style="border-top:1px solid rgba(23,19,15,.18);break-inside:avoid">
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Hero</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt;line-height:1.15">Your neighborhood <span style="font-style:italic">croissant maker.</span></div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">Six years a home baker, turned storefront.</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Discovery</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">What's in the case?</div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">Six things worth driving for. Drag sideways &mdash; the real case is longer than this. &nbsp;&middot;&nbsp; CTA: See the full menu &rarr;</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Statement</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">We could have stopped at butter. <span style="font-style:italic">We didn't.</span></div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">Somewhere between the traditional and the frankly unhinged is a croissant filled with crab rangoon. That's where we live.</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Seasonal</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">Seasonal flavors, zero restraint.</div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">The lamination is the discipline &mdash; three days, thirty-odd layers, no shortcuts. What goes inside is where it gets interesting.</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Story</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">Hi, I'm Ally.</div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">Opens on edible art, moves through the East Pearland cottage bakery, lands on: &ldquo;If you see something odd in the case, that's on purpose. Ask me about it.&rdquo;</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Press</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">A little buzz. <span style="font-style:italic;color:#8A8078">Nice of them to notice.</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Menu</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">Everything in the case.</div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">The classics, the seasonal experiments, and whatever Ally couldn't stop thinking about this week.</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Visit</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">Come look in the case.</div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">We're on Broadway, three days a week, until the trays are empty. Saturdays go fast. &nbsp;&middot;&nbsp; Get Directions / Order Ahead</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Ordering</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-size:15pt">Want it waiting for you?</div><div style="font-size:9.5pt;color:#4A423B;margin-top:5pt">Pre-order on Hotplate and we'll box it up before the Saturday line starts.</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:88pt 1fr;gap:14pt;padding:9pt 0">
+          <div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A8078">Sign-off</div>
+          <div><div style="font-family:Newsreader, Georgia, serif;font-style:italic;font-size:15pt;color:#0F4E56">Get here before they're gone.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div style="margin-top:28pt;padding-top:6pt;break-before:page">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">11</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Responsive strategy</h2>
+      </div>
+      <p style="margin:14pt 0 14pt;max-width:44em">Editorial layouts recompose; they don't shrink. Three rules govern every breakpoint: overlaps are dropped rather than scaled, side-by-side panels become sequential full-bleed blocks, and display type drops a step rather than reflowing to five lines.</p>
+      <div style="border-top:1px solid rgba(23,19,15,.18);break-inside:avoid">
+        <div style="display:grid;grid-template-columns:96pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div><div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Large desktop</div><div style="font-size:8.5pt;color:#8A8078">1440&ndash;1920</div></div>
+          <div style="font-size:9.5pt;color:#4A423B">Content capped at 1440 and centred; full-bleed panels and rails still run edge to edge, so the extra width becomes cream margin rather than stretched layout. Display type at full scale.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:96pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div><div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Laptop</div><div style="font-size:8.5pt;color:#8A8078">1024&ndash;1440</div></div>
+          <div style="font-size:9.5pt;color:#4A423B">The reference design. Gutters 48&rarr;36px, hero headline 90&rarr;72px, hero video 470&rarr;400px wide, menu photo panel 500&rarr;420px. Overlaps and offsets survive intact.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:96pt 1fr;gap:14pt;padding:9pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div><div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Tablet</div><div style="font-size:8.5pt;color:#8A8078">768&ndash;1024</div></div>
+          <div style="font-size:9.5pt;color:#4A423B">Hero goes vertical: type block above, video full-width beneath at 16:9. The menu's photo panel moves from a sticky column to a sticky band above the list &mdash; the mobile pattern arrives early because two columns stop working before 1024. Editorial spread loses its breakout crop and becomes image / text / image.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:96pt 1fr;gap:14pt;padding:9pt 0">
+          <div><div style="font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#00707A">Mobile</div><div style="font-size:8.5pt;color:#8A8078">375&ndash;430</div></div>
+          <div style="font-size:9.5pt;color:#4A423B">Designed, not derived &mdash; most visitors arrive from Instagram. Full-bleed vertical video with the headline over its lower third; stacked full-width CTAs; the case rail becomes a snap-scrolling swipe; the statement panel keeps full-bleed teal at 50px; the menu becomes photo strip + chips + compact list; the visit panel stacks photo over teal. Body text never below 14.5px, tap targets never below 44px.</div>
+        </div>
+      </div>
+      <p style="margin:14pt 0 0;max-width:44em;font-size:9.5pt;color:#4A423B">Accessibility travels with it: every hover behaviour has a focus equivalent, no information exists only in a hover or a colour, focus rings are gold on cream and gold on teal, closed days are stated rather than omitted, and the reduced-motion build loses nothing but the transitions.</p>
+    </div>
+
+    <!-- 12 -->
+    <div style="margin-top:28pt;padding-top:6pt">
+      <div style="display:flex;align-items:baseline;gap:14pt;padding-bottom:8pt;border-bottom:1.5px solid #17130F">
+        <div style="font-family:Newsreader, Georgia, serif;font-size:14pt;color:#00707A">12</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:26pt;line-height:1;letter-spacing:-.02em">Distinctive design moments</h2>
+      </div>
+      <div style="margin-top:14pt;break-inside:avoid">
+        <div style="display:grid;grid-template-columns:20pt 1fr;gap:12pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-family:Newsreader, Georgia, serif;font-size:15pt;color:#00707A">01</div>
+          <div><strong style="font-weight:600">The case label as the site's UI.</strong> <span style="color:#4A423B">Sweet Bee's physical price tags become the one recurring component &mdash; paper, gold rule, one degree off-square, always overlapping the photograph it names. It appears on the hero, the rail, the favorites and the menu panel, and it exists nowhere else on the internet.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:20pt 1fr;gap:12pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-family:Newsreader, Georgia, serif;font-size:15pt;color:#00707A">02</div>
+          <div><strong style="font-weight:600">A menu that behaves like a case, not a list.</strong> <span style="color:#4A423B">Twenty-six scannable rows on the left, one enormous pastry on the right, cross-fading as you move. Fast for the person who knows what they want, cinematic for the person browsing.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:20pt 1fr;gap:12pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-family:Newsreader, Georgia, serif;font-size:15pt;color:#00707A">03</div>
+          <div><strong style="font-weight:600">&ldquo;In the case today.&rdquo;</strong> <span style="color:#4A423B">A single teal rule under the hero listing what's actually on the tray this week &mdash; one editable line that makes the site feel like it was updated this morning, because it was.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:20pt 1fr;gap:12pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-family:Newsreader, Georgia, serif;font-size:15pt;color:#00707A">04</div>
+          <div><strong style="font-weight:600">Missing photos as a joke instead of a gap.</strong> <span style="color:#4A423B">&ldquo;Photograph coming &mdash; it looks considerably better in person.&rdquo; The half-finished nature of a real small bakery becomes part of the voice, and the menu can launch before the shoot.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:20pt 1fr;gap:12pt;padding:10pt 0;border-bottom:1px solid rgba(23,19,15,.12)">
+          <div style="font-family:Newsreader, Georgia, serif;font-size:15pt;color:#00707A">05</div>
+          <div><strong style="font-weight:600">One punchline, page-wide, in deep teal.</strong> <span style="color:#4A423B">&ldquo;We could have stopped at butter. We didn't.&rdquo; &mdash; 118px, two-stage reveal, the only place colour takes the whole screen. Restraint everywhere else is what makes it hit.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:20pt 1fr;gap:12pt;padding:10pt 0">
+          <div style="font-family:Newsreader, Georgia, serif;font-size:15pt;color:#00707A">06</div>
+          <div><strong style="font-weight:600">Ratios that refuse to match.</strong> <span style="color:#4A423B">No two images on the homepage share a size, and the rail is bottom-aligned so the tops stagger. It reads as a composed spread rather than a CMS grid &mdash; the single clearest signal that a person art-directed this.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:34pt;padding:18pt 22pt;background:#0F4E56;color:#FBF7F1;break-inside:avoid">
+      <div style="font-size:7.5pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#F4E07B;margin-bottom:10pt">Next, on your word</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20pt;font-size:9.5pt;line-height:1.6;color:rgba(251,247,241,.85)">
+        <div>
+          <strong style="font-weight:600;color:#FBF7F1">To review:</strong> the hero headline territory, the &ldquo;We could have stopped at butter&rdquo; statement, and whether the Menu's photo-panel interaction is the right signature. Those three decisions set everything else.
+        </div>
+        <div>
+          <strong style="font-weight:600;color:#FBF7F1">To confirm:</strong> press citations and links, email and phone, and the shot list &mdash; process, storefront exterior, and the eight missing menu items.
+        </div>
+      </div>
+      <div style="margin-top:14pt;padding-top:12pt;border-top:1px solid rgba(251,247,241,.2);font-size:9pt;color:rgba(251,247,241,.6)">No stack decisions, no build, no developer spec &mdash; that package comes after this direction is approved.</div>
+    </div>
+
+  </div>
+</doc-page>
+</x-dc>
+</body>
+</html>

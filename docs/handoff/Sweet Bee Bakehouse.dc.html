@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..700;1,6..72,200..700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #FBF7F1; }
+  * { box-sizing: border-box; }
+  a { color: #00707A; text-decoration: none; }
+  a:hover { color: #0F4E56; }
+  ::selection { background: #F4E07B; color: #17130F; }
+  @keyframes sbRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes sbFade { from { opacity: 0; } to { opacity: 1; } }
+  .sb-scroll::-webkit-scrollbar { height: 3px; }
+  .sb-scroll::-webkit-scrollbar-thumb { background: rgba(23,19,15,.22); }
+  .sb-scroll::-webkit-scrollbar-track { background: rgba(23,19,15,.06); }
+  .sb-hide::-webkit-scrollbar { width: 0; height: 0; }
+</style>
+</helmet>
+
+<div style="width:100%;min-width:1400px;min-height:100vh;background:#FBF7F1;color:#17130F;font-family:Archivo, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;white-space:normal">
+
+  <div style="position:fixed;left:0;top:0;width:100%;z-index:90;background:rgba(251,247,241,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(23,19,15,.10)">
+    <div style="max-width:1440px;margin:0 auto;padding:0 48px;height:78px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+      <div onClick="{{ goHome }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;flex:0 0 auto">
+        <img src="assets/wordmark-dark.png" alt="Sweet Bee Bakehouse" style="height:30px;width:auto;display:block" />
+      </div>
+      <div style="display:flex;align-items:center;gap:34px;white-space:nowrap">
+        <div onClick="{{ goHome }}" data-nav="home" style="cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#17130F;padding:6px 0;border-bottom:1.5px solid transparent" style-hover="border-bottom:1.5px solid #F4E07B">Home</div>
+        <div onClick="{{ goMenu }}" data-nav="menu" style="cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#17130F;padding:6px 0;border-bottom:1.5px solid transparent" style-hover="border-bottom:1.5px solid #F4E07B">Menu</div>
+        <div onClick="{{ goStory }}" style="cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#17130F;padding:6px 0;border-bottom:1.5px solid transparent" style-hover="border-bottom:1.5px solid #F4E07B">Our Story</div>
+        <div onClick="{{ goVisit }}" style="cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#17130F;padding:6px 0;border-bottom:1.5px solid transparent" style-hover="border-bottom:1.5px solid #F4E07B">Visit</div>
+        <div style="width:1px;height:20px;background:rgba(23,19,15,.14)"></div>
+        <a href="https://www.hotplate.com/sweetbeebakehouse" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:9px;background:#00707A;color:#FBF7F1;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:13px 20px;border-radius:2px;transition:background 240ms ease" style-hover="background:#0F4E56;color:#FBF7F1">Order Online <span style="font-size:12px">&#8599;</span></a>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div data-screen-label="Home">
+
+    <div style="padding:78px 0 0">
+      <div style="max-width:1440px;margin:0 auto;padding:96px 48px 88px;display:grid;grid-template-columns:1fr 470px;gap:72px;align-items:center;position:relative">
+        <div style="animation:sbRise 900ms cubic-bezier(.2,.7,.2,1) both">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:34px">
+            <img src="assets/bee-disc.png" alt="" style="width:19px;height:19px;display:block;opacity:.9" />
+            <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#4A423B">A bakehouse in Pearland, Texas</div>
+          </div>
+          <h1 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:90px;line-height:.96;letter-spacing:-.025em;color:#17130F;text-wrap:balance">Your neighborhood<br /><span style="font-style:italic;color:#0F4E56">croissant maker.</span></h1>
+          <p style="margin:34px 0 0;max-width:46ch;font-size:17px;line-height:1.66;color:#4A423B">Six years a home baker, turned storefront.</p>
+          <div style="display:flex;align-items:center;gap:30px;margin-top:44px">
+            <div onClick="{{ goMenu }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:11px;background:#00707A;color:#FBF7F1;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:17px 28px;border-radius:2px;transition:background 240ms ease" style-hover="background:#0F4E56">Explore the Menu <span style="font-size:13px">&#8594;</span></div>
+            <a href="https://www.hotplate.com/sweetbeebakehouse" target="_blank" rel="noreferrer" style="font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#17130F;padding-bottom:7px;border-bottom:1.5px solid #F4E07B;transition:border-color 240ms ease" style-hover="border-bottom:1.5px solid #FFAE32;color:#17130F">Order Online &#8599;</a>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px;margin-top:64px;font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#8A8078">
+            <span>Thu &ndash; Sat</span>
+            <span style="width:22px;height:1px;background:rgba(23,19,15,.2)"></span>
+            <span>2540 E Broadway St., Suite A</span>
+          </div>
+        </div>
+
+        <div style="position:relative;animation:sbFade 1200ms ease both">
+          <div style="position:absolute;left:-16px;top:18px;width:100%;height:100%;border:1px solid rgba(244,224,123,.85);border-radius:2px"></div>
+          <sc-if value="{{ heroIsVideo }}" hint-placeholder-val="{{ true }}">
+            <video src="assets/bakery.mp4" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" style="position:relative;display:block;width:470px;height:626px;object-fit:cover;border-radius:2px;background:#17130F"></video>
+          </sc-if>
+          <sc-if value="{{ heroIsPhoto }}" hint-placeholder-val="{{ false }}">
+            <img src="assets/choc-croissants.jpg" alt="Chocolate croissants" style="position:relative;display:block;width:470px;height:626px;object-fit:cover;border-radius:2px" />
+          </sc-if>
+          <div style="position:absolute;left:-42px;bottom:52px;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:13px 17px 12px;box-shadow:0 14px 34px rgba(23,19,15,.14);transform:rotate(-1.4deg);min-width:186px">
+            <div style="font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#00707A;margin-bottom:7px">In the case today</div>
+            <div style="height:1px;background:#F4E07B;margin-bottom:9px"></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+              <div style="font-family:Newsreader, Georgia, serif;font-size:19px;line-height:1.1">Pistachio Cream</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:15px;color:#4A423B">$7</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ showBand }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#0F4E56;padding:17px 48px">
+      <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;font-size:10.5px;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:rgba(251,247,241,.72)">
+        <span style="color:#F4E07B">In the case today</span>
+        <span style="color:rgba(244,224,123,.5)">/</span>
+        <span>Pistachio Cream</span>
+        <span style="color:rgba(244,224,123,.5)">/</span>
+        <span>Crab Rangoon</span>
+        <span style="color:rgba(244,224,123,.5)">/</span>
+        <span>Banoffee</span>
+        <span style="color:rgba(244,224,123,.5)">/</span>
+        <span>Alfajores</span>
+        <span style="color:rgba(244,224,123,.5)">/</span>
+        <span>Tomato Jam Scone</span>
+      </div>
+    </div>
+    </sc-if>
+
+    <div style="padding:118px 0 104px;background:#FBF7F1">
+      <div style="max-width:1440px;margin:0 auto;padding:0 48px;display:flex;align-items:flex-end;justify-content:space-between;gap:60px">
+        <div>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A;margin-bottom:22px">Product discovery</div>
+          <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:78px;line-height:.98;letter-spacing:-.022em">What's in the case?</h2>
+        </div>
+        <div style="max-width:34ch;padding-bottom:10px">
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.65;color:#4A423B">Six things worth driving for. Drag sideways &mdash; the real case is longer than this.</p>
+          <div onClick="{{ goMenu }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#17130F;padding-bottom:6px;border-bottom:1.5px solid #F4E07B">See the full menu <span>&#8594;</span></div>
+        </div>
+      </div>
+
+      <div class="sb-scroll" style="margin-top:74px;padding:0 48px 22px;overflow-x:auto;overflow-y:hidden">
+        <div style="display:flex;align-items:flex-end;gap:34px;min-width:max-content">
+          <div style="flex:0 0 auto">
+            <img src="assets/pistachio.jpg" alt="Pistachio cream croissants" style="display:block;width:392px;height:522px;object-fit:cover;border-radius:2px" />
+            <div style="height:1px;background:rgba(23,19,15,.22);margin-top:22px"></div>
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:11px 15px;box-shadow:0 10px 26px rgba(23,19,15,.1);transform:rotate(-1deg);margin-top:-1px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:6px">Seasonal</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:18px;line-height:1.15">Pistachio Cream &nbsp;<span style="color:#8A8078">$7</span></div>
+            </div>
+          </div>
+          <div style="flex:0 0 auto">
+            <img src="assets/choc-croissants.jpg" alt="Chocolate croissants" style="display:block;width:308px;height:412px;object-fit:cover;border-radius:2px" />
+            <div style="height:1px;background:rgba(23,19,15,.22);margin-top:22px"></div>
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:11px 15px;box-shadow:0 10px 26px rgba(23,19,15,.1);transform:rotate(.8deg);margin-top:-1px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#8A8078;margin-bottom:6px">Original</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:18px;line-height:1.15">Chocolate &nbsp;<span style="color:#8A8078">$6</span></div>
+            </div>
+          </div>
+          <div style="flex:0 0 auto">
+            <img src="assets/crab-rangoon.jpg" alt="Crab rangoon croissants" style="display:block;width:344px;height:344px;object-fit:cover;border-radius:2px" />
+            <div style="height:1px;background:rgba(23,19,15,.22);margin-top:22px"></div>
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:11px 15px;box-shadow:0 10px 26px rgba(23,19,15,.1);transform:rotate(-.7deg);margin-top:-1px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:6px">Seasonal</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:18px;line-height:1.15">Crab Rangoon &nbsp;<span style="color:#8A8078">$7</span></div>
+            </div>
+          </div>
+          <div style="flex:0 0 auto">
+            <img src="assets/buckeye-buns.jpg" alt="Buckeye buns" style="display:block;width:368px;height:462px;object-fit:cover;border-radius:2px" />
+            <div style="height:1px;background:rgba(23,19,15,.22);margin-top:22px"></div>
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:11px 15px;box-shadow:0 10px 26px rgba(23,19,15,.1);transform:rotate(1.1deg);margin-top:-1px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#8A8078;margin-bottom:6px">Sweets</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:18px;line-height:1.15">Buckeye Bun &nbsp;<span style="color:#8A8078">$5</span></div>
+            </div>
+          </div>
+          <div style="flex:0 0 auto">
+            <img src="assets/macarons.jpg" alt="Macarons" style="display:block;width:280px;height:374px;object-fit:cover;border-radius:2px" />
+            <div style="height:1px;background:rgba(23,19,15,.22);margin-top:22px"></div>
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:11px 15px;box-shadow:0 10px 26px rgba(23,19,15,.1);transform:rotate(-1.2deg);margin-top:-1px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#8A8078;margin-bottom:6px">Sweets</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:18px;line-height:1.15">Macarons &nbsp;<span style="color:#8A8078">$14 / $24</span></div>
+            </div>
+          </div>
+          <div style="flex:0 0 auto">
+            <img src="assets/fig-ricotta.jpg" alt="Fig and ricotta pastries" style="display:block;width:332px;height:436px;object-fit:cover;border-radius:2px" />
+            <div style="height:1px;background:rgba(23,19,15,.22);margin-top:22px"></div>
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:11px 15px;box-shadow:0 10px 26px rgba(23,19,15,.1);transform:rotate(.6deg);margin-top:-1px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:6px">Seasonal</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:18px;line-height:1.15">Fig &amp; Ricotta &nbsp;<span style="color:#8A8078">$6.25</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#0F4E56;padding:152px 48px 148px;position:relative;overflow:hidden">
+      <div style="max-width:1440px;margin:0 auto;position:relative">
+        <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#F4E07B;margin-bottom:52px">The Sweet Bee theory</div>
+        <div style="font-family:Newsreader, Georgia, serif;font-weight:300;font-size:118px;line-height:.94;letter-spacing:-.03em;color:#FBF7F1">We could have<br />stopped at butter.</div>
+        <div style="display:flex;justify-content:flex-end;margin-top:26px">
+          <div style="font-family:Newsreader, Georgia, serif;font-style:italic;font-weight:300;font-size:118px;line-height:.94;letter-spacing:-.03em;color:#F4E07B;margin-right:60px">We didn't.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:76px;max-width:52ch">
+          <img src="assets/bee-glyph.png" alt="" style="width:26px;height:26px;flex:0 0 auto;opacity:.9" />
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(251,247,241,.74)">Somewhere between the traditional and the frankly unhinged is a croissant filled with crab rangoon. That's where we live.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:130px 0 120px;background:#FBF7F1;overflow:hidden">
+      <div style="max-width:1440px;margin:0 auto;padding:0 48px">
+        <div style="display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:start">
+          <div style="position:relative">
+            <img src="assets/pistachio.jpg" alt="Pistachio croissants on a tray" style="display:block;width:100%;height:760px;object-fit:cover;border-radius:2px" />
+            <div style="position:absolute;right:-58px;bottom:-56px;width:266px">
+              <img src="assets/crab-rangoon.jpg" alt="Crab rangoon croissants" style="display:block;width:266px;height:332px;object-fit:cover;border-radius:2px;box-shadow:0 26px 60px rgba(23,19,15,.24)" />
+            </div>
+          </div>
+          <div style="padding-top:34px">
+            <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A;margin-bottom:24px">The seasonal board</div>
+            <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:62px;line-height:1;letter-spacing:-.022em">Seasonal flavors,<br />zero restraint.</h2>
+            <p style="margin:30px 0 0;font-size:16.5px;line-height:1.7;color:#4A423B">A bi-color pistachio croissant striped like a tiger. A savory rangoon spiral with crispy wonton on top. Fig jam and ricotta with herbs from the back. None of it was on a plan.</p>
+            <p style="margin:20px 0 0;font-size:16.5px;line-height:1.7;color:#4A423B">The lamination is the discipline &mdash; three days, thirty-odd layers, no shortcuts. What goes inside is where it gets interesting.</p>
+            <div style="margin-top:44px;padding-top:30px;border-top:1px solid rgba(23,19,15,.14);display:flex;gap:44px">
+              <div>
+                <div style="font-family:Newsreader, Georgia, serif;font-size:44px;line-height:1">3 days</div>
+                <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-top:8px">Per batch of dough</div>
+              </div>
+              <div>
+                <div style="font-family:Newsreader, Georgia, serif;font-size:44px;line-height:1">Thu &ndash; Sat</div>
+                <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-top:8px">Then it's gone</div>
+              </div>
+            </div>
+            <div style="margin-top:52px;width:240px">
+              <img src="assets/fig-ricotta.jpg" alt="Fig and ricotta pastry detail" style="display:block;width:240px;height:300px;object-fit:cover;border-radius:2px" />
+              <div style="font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-top:12px">Fig &amp; ricotta &mdash; back for a while</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-screen-label="Our Story" id="story" style="background:#FFFDFA;padding:130px 0;border-top:1px solid rgba(23,19,15,.08)">
+      <div style="max-width:1440px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:520px 1fr;gap:88px;align-items:center">
+        <div style="position:relative">
+          <div style="position:absolute;left:18px;top:-18px;width:100%;height:100%;border:1px solid rgba(0,112,122,.55);border-radius:2px"></div>
+          <img src="assets/ally.jpg" alt="Ally B., owner and baker" style="position:relative;display:block;width:520px;height:650px;object-fit:cover;object-position:50% 22%;border-radius:2px" />
+        </div>
+        <div>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A;margin-bottom:26px">Owner &amp; baker</div>
+          <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:82px;line-height:.97;letter-spacing:-.025em">Hi, I'm Ally.</h2>
+          <p style="margin:32px 0 0;max-width:52ch;font-size:17px;line-height:1.72;color:#4A423B">I've spent more than a decade in kitchens, and the thing I never got over is edible art &mdash; how a pastry can be beautiful and still disappear in four bites.</p>
+          <p style="margin:20px 0 0;max-width:52ch;font-size:17px;line-height:1.72;color:#4A423B">Sweet Bee started as a cottage bakery out of my house in East Pearland. Word travelled faster than I could laminate. Now it's a storefront on Broadway with a case I fill three days a week, and I still make the thing I want to eat that week rather than the thing that's easy to sell.</p>
+          <p style="margin:20px 0 0;max-width:52ch;font-size:17px;line-height:1.72;color:#4A423B">If you see something odd in the case, that's on purpose. Ask me about it.</p>
+          <div style="margin-top:44px">
+            <img src="assets/wordmark-dark.png" alt="Sweet Bee Bakehouse" style="height:34px;width:auto;display:block;opacity:.9" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#FBF7F1;padding:110px 0">
+      <div style="max-width:1440px;margin:0 auto;padding:0 48px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:40px;margin-bottom:56px">
+          <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:56px;line-height:1;letter-spacing:-.02em">A little buzz.</h2>
+          <div style="font-family:Newsreader, Georgia, serif;font-style:italic;font-size:19px;color:#8A8078">Nice of them to notice.</div>
+        </div>
+        <div style="border-top:1px solid rgba(23,19,15,.16)">
+          <div style="display:grid;grid-template-columns:1fr 2fr auto;gap:40px;align-items:center;padding:30px 0;border-bottom:1px solid rgba(23,19,15,.12);transition:padding-left 260ms ease" style-hover="padding-left:14px">
+            <div style="font-family:Newsreader, Georgia, serif;font-size:30px;line-height:1.1">CultureMap Houston</div>
+            <div style="font-size:14.5px;line-height:1.6;color:#4A423B">Tastemaker Awards recognition &mdash; Houston's pastry corner of the map, with Pearland on it.</div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A">Press</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 2fr auto;gap:40px;align-items:center;padding:30px 0;border-bottom:1px solid rgba(23,19,15,.12);transition:padding-left 260ms ease" style-hover="padding-left:14px">
+            <div style="font-family:Newsreader, Georgia, serif;font-size:30px;line-height:1.1">Texas Monthly</div>
+            <div style="font-size:14.5px;line-height:1.6;color:#4A423B">Named among the bakeries worth the drive &mdash; which, for a lot of you, it is.</div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A">Press</div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#B0A79E;margin-top:22px">Exact citations and dates to be confirmed before build</div>
+      </div>
+    </div>
+
+    <div data-screen-label="Visit" id="visit" style="display:grid;grid-template-columns:1fr 1fr;min-height:760px">
+      <div style="position:relative">
+        <img src="assets/case-counter.jpg" alt="The Sweet Bee pastry case" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+      </div>
+      <div style="background:#0F4E56;padding:118px 88px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#F4E07B;margin-bottom:26px">Visit</div>
+        <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:66px;line-height:1;letter-spacing:-.024em;color:#FBF7F1">Come look<br />in the case.</h2>
+        <p style="margin:26px 0 0;max-width:38ch;font-size:16px;line-height:1.7;color:rgba(251,247,241,.76)">We're on Broadway, three days a week, until the trays are empty. Saturdays go fast.</p>
+        <div style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:44px">
+          <div>
+            <div style="font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,224,123,.8);margin-bottom:16px">Hours</div>
+            <div style="display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px solid rgba(251,247,241,.16);color:#FBF7F1;font-size:14px"><span>Thursday</span><span style="font-family:Newsreader, Georgia, serif;font-size:16px">10 &ndash; 6</span></div>
+            <div style="display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px solid rgba(251,247,241,.16);color:#FBF7F1;font-size:14px"><span>Friday</span><span style="font-family:Newsreader, Georgia, serif;font-size:16px">10 &ndash; 6</span></div>
+            <div style="display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px solid rgba(251,247,241,.16);color:#FBF7F1;font-size:14px"><span>Saturday</span><span style="font-family:Newsreader, Georgia, serif;font-size:16px">10 &ndash; 4</span></div>
+            <div style="display:flex;justify-content:space-between;gap:20px;padding:9px 0;color:rgba(251,247,241,.45);font-size:14px"><span>Sun &ndash; Wed</span><span style="font-family:Newsreader, Georgia, serif;font-size:16px">Closed</span></div>
+          </div>
+          <div>
+            <div style="font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,224,123,.8);margin-bottom:16px">Find us</div>
+            <div style="font-family:Newsreader, Georgia, serif;font-size:22px;line-height:1.42;color:#FBF7F1">2540 E Broadway St.<br />Suite A<br />Pearland, TX 77581</div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,247,241,.4);margin-top:18px">Email &amp; phone to be confirmed</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;margin-top:56px">
+          <a href="https://maps.google.com/?q=2540+E+Broadway+St+Suite+A+Pearland+TX+77581" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:10px;background:#F4E07B;color:#17130F;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:16px 26px;border-radius:2px;transition:background 240ms ease" style-hover="background:#FFAE32;color:#17130F">Get Directions <span>&#8594;</span></a>
+          <a href="https://www.hotplate.com/sweetbeebakehouse" target="_blank" rel="noreferrer" style="font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FBF7F1;padding-bottom:7px;border-bottom:1.5px solid rgba(244,224,123,.6);transition:border-color 240ms ease" style-hover="border-bottom:1.5px solid #F4E07B;color:#FBF7F1">Order Ahead &#8599;</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isMenu }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Menu">
+
+    <div style="padding:78px 0 0;background:#FBF7F1">
+      <div style="max-width:1440px;margin:0 auto;padding:88px 48px 76px;display:grid;grid-template-columns:1fr 440px;gap:72px;align-items:end">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
+            <img src="assets/bee-disc.png" alt="" style="width:19px;height:19px;display:block;opacity:.9" />
+            <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#4A423B">The menu</div>
+          </div>
+          <h1 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:112px;line-height:.92;letter-spacing:-.03em">Everything<br />in the case.</h1>
+          <p style="margin:32px 0 0;max-width:50ch;font-size:17px;line-height:1.68;color:#4A423B">The classics, the seasonal experiments, and whatever Ally couldn't stop thinking about this week.</p>
+        </div>
+        <div>
+          <img src="assets/case-overhead.jpg" alt="Sweet Bee pastry case" style="display:block;width:440px;height:540px;object-fit:cover;border-radius:2px" />
+          <div style="font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-top:14px">Thursday, 10:04 a.m.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#FBF7F1;padding:0 0 106px">
+      <div style="max-width:1440px;margin:0 auto;padding:0 48px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:40px;padding-bottom:34px;border-bottom:1px solid rgba(23,19,15,.16)">
+          <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:44px;line-height:1;letter-spacing:-.02em">Current favorites</h2>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#8A8078">Three that keep selling out</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.25fr .85fr 1fr;gap:36px;margin-top:44px;align-items:end">
+          <div>
+            <img src="assets/crab-rangoon.jpg" alt="Crab rangoon croissants" style="display:block;width:100%;height:520px;object-fit:cover;border-radius:2px" />
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:12px 16px;box-shadow:0 12px 30px rgba(23,19,15,.11);transform:rotate(-1deg);margin-top:20px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:6px">Seasonal</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:19px;line-height:1.15">Crab Rangoon &nbsp;<span style="color:#8A8078">$7</span></div>
+            </div>
+          </div>
+          <div>
+            <img src="assets/buckeye-buns.jpg" alt="Buckeye buns" style="display:block;width:100%;height:404px;object-fit:cover;border-radius:2px" />
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:12px 16px;box-shadow:0 12px 30px rgba(23,19,15,.11);transform:rotate(.9deg);margin-top:20px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#8A8078;margin-bottom:6px">Sweets</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:19px;line-height:1.15">Buckeye Bun &nbsp;<span style="color:#8A8078">$5</span></div>
+            </div>
+          </div>
+          <div>
+            <img src="assets/pistachio.jpg" alt="Pistachio cream croissants" style="display:block;width:100%;height:600px;object-fit:cover;border-radius:2px" />
+            <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:12px 16px;box-shadow:0 12px 30px rgba(23,19,15,.11);transform:rotate(-.6deg);margin-top:20px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:6px">Seasonal</div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:19px;line-height:1.15">Pistachio Cream &nbsp;<span style="color:#8A8078">$7</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#FFFDFA;border-top:1px solid rgba(23,19,15,.1);padding:0 0 120px">
+      <div style="position:sticky;top:78px;z-index:40;background:rgba(255,253,250,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(23,19,15,.1)">
+        <div style="max-width:1440px;margin:0 auto;padding:0 48px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <sc-for list="{{ cats }}" as="c" hint-placeholder-count="4">
+              <div onClick="{{ pickCat }}" data-cat="{{ c.id }}" style="cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border-radius:2px;background:{{ c.bg }};color:{{ c.fg }};transition:background 220ms ease, color 220ms ease">{{ c.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:20px">
+            <div style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078">{{ countLabel }}</div>
+            <a href="https://www.hotplate.com/sweetbeebakehouse" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:9px;background:#00707A;color:#FBF7F1;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;border-radius:2px;transition:background 240ms ease" style-hover="background:#0F4E56;color:#FBF7F1">Pre-order &#8599;</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1440px;margin:0 auto;padding:66px 48px 0;display:grid;grid-template-columns:1fr 500px;gap:80px;align-items:start">
+        <div>
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
+            <div style="margin-bottom:60px">
+              <div style="display:flex;align-items:center;gap:18px;margin-bottom:14px">
+                <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A">{{ g.title }}</div>
+                <div style="flex:1;height:1px;background:rgba(23,19,15,.14)"></div>
+                <div style="font-family:Newsreader, Georgia, serif;font-size:15px;color:#8A8078">{{ g.count }}</div>
+              </div>
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
+                <div onMouseEnter="{{ hoverItem }}" onClick="{{ hoverItem }}" data-id="{{ it.id }}" style="cursor:pointer;padding:19px 0 19px {{ it.pad }};border-bottom:1px solid rgba(23,19,15,.1);background:{{ it.bg }};transition:padding-left 300ms cubic-bezier(.2,.7,.2,1), background 300ms ease">
+                  <div style="display:flex;align-items:baseline;gap:14px">
+                    <div style="font-family:Newsreader, Georgia, serif;font-size:27px;line-height:1.15;color:#17130F;flex:0 0 auto">{{ it.name }}</div>
+                    <sc-if value="{{ it.seasonal }}" hint-placeholder-val="{{ false }}">
+                      <div style="flex:0 0 auto;font-size:8.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;border:1px solid rgba(0,112,122,.35);padding:3px 7px;border-radius:2px;transform:translateY(-3px)">Seasonal</div>
+                    </sc-if>
+                    <div style="flex:1;height:1px;border-bottom:1px dotted rgba(23,19,15,.3);transform:translateY(-6px)"></div>
+                    <div style="flex:0 0 auto;font-family:Newsreader, Georgia, serif;font-size:20px;color:#4A423B">{{ it.price }}</div>
+                  </div>
+                  <div style="margin-top:7px;font-size:14px;line-height:1.6;color:#6C645C;max-width:56ch">{{ it.desc }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+
+          <div style="display:flex;align-items:flex-start;gap:16px;padding:26px 28px;background:rgba(0,112,122,.07);border-left:2px solid #00707A">
+            <img src="assets/bee-disc.png" alt="" style="width:22px;height:22px;flex:0 0 auto;margin-top:2px" />
+            <div>
+              <div style="font-family:Newsreader, Georgia, serif;font-size:22px;line-height:1.3;color:#17130F">The case changes often.</div>
+              <p style="margin:7px 0 0;font-size:14.5px;line-height:1.6;color:#4A423B;max-width:62ch">Seasonal flavors rotate when Ally gets an idea, and Saturday afternoons are unpredictable. Half the fun is not knowing what's on the tray.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:sticky;top:190px">
+          <div style="position:relative;width:500px;height:640px;border-radius:2px;overflow:hidden;background:#F1EAE0">
+            <img src="{{ imgA }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ opA }};transition:opacity 560ms cubic-bezier(.3,.7,.2,1)" />
+            <img src="{{ imgB }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ opB }};transition:opacity 560ms cubic-bezier(.3,.7,.2,1)" />
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#F6F0E7;opacity:{{ opFallback }};transition:opacity 400ms ease;pointer-events:none">
+              <div style="text-align:center;padding:40px">
+                <div style="width:34px;height:34px;margin:0 auto 22px;opacity:.5"><img src="assets/bee-disc.png" alt="" style="width:34px;height:34px;display:block" /></div>
+                <div style="font-family:Newsreader, Georgia, serif;font-size:30px;line-height:1.2;color:#17130F">{{ activeName }}</div>
+                <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-top:16px">Photograph coming &mdash; it looks<br />considerably better in person</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-top:22px">
+            <div style="background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:13px 17px;box-shadow:0 12px 30px rgba(23,19,15,.1);transform:rotate(-.9deg);min-width:230px">
+              <div style="font-size:8.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:7px">{{ activeCat }}</div>
+              <div style="height:1px;background:#F4E07B;margin-bottom:9px"></div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:18px">
+                <div style="font-family:Newsreader, Georgia, serif;font-size:21px;line-height:1.1">{{ activeName }}</div>
+                <div style="font-family:Newsreader, Georgia, serif;font-size:16px;color:#4A423B">{{ activePrice }}</div>
+              </div>
+            </div>
+            <div style="font-size:9.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#B0A79E;text-align:right;padding-top:6px;max-width:16ch">Hover or tap any item</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#0F4E56;padding:118px 48px">
+      <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:60px">
+        <div>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#F4E07B;margin-bottom:26px">Ordering</div>
+          <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:76px;line-height:.98;letter-spacing:-.026em;color:#FBF7F1">Want it waiting<br />for you?</h2>
+        </div>
+        <div style="max-width:34ch">
+          <p style="margin:0 0 30px;font-size:16px;line-height:1.7;color:rgba(251,247,241,.76)">Pre-order on Hotplate and we'll box it up before the Saturday line starts.</p>
+          <a href="https://www.hotplate.com/sweetbeebakehouse" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:11px;background:#F4E07B;color:#17130F;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:17px 28px;border-radius:2px;transition:background 240ms ease" style-hover="background:#FFAE32;color:#17130F">Pre-order on Hotplate <span>&#8594;</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Mobile" style="padding:78px 0 0;background:#F1EAE0">
+    <div style="max-width:1440px;margin:0 auto;padding:72px 48px 40px">
+      <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A;margin-bottom:22px">Responsive</div>
+      <h1 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:72px;line-height:.98;letter-spacing:-.024em">Recomposed<br />for the phone.</h1>
+      <p style="margin:26px 0 0;max-width:56ch;font-size:16.5px;line-height:1.7;color:#4A423B">Most people arrive from Instagram, so mobile is designed, not shrunk: the hero stacks type over vertical video, the case becomes a full-bleed swipe, and the menu's photo panel moves to a sticky strip above the list.</p>
+    </div>
+    <div class="sb-scroll" style="padding:30px 48px 96px;overflow-x:auto">
+      <div style="display:flex;gap:44px;min-width:max-content;align-items:flex-start">
+
+        <div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-bottom:16px">Home &mdash; hero &amp; case</div>
+          <div style="width:390px;height:800px;border:9px solid #17130F;border-radius:44px;overflow:hidden;background:#FBF7F1;box-shadow:0 30px 70px rgba(23,19,15,.22)">
+            <div class="sb-hide" style="width:100%;height:100%;overflow-y:auto">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(23,19,15,.1)">
+                <img src="assets/wordmark-dark.png" alt="Sweet Bee Bakehouse" style="height:19px;width:auto;display:block" />
+                <div style="display:flex;flex-direction:column;gap:4px"><span style="width:20px;height:1.5px;background:#17130F"></span><span style="width:20px;height:1.5px;background:#17130F"></span></div>
+              </div>
+              <div style="position:relative">
+                <video src="assets/bakery.mp4" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" style="display:block;width:100%;height:430px;object-fit:cover;background:#17130F"></video>
+                <div style="position:absolute;left:0;right:0;bottom:0;padding:24px 20px 22px;background:linear-gradient(to top, rgba(15,20,18,.82), rgba(15,20,18,0))">
+                  <div style="font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#F4E07B;margin-bottom:12px">Pearland, Texas</div>
+                  <div style="font-family:Newsreader, Georgia, serif;font-weight:400;font-size:44px;line-height:.96;letter-spacing:-.02em;color:#FBF7F1">Your neighborhood<br /><span style="font-style:italic;color:#F4E07B">croissant maker.</span></div>
+                </div>
+              </div>
+              <div style="padding:22px 20px 26px">
+                <p style="margin:0;font-size:14.5px;line-height:1.65;color:#4A423B">Six years a home baker, turned storefront.</p>
+                <div style="display:grid;gap:12px;margin-top:20px">
+                  <div style="text-align:center;background:#00707A;color:#FBF7F1;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:16px;border-radius:2px">Explore the Menu</div>
+                  <div style="text-align:center;border:1px solid rgba(23,19,15,.2);color:#17130F;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:16px;border-radius:2px">Order Online &#8599;</div>
+                </div>
+              </div>
+              <div style="background:#0F4E56;padding:13px 20px;font-size:9px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:rgba(251,247,241,.75)"><span style="color:#F4E07B">Today</span> &nbsp;/&nbsp; Pistachio Cream &nbsp;/&nbsp; Crab Rangoon &nbsp;/&nbsp; Banoffee</div>
+              <div style="padding:34px 20px 18px">
+                <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:38px;line-height:1;letter-spacing:-.02em">What's in the case?</h2>
+              </div>
+              <div class="sb-hide" style="overflow-x:auto;padding:8px 20px 26px">
+                <div style="display:flex;gap:16px;min-width:max-content;align-items:flex-end">
+                  <div>
+                    <img src="assets/pistachio.jpg" alt="" style="display:block;width:230px;height:300px;object-fit:cover;border-radius:2px" />
+                    <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:9px 12px;box-shadow:0 8px 20px rgba(23,19,15,.1);transform:rotate(-1deg);margin-top:14px">
+                      <div style="font-size:7.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#00707A;margin-bottom:5px">Seasonal</div>
+                      <div style="font-family:Newsreader, Georgia, serif;font-size:15px">Pistachio Cream &nbsp;<span style="color:#8A8078">$7</span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <img src="assets/choc-croissants.jpg" alt="" style="display:block;width:190px;height:250px;object-fit:cover;border-radius:2px" />
+                    <div style="display:inline-block;background:#FFFDFA;border:1px solid rgba(23,19,15,.13);padding:9px 12px;box-shadow:0 8px 20px rgba(23,19,15,.1);transform:rotate(.9deg);margin-top:14px">
+                      <div style="font-size:7.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#8A8078;margin-bottom:5px">Original</div>
+                      <div style="font-family:Newsreader, Georgia, serif;font-size:15px">Chocolate &nbsp;<span style="color:#8A8078">$6</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-bottom:16px">Home &mdash; statement &amp; story</div>
+          <div style="width:390px;height:800px;border:9px solid #17130F;border-radius:44px;overflow:hidden;background:#FBF7F1;box-shadow:0 30px 70px rgba(23,19,15,.22)">
+            <div class="sb-hide" style="width:100%;height:100%;overflow-y:auto">
+              <div style="background:#0F4E56;padding:64px 20px 58px">
+                <div style="font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#F4E07B;margin-bottom:30px">The Sweet Bee theory</div>
+                <div style="font-family:Newsreader, Georgia, serif;font-weight:300;font-size:50px;line-height:.96;letter-spacing:-.028em;color:#FBF7F1">We could have stopped at butter.</div>
+                <div style="font-family:Newsreader, Georgia, serif;font-style:italic;font-weight:300;font-size:50px;line-height:.96;letter-spacing:-.028em;color:#F4E07B;margin-top:14px;text-align:right">We didn't.</div>
+              </div>
+              <div style="padding:0">
+                <img src="assets/crab-rangoon.jpg" alt="" style="display:block;width:100%;height:330px;object-fit:cover" />
+                <div style="padding:26px 20px 34px">
+                  <div style="font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#00707A;margin-bottom:16px">The seasonal board</div>
+                  <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:38px;line-height:1.02;letter-spacing:-.02em">Seasonal flavors, zero restraint.</h2>
+                  <p style="margin:18px 0 0;font-size:14.5px;line-height:1.68;color:#4A423B">The lamination is the discipline. What goes inside is where it gets interesting.</p>
+                </div>
+              </div>
+              <div style="background:#FFFDFA;border-top:1px solid rgba(23,19,15,.1);padding:0 0 34px">
+                <img src="assets/ally.jpg" alt="Ally B." style="display:block;width:100%;height:400px;object-fit:cover;object-position:50% 20%" />
+                <div style="padding:26px 20px 0">
+                  <h2 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:46px;line-height:1;letter-spacing:-.022em">Hi, I'm Ally.</h2>
+                  <p style="margin:18px 0 0;font-size:14.5px;line-height:1.7;color:#4A423B">Sweet Bee started as a cottage bakery out of my house in East Pearland. Word travelled faster than I could laminate.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A8078;margin-bottom:16px">Menu &mdash; sticky photo strip</div>
+          <div style="width:390px;height:800px;border:9px solid #17130F;border-radius:44px;overflow:hidden;background:#FFFDFA;box-shadow:0 30px 70px rgba(23,19,15,.22)">
+            <div class="sb-hide" style="width:100%;height:100%;overflow-y:auto">
+              <div style="padding:26px 20px 20px">
+                <div style="font-size:9.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A;margin-bottom:16px">The menu</div>
+                <h1 style="margin:0;font-family:Newsreader, Georgia, serif;font-weight:400;font-size:46px;line-height:.96;letter-spacing:-.024em">Everything in the case.</h1>
+              </div>
+              <div style="position:sticky;top:0;z-index:5;background:#FFFDFA">
+                <img src="assets/crab-rangoon.jpg" alt="" style="display:block;width:100%;height:250px;object-fit:cover" />
+                <div style="display:flex;gap:7px;padding:14px 20px;border-bottom:1px solid rgba(23,19,15,.1);overflow-x:auto">
+                  <div style="flex:0 0 auto;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:8px 13px;border-radius:2px;background:#00707A;color:#FBF7F1">All</div>
+                  <div style="flex:0 0 auto;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:8px 13px;border-radius:2px;background:rgba(23,19,15,.06);color:#4A423B">Originals</div>
+                  <div style="flex:0 0 auto;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:8px 13px;border-radius:2px;background:rgba(23,19,15,.06);color:#4A423B">Seasonal</div>
+                  <div style="flex:0 0 auto;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:8px 13px;border-radius:2px;background:rgba(23,19,15,.06);color:#4A423B">Sweets</div>
+                </div>
+              </div>
+              <div style="padding:8px 20px 30px">
+                <div style="padding:16px 0;border-bottom:1px solid rgba(23,19,15,.1)">
+                  <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:Newsreader, Georgia, serif;font-size:22px">Crab Rangoon</div><div style="flex:1;border-bottom:1px dotted rgba(23,19,15,.3);transform:translateY(-5px)"></div><div style="font-family:Newsreader, Georgia, serif;font-size:17px;color:#4A423B">$7</div></div>
+                  <div style="margin-top:6px;font-size:13px;line-height:1.55;color:#6C645C">Shredded imitation crab, cream cheese, wonton, green onion.</div>
+                </div>
+                <div style="padding:16px 0;border-bottom:1px solid rgba(23,19,15,.1)">
+                  <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:Newsreader, Georgia, serif;font-size:22px">Pistachio Cream</div><div style="flex:1;border-bottom:1px dotted rgba(23,19,15,.3);transform:translateY(-5px)"></div><div style="font-family:Newsreader, Georgia, serif;font-size:17px;color:#4A423B">$7</div></div>
+                  <div style="margin-top:6px;font-size:13px;line-height:1.55;color:#6C645C">Green bi-color croissant with pistachio mascarpone.</div>
+                </div>
+                <div style="padding:16px 0;border-bottom:1px solid rgba(23,19,15,.1)">
+                  <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:Newsreader, Georgia, serif;font-size:22px">Fig &amp; Ricotta</div><div style="flex:1;border-bottom:1px dotted rgba(23,19,15,.3);transform:translateY(-5px)"></div><div style="font-family:Newsreader, Georgia, serif;font-size:17px;color:#4A423B">$6.25</div></div>
+                  <div style="margin-top:6px;font-size:13px;line-height:1.55;color:#6C645C">Black Forest ham, ricotta, fresh herbs, sweet fig jam.</div>
+                </div>
+                <div style="padding:16px 0;border-bottom:1px solid rgba(23,19,15,.1)">
+                  <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:Newsreader, Georgia, serif;font-size:22px">Banoffee</div><div style="flex:1;border-bottom:1px dotted rgba(23,19,15,.3);transform:translateY(-5px)"></div><div style="font-family:Newsreader, Georgia, serif;font-size:17px;color:#4A423B">$7</div></div>
+                  <div style="margin-top:6px;font-size:13px;line-height:1.55;color:#6C645C">Graham cracker, bananas, dulce de leche, ganache.</div>
+                </div>
+                <div style="margin-top:22px;text-align:center;background:#F4E07B;color:#17130F;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:16px;border-radius:2px">Pre-order on Hotplate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <div style="background:#0F4E56;padding:96px 48px 40px">
+    <div style="max-width:1440px;margin:0 auto">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:60px;padding-bottom:58px;border-bottom:1px solid rgba(251,247,241,.18)">
+        <img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="height:52px;width:auto;display:block" />
+        <div style="font-family:Newsreader, Georgia, serif;font-style:italic;font-size:30px;color:#F4E07B;padding-bottom:6px">Get here before they're gone.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px;padding:56px 0 64px">
+        <div>
+          <div style="font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,224,123,.85);margin-bottom:18px">Find us</div>
+          <div style="font-family:Newsreader, Georgia, serif;font-size:20px;line-height:1.5;color:#FBF7F1">2540 E Broadway St., Suite A<br />Pearland, TX 77581</div>
+          <a href="https://maps.google.com/?q=2540+E+Broadway+St+Suite+A+Pearland+TX+77581" target="_blank" rel="noreferrer" style="display:inline-block;margin-top:18px;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F4E07B;padding-bottom:5px;border-bottom:1px solid rgba(244,224,123,.45)" style-hover="color:#FFAE32">Get directions</a>
+        </div>
+        <div>
+          <div style="font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,224,123,.85);margin-bottom:18px">Hours</div>
+          <div style="font-size:14px;line-height:2;color:rgba(251,247,241,.82)">Thursday &nbsp; 10 &ndash; 6<br />Friday &nbsp; 10 &ndash; 6<br />Saturday &nbsp; 10 &ndash; 4<br /><span style="color:rgba(251,247,241,.45)">Sun &ndash; Wed &nbsp; Closed</span></div>
+        </div>
+        <div>
+          <div style="font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,224,123,.85);margin-bottom:18px">Explore</div>
+          <div style="display:grid;gap:11px">
+            <div onClick="{{ goMenu }}" style="cursor:pointer;font-size:14px;color:rgba(251,247,241,.82)" style-hover="color:#F4E07B">Menu</div>
+            <div onClick="{{ goStory }}" style="cursor:pointer;font-size:14px;color:rgba(251,247,241,.82)" style-hover="color:#F4E07B">Our Story</div>
+            <div onClick="{{ goVisit }}" style="cursor:pointer;font-size:14px;color:rgba(251,247,241,.82)" style-hover="color:#F4E07B">Visit</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,224,123,.85);margin-bottom:18px">Follow &amp; order</div>
+          <div style="display:grid;gap:11px">
+            <a href="https://www.instagram.com/sweetbeebakehouse/" target="_blank" rel="noreferrer" style="font-size:14px;color:rgba(251,247,241,.82)" style-hover="color:#F4E07B">Instagram</a>
+            <a href="https://www.hotplate.com/sweetbeebakehouse" target="_blank" rel="noreferrer" style="font-size:14px;color:rgba(251,247,241,.82)" style-hover="color:#F4E07B">Hotplate &#8599;</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding-top:26px;border-top:1px solid rgba(251,247,241,.14)">
+        <div style="display:flex;align-items:center;gap:14px">
+          <img src="assets/bee-glyph.png" alt="" style="width:22px;height:22px;display:block;opacity:.85" />
+          <div style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,247,241,.5)">Sweet Bee Bakehouse &mdash; Pearland, Texas</div>
+        </div>
+        <div style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,247,241,.35)">Design concept &mdash; not yet published</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:fixed;left:24px;bottom:24px;z-index:95;display:flex;align-items:center;gap:2px;background:#FFFDFA;border:1px solid rgba(23,19,15,.16);border-radius:3px;padding:4px;box-shadow:0 12px 30px rgba(23,19,15,.16)">
+    <div onClick="{{ goHome }}" style="cursor:pointer;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;border-radius:2px;color:#4A423B" style-hover="background:rgba(0,112,122,.1);color:#00707A">Desktop</div>
+    <div onClick="{{ goMobile }}" style="cursor:pointer;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;border-radius:2px;color:#4A423B" style-hover="background:rgba(0,112,122,.1);color:#00707A">Mobile</div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroMedia&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;photo&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;'video' | 'photo'&quot;,&quot;section&quot;:&quot;Art direction&quot;},&quot;showStatusBand&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Art direction&quot;},&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Menu&quot;}}">
+const ITEMS = [
+  { id:'butter', name:'Traditional Butter', price:'$5.00', cat:'Originals', desc:'The OG croissant.', img:null },
+  { id:'choc', name:'Chocolate', price:'$6.00', cat:'Originals', desc:'Bi-color chocolate croissant with a Callebaut chocolate center.', img:'assets/choc-croissants.jpg' },
+  { id:'almond', name:'Almond Raspberry', price:'$6.00', cat:'Originals', desc:'Twice baked, almond frangipane and raspberry gel.', img:null },
+  { id:'guava', name:'Guava Cream Cheese', price:'$5.00', cat:'Originals', desc:'Cuban pastelito inspired guava and cream cheese.', img:null },
+  { id:'ham', name:'Ham & Cheese', price:'$6.00', cat:'Originals', desc:'Smoked honey ham, Colby Jack, parmesan and sesame seeds.', img:null },
+  { id:'cinn', name:'Cinnamon Roll', price:'$6.00', cat:'Originals', desc:'Cinnamon brown sugar swirl with vanilla cream cheese icing.', img:null },
+  { id:'crab', name:'Crab Rangoon', price:'$7.00', cat:'Seasonal', desc:'Shredded imitation crab, cream cheese, wonton and green onion.', img:'assets/crab-rangoon.jpg', seasonal:true },
+  { id:'fig', name:'Fig & Ricotta', price:'$6.25', cat:'Seasonal', desc:'Black Forest ham, ricotta, fresh herbs and sweet fig jam.', img:'assets/fig-ricotta.jpg', seasonal:true },
+  { id:'pist', name:'Pistachio Cream', price:'$7.00', cat:'Seasonal', desc:'Green bi-color croissant with pistachio mascarpone filling.', img:'assets/pistachio.jpg', seasonal:true },
+  { id:'bano', name:'Banoffee', price:'$7.00', cat:'Seasonal', desc:'Graham cracker, bananas, dulce de leche and chocolate ganache.', img:null, seasonal:true },
+  { id:'pep', name:'Pepperoni Hot Honey', price:'$6.00', cat:'Seasonal', desc:'Marinara, herbs, pepperoni, mozzarella and hot honey.', img:null, seasonal:true },
+  { id:'rasp', name:'Raspberry Pain Suisse', price:'$7.00', cat:'Seasonal', desc:'Raspberry couverture chocolate and pastry cream filled.', img:null, seasonal:true },
+  { id:'turk', name:'Turkey Sandwich', price:'$8.00', cat:'Seasonal', desc:'Turkey, smoked gouda, garlic aioli, caramelized onions and arugula.', img:'assets/sandwiches.jpg', seasonal:true },
+  { id:'straw', name:'Strawberry Shortcake', price:'$7.00', cat:'Sweets', desc:'', img:null },
+  { id:'buck', name:'Buckeye Bun', price:'$5.00', cat:'Sweets', desc:'Peanut butter and chocolate.', img:'assets/buckeye-buns.jpg' },
+  { id:'tres', name:'Traditional Tres Leches', price:'$6.00', cat:'Sweets', desc:'', img:null },
+  { id:'oreo', name:'Oreo Chocolate Cookie', price:'$4.00', cat:'Sweets', desc:'', img:null },
+  { id:'snick', name:'Peanut Butter Snickerdoodle', price:'$4.00', cat:'Sweets', desc:'', img:null },
+  { id:'triple', name:'Triple Chocolate Cookie', price:'$4.00', cat:'Sweets', desc:'', img:null },
+  { id:'scone', name:'Tomato Jam Scone', price:'$4.00', cat:'Sweets', desc:'', img:null },
+  { id:'alfa', name:'Alfajores', price:'$2.00', cat:'Sweets', desc:'', img:null },
+  { id:'pump', name:'Pumpkin Muffin', price:'$5.50', cat:'Sweets', desc:'', img:null },
+  { id:'bpud', name:'Banana Pudding', price:'$6.00', cat:'Sweets', desc:'', img:null },
+  { id:'garlic', name:'Garlic Cheesy Bread', price:'$5.00', cat:'Sweets', desc:'', img:null },
+  { id:'monkey', name:'Monkey Bread', price:'$5.00', cat:'Sweets', desc:'', img:null },
+  { id:'mac', name:'Macarons', price:'$14 / $24', cat:'Sweets', desc:'Half dozen or dozen. Biscoff cookie butter, coconut ube, birthday cake, chocolate ganache.', img:'assets/macarons.jpg' }
+];
+
+class Component extends DCLogic {
+  state = { page:'home', cat:'All', active:'crab', slot:'A', imgA:'assets/crab-rangoon.jpg', imgB:'' };
+
+  jump(page, anchor) {
+    this.setState({ page }, () => {
+      window.scrollTo({ top:0 });
+      if (anchor) {
+        const el = document.getElementById(anchor);
+        if (el) window.scrollTo({ top: el.offsetTop - 78, behavior:'smooth' });
+      }
+    });
+  }
+
+  setActive(id) {
+    if (id === this.state.active) return;
+    const it = ITEMS.find(i => i.id === id);
+    if (!it) return;
+    if (!it.img) { this.setState({ active:id }); return; }
+    const next = this.state.slot === 'A' ? 'B' : 'A';
+    this.setState(next === 'A' ? { active:id, slot:'A', imgA:it.img } : { active:id, slot:'B', imgB:it.img });
+  }
+
+  renderVals() {
+    const page = this.state.page;
+    const showPrices = this.props.showPrices ?? true;
+    const cat = this.state.cat;
+    const active = ITEMS.find(i => i.id === this.state.active) || ITEMS[0];
+    const visible = ITEMS.filter(i => cat === 'All' || i.cat === cat);
+
+    const order = ['Originals','Seasonal','Sweets'];
+    const titles = { Originals:'Croissants — Originals', Seasonal:'Croissants — Seasonal', Sweets:'Sweets' };
+    const groups = order.filter(k => visible.some(i => i.cat === k)).map(k => {
+      const list = visible.filter(i => i.cat === k);
+      return {
+        title: titles[k],
+        count: list.length + (list.length === 1 ? ' item' : ' items'),
+        items: list.map(i => ({
+          id: i.id,
+          name: i.name,
+          price: showPrices ? i.price : '',
+          desc: i.desc,
+          seasonal: !!i.seasonal,
+          pad: i.id === this.state.active ? '16px' : '0px',
+          bg: i.id === this.state.active ? 'rgba(0,112,122,.05)' : 'transparent'
+        }))
+      };
+    });
+
+    const cats = ['All','Originals','Seasonal','Sweets'].map(id => ({
+      id,
+      label: id === 'Originals' ? 'Originals' : id === 'Seasonal' ? 'Seasonal' : id === 'Sweets' ? 'Sweets' : 'All',
+      bg: id === cat ? '#00707A' : 'rgba(23,19,15,.05)',
+      fg: id === cat ? '#FBF7F1' : '#4A423B'
+    }));
+
+    return {
+      isHome: page === 'home', isMenu: page === 'menu', isMobile: page === 'mobile',
+      heroIsVideo: (this.props.heroMedia ?? 'video') === 'video',
+      heroIsPhoto: (this.props.heroMedia ?? 'video') === 'photo',
+      showBand: this.props.showStatusBand ?? true,
+      goHome: () => this.jump('home'),
+      goMenu: () => this.jump('menu'),
+      goMobile: () => this.jump('mobile'),
+      goStory: () => this.state.page === 'home' ? this.jump('home','story') : this.jump('home','story'),
+      goVisit: () => this.jump('home','visit'),
+      pickCat: (e) => this.setState({ cat: e.currentTarget.dataset.cat }),
+      hoverItem: (e) => this.setActive(e.currentTarget.dataset.id),
+      cats, groups,
+      countLabel: visible.length + ' items',
+      imgA: this.state.imgA || 'assets/crab-rangoon.jpg',
+      imgB: this.state.imgB || 'assets/crab-rangoon.jpg',
+      opA: active.img && this.state.slot === 'A' ? 1 : 0,
+      opB: active.img && this.state.slot === 'B' ? 1 : 0,
+      opFallback: active.img ? 0 : 1,
+      activeName: active.name,
+      activePrice: showPrices ? active.price : '',
+      activeCat: active.seasonal ? 'Seasonal' : active.cat
+    };
+  }
+}
+</script>
+</body>
+</html>

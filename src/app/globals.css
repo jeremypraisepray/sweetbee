@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 78px;
+    --gutter: 48px;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+  }
+
+  @media (max-width: 1200px) { :root { --gutter: 36px; } }
+  @media (max-width: 720px)  { :root { --gutter: 20px; } }
+
+  html {
+    scroll-behavior: smooth;
+    /* Anchored sections clear the fixed header instead of hiding under it. */
+    scroll-padding-top: var(--header-h);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: theme('colors.cream');
+    color: theme('colors.ink');
+    font-family: theme('fontFamily.sans');
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: theme('colors.gold.DEFAULT'); color: theme('colors.ink'); }
+
+  :where(h1, h2, h3, h4) { text-wrap: balance; }
+  :where(p, li, figcaption, blockquote) { text-wrap: pretty; }
+
+  /* Gold ring on both grounds; the inner ink edge keeps it legible on cream. */
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid theme('colors.gold.DEFAULT');
+    outline-offset: 2px;
+    box-shadow: 0 0 0 1px rgba(23, 19, 15, .55);
+    border-radius: 2px;
+  }
+  .on-teal :where(a, button):focus-visible { box-shadow: none; }
+
+  img, video { max-width: 100%; }
+}
+
+@layer components {
+  /* ---- Layout ------------------------------------------------------- */
+  .shell { max-width: theme('maxWidth.measure'); margin-inline: auto; padding-inline: var(--gutter); }
+  .bleed-inner { max-width: theme('maxWidth.measure'); margin-inline: auto; }
+
+  /* ---- Type roles ---------------------------------------------------- */
+  .eyebrow {
+    font-size: 10.5px; font-weight: 600; letter-spacing: .2em;
+    text-transform: uppercase; line-height: 1.2;
+  }
+  .nav-type {
+    font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+  }
+  .meta-type {
+    font-size: 11px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase;
+  }
+  @media (max-width: 720px) { .eyebrow { font-size: 9.5px; } }
+
+  /* ---- Buttons: exactly three treatments ----------------------------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: theme('fontFamily.sans');
+    font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    padding: 17px 28px; border-radius: 2px; min-height: 48px;
+    transition: background-color 240ms ease, border-color 240ms ease, color 240ms ease;
+  }
+  .btn-primary { background: theme('colors.teal.DEFAULT'); color: theme('colors.cream'); }
+  .btn-primary:hover { background: theme('colors.teal.deep'); }
+  .btn-on-teal { background: theme('colors.gold.DEFAULT'); color: theme('colors.ink'); }
+  .btn-on-teal:hover { background: theme('colors.gold.warm'); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: theme('colors.ink');
+    padding-bottom: 7px; border-bottom: 1.5px solid theme('colors.gold.DEFAULT');
+    transition: border-color 240ms ease, color 240ms ease;
+    min-height: 44px; align-items: flex-end;
+  }
+  .btn-secondary:hover { border-color: theme('colors.gold.warm'); }
+  .btn-secondary-light { color: theme('colors.cream'); }
+
+  /* ---- The label object --------------------------------------------- */
+  /* The one rotated element on the site. Always overlaps the photo it names. */
+  .case-label {
+    background: theme('colors.paper');
+    border: 1px solid rgba(23, 19, 15, .13);
+    padding: 12px 16px;
+    box-shadow: theme('boxShadow.label');
+    transform: rotate(var(--tilt, -1deg));
+    transition: transform 240ms var(--ease), box-shadow 240ms var(--ease);
+    will-change: transform;
+  }
+  .case-label-hover:hover .case-label,
+  .case-label-hover:focus-visible .case-label {
+    transform: rotate(var(--tilt, -1deg)) translateY(-2px);
+    box-shadow: theme('boxShadow.label-lift');
+  }
+  .case-label__cat {
+    font-size: 8.5px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase;
+  }
+  .case-label__rule { height: 1px; background: theme('colors.gold.DEFAULT'); margin: 7px 0 8px; }
+
+  /* ---- Hairlines ----------------------------------------------------- */
+  .rule-light { border-top: 1px solid rgba(23, 19, 15, .14); }
+  .rule-teal  { border-top: 1px solid rgba(251, 247, 241, .18); }
+
+  /* ---- Horizontal rail ---------------------------------------------- */
+  .rail { overflow-x: auto; scrollbar-width: thin; scrollbar-color: rgba(23,19,15,.22) rgba(23,19,15,.06); }
+  .rail::-webkit-scrollbar { height: 3px; }
+  .rail::-webkit-scrollbar-track { background: rgba(23, 19, 15, .06); }
+  .rail::-webkit-scrollbar-thumb { background: rgba(23, 19, 15, .22); }
+  .rail-dragging { cursor: grabbing; user-select: none; scroll-behavior: auto; }
+
+  /* Soft right edge so a rail that runs past the fold reads as scrollable.
+   * Dropped while anything inside has focus, so a focus ring is never faded. */
+  .rail-fade {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+  }
+  .rail-fade:focus-within { -webkit-mask-image: none; mask-image: none; }
+
+  .skip-link {
+    position: absolute; left: 16px; top: -60px; z-index: 200;
+    background: theme('colors.teal.deep'); color: theme('colors.cream');
+    padding: 12px 20px; border-radius: 2px;
+    font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    transition: top 180ms ease;
+  }
+  .skip-link:focus { top: 16px; }
+}
+
+@layer utilities {
+  /* Clip-reveal for the statement lines: the mask is the movement. */
+  .reveal-line > span {
+    display: block;
+    transform: translateY(105%);
+    transition: transform 520ms var(--ease);
+  }
+  .reveal-line { overflow: hidden; }
+  .is-revealed.reveal-line > span { transform: translateY(0); }
+
+  .settle { opacity: 0; transform: translateY(18px); }
+  .is-settled { opacity: 1; transform: none; transition: opacity 900ms var(--ease), transform 900ms var(--ease); }
+
+  .fade-in-slow { opacity: 0; transition: opacity 1200ms ease; }
+  .is-faded-in { opacity: 1; }
+}
+
+/*
+ * Reduced motion: every one of the six motion moments collapses to its final
+ * state. No content is animation-gated, so nothing is lost.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .settle, .fade-in-slow { opacity: 1 !important; transform: none !important; }
+  .reveal-line > span { transform: none !important; }
+}
+
+@keyframes sheetIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes sheetListIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+#mobile-nav > div:last-child { animation: sheetListIn 260ms 60ms var(--ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  #mobile-nav, #mobile-nav > div:last-child { animation: none !important; }
+}

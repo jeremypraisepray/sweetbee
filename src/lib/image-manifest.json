@@ -1,0 +1,148 @@
+{
+  "pistachio": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280,
+      1520
+    ],
+    "ratio": 1.3333,
+    "width": 1536,
+    "height": 2048
+  },
+  "crab-rangoon": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280
+    ],
+    "ratio": 1.3333,
+    "width": 1536,
+    "height": 2048
+  },
+  "fig-ricotta": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280
+    ],
+    "ratio": 1.3333,
+    "width": 1536,
+    "height": 2048
+  },
+  "choc-croissants": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280
+    ],
+    "ratio": 1.3333,
+    "width": 4284,
+    "height": 5712
+  },
+  "buckeye-buns": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280
+    ],
+    "ratio": 1.3333,
+    "width": 1536,
+    "height": 2048
+  },
+  "macarons": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280
+    ],
+    "ratio": 1.3333,
+    "width": 1536,
+    "height": 2048
+  },
+  "sandwiches": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280
+    ],
+    "ratio": 1.3333,
+    "width": 1536,
+    "height": 2048
+  },
+  "ally": {
+    "widths": [
+      320,
+      480,
+      640,
+      817
+    ],
+    "ratio": 1.2534,
+    "width": 817,
+    "height": 1024
+  },
+  "case-counter": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280,
+      1520
+    ],
+    "ratio": 1.3333,
+    "width": 1536,
+    "height": 2048
+  },
+  "case-overhead": {
+    "widths": [
+      320,
+      480,
+      640,
+      800,
+      1000,
+      1280
+    ],
+    "ratio": 1.3333,
+    "width": 4284,
+    "height": 5712
+  },
+  "wordmark-dark": {
+    "width": 1292,
+    "height": 189
+  },
+  "wordmark-light": {
+    "width": 1363,
+    "height": 199
+  },
+  "bee-disc": {
+    "width": 128,
+    "height": 128
+  },
+  "bee-glyph": {
+    "width": 128,
+    "height": 128
+  }
+}
