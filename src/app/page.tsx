@@ -6,13 +6,13 @@ import { Wordmark } from '@/components/Wordmark';
 import { SectionLabel } from '@/components/Bee';
 import { Reveal } from '@/components/Reveal';
 import { HeroVideo } from '@/components/HeroVideo';
-import { site, hours, hoursLine, hoursLineShort, addressLine, cityLine, press } from '@/data/site';
+import { site, hoursLine, hoursLineShort, addressLine, cityLine, press } from '@/data/site';
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <main>
+      <main id="main">
         <Definition />
         <TheCase />
         <Pair />
@@ -258,7 +258,7 @@ function Press() {
 
 function ClosingImage() {
   return (
-    <Reveal as="div" id="visit" className="mt-24 scroll-mt-8 lg:mt-[170px]">
+    <Reveal as="div" className="mt-24 lg:mt-[170px]">
       <Photo
         name="case-counter"
         alt="The Sweet Bee counter: trays of croissants and hand-lettered price cards running the length of a wood bar."
@@ -268,12 +268,6 @@ function ClosingImage() {
         className="h-[420px] w-full object-cover lg:h-[760px]"
         style={{ objectPosition: '50% 45%' }}
       />
-      {/* Hours and address live in the footer directly below, which is what
-          "Visit" is pointing at. */}
-      <span className="sr-only">
-        Visit us at {addressLine}, {cityLine}. {hours.map((h) => `${h.day} ${h.open}`).join('. ')}.
-        Otherwise closed.
-      </span>
     </Reveal>
   );
 }

@@ -22,7 +22,7 @@ export default function MenuPage() {
       <JsonLd data={menuSchema} />
       <Nav placement="dark" current="/menu" />
 
-      <main>
+      <main id="main">
         <div className="gutter flex flex-col items-center pb-14 pt-16 text-center lg:pb-[110px] lg:pt-[130px]">
           <SectionLabel on="dark">The Menu</SectionLabel>
           <h1 className="statement mt-[26px] max-w-[20ch] text-[36px] leading-[1.1] lg:mt-10 lg:text-[64px] lg:leading-[1.08] lg:tracking-[-.02em]">

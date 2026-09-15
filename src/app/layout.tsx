@@ -22,8 +22,15 @@ const newsreader = Newsreader({
   display: 'swap',
 });
 
+/**
+ * Canonicals and OG URLs point at the production domain by default. A preview
+ * deploy sets NEXT_PUBLIC_SITE_URL to its own origin so it never advertises
+ * itself as the canonical copy of the live site.
+ */
+const origin = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(origin),
   title: {
     default: `${site.name} — Croissants in Pearland, Texas`,
     template: `%s — ${site.name}`,
@@ -33,16 +40,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: site.name,
-    url: site.url,
+    url: origin,
     title: `${site.name} — Croissants in Pearland, Texas`,
     description:
       'Three days per batch of dough, a small case, and a menu that changes without warning. Pearland, Texas.',
     images: [
       {
-        url: '/assets/choc-croissants-1000.jpg',
-        width: 1000,
-        height: 1333,
-        alt: 'Bi-color chocolate croissants on a sheet tray',
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Sweet Bee Bakehouse — bi-color chocolate croissants on a sheet tray',
       },
     ],
   },
@@ -59,7 +66,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <JsonLd data={bakerySchema} />
       </head>
-      <body>{children}</body>
+      <body>
+        <a href="#main" className="skip-link">Skip to content</a>
+        {children}
+      </body>
     </html>
   );
 }

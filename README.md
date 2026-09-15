@@ -71,6 +71,14 @@ LCP is 2.1s (Home) and 1.8s (Menu) under real 4G throttling, and ~3.7s under Lig
 
 Performance is short of the ≥95 target, and the gap is almost entirely the Newsreader variable font: carrying the optical-size axis costs 81KB and about three Lighthouse points. Dropping the axis was measured — it reaches 93 — but it visibly coarsens the hero statement, which is the single most prominent piece of typography on the site. The axis was kept. Deferring its preload instead was also measured and is worse: FCP goes from 0.8s to 1.7s. Recovering the remaining points means giving up one of the two specified typefaces or the photography itself.
 
+## Launch checklist
+
+- `robots.txt` and `sitemap.xml` are generated from the route list at build time.
+- The social card is a real 1200x630 landscape at `public/og.jpg`, composed in the asset pipeline. A 3:4 photograph crops its subject out of a link preview, and for this bakery most inbound traffic is a link pasted into Instagram.
+- Canonical and OG URLs default to `sweetbeebakehouse.com`. **Set `NEXT_PUBLIC_SITE_URL` on any preview deployment** so it does not advertise itself as the canonical copy of the live site.
+- `/404` renders in the design language rather than Next's default.
+- A skip-to-content link is the first tab stop on every page.
+
 ## Still needed from the client
 
 - Confirmation of both press lines. They carry `confirmed: false`, so the rows render as plain text with a visible note rather than as citations, and no URLs are invented.

@@ -157,5 +157,53 @@ async function beeMarks() {
 }
 await beeMarks();
 
+/**
+ * The social card. Link previews are 1.91:1, so pointing them at a 3:4
+ * photograph crops the subject out — and for this bakery most inbound traffic
+ * is a link pasted into Instagram. Composed here: a landscape crop of the
+ * croissant tray, darkened from the bottom, with the wordmark sitting on it.
+ */
+async function socialCard() {
+  const W = 1200;
+  const H = 630;
+
+  const photo = await sharp(`${SRC}/IMG_1658.jpeg`)
+    .rotate()
+    .resize({ width: W, height: H, fit: 'cover', position: 'attention' })
+    .toBuffer();
+
+  // A bottom-weighted scrim so the mark reads without flattening the pastry.
+  const scrim = Buffer.from(
+    `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+       <defs>
+         <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+           <stop offset="0%" stop-color="#1D1C19" stop-opacity="0.20"/>
+           <stop offset="45%" stop-color="#1D1C19" stop-opacity="0.34"/>
+           <stop offset="100%" stop-color="#1D1C19" stop-opacity="0.72"/>
+         </linearGradient>
+       </defs>
+       <rect width="${W}" height="${H}" fill="url(#g)"/>
+     </svg>`
+  );
+
+  const markW = 620;
+  const mark = await sharp(`${OUT}/wordmark-light.png`)
+    .resize({ width: markW, withoutEnlargement: false })
+    .toBuffer();
+  const markMeta = await sharp(mark).metadata();
+
+  await sharp(photo)
+    .composite([
+      { input: scrim, top: 0, left: 0 },
+      { input: mark, top: Math.round((H - markMeta.height) / 2), left: Math.round((W - markW) / 2) },
+    ])
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile('public/og.jpg');
+
+  const m = await sharp('public/og.jpg').metadata();
+  console.log(`card   og.jpg           -> ${m.width}x${m.height}`);
+}
+await socialCard();
+
 await writeFile('src/lib/image-manifest.json', JSON.stringify(manifest, null, 2) + '\n');
 console.log('\nwrote src/lib/image-manifest.json');

@@ -14,7 +14,7 @@ export function SiteFooter({ variant }: { variant: 'home' | 'menu' }) {
   const onMenu = variant === 'menu';
 
   return (
-    <footer className="bg-ink text-canvas">
+    <footer id="visit" className="scroll-mt-0 bg-ink text-canvas">
       <div className="shell gutter">
         <div
           className={
