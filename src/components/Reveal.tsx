@@ -3,51 +3,48 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Adds `activeClass` once the element has been on screen. One-shot: nothing
- * re-animates on the way back up, and reduced-motion users get the final
- * state immediately because the CSS zeroes the transition.
+ * The site's only motion: each section fades up 16px once, when it first comes
+ * into view. Reduced motion is handled in CSS, which pins `.reveal` to its
+ * final state, so nothing here is animation-gated.
  */
 export function Reveal({
   children,
-  activeClass,
   className,
-  delay = 0,
-  as: Tag = 'div',
+  as: Tag = 'section',
+  id,
   style,
 }: {
   children: React.ReactNode;
-  activeClass: string;
   className?: string;
-  delay?: number;
-  as?: 'div' | 'span' | 'p';
+  as?: 'section' | 'div' | 'footer';
+  id?: string;
   style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLElement>(null);
-  const [on, setOn] = useState(false);
+  const [shown, setShown] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (typeof IntersectionObserver === 'undefined') {
-      setOn(true);
+      setShown(true);
       return;
     }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         io.disconnect();
-        if (delay) window.setTimeout(() => setOn(true), delay);
-        else setOn(true);
+        setShown(true);
       },
-      { rootMargin: '0px 0px -12% 0px' }
+      { threshold: 0.12 }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [delay]);
+  }, []);
 
   const Component = Tag as React.ElementType;
   return (
-    <Component ref={ref} className={`${className ?? ''} ${on ? activeClass : ''}`} style={style}>
+    <Component ref={ref} id={id} style={style} className={`reveal ${shown ? 'reveal-in' : ''} ${className ?? ''}`}>
       {children}
     </Component>
   );

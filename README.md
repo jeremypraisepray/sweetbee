@@ -1,8 +1,10 @@
 # Sweet Bee Bakehouse
 
-The website for Sweet Bee Bakehouse — a croissant-focused bakery at 2540 E Broadway St., Suite A, Pearland, TX.
+The website for Sweet Bee Bakehouse — a croissant-focused bakery at 2540 E Broadway St, Ste A, Pearland, TX.
 
-Built from the design handoff in `docs/handoff/`. Next.js (App Router) + TypeScript + Tailwind, statically rendered, no CMS and no server state.
+Built to **Direction 4, "The Quiet Case"** (`docs/handoff/`): restrained and editorial — one photograph per screen, one italic statement, 1px rules instead of cards, and scrolling as the only interaction. Home is light, Menu is dark, and the dark footer on Home bridges the two.
+
+Next.js (App Router) + TypeScript + Tailwind, statically prerendered. No CMS, no server state, no cart.
 
 ```bash
 npm install
@@ -14,55 +16,64 @@ npm run typecheck
 
 ## Editing content
 
-Every piece of copy the bakery changes lives in one typed file. Nothing below requires touching layout code.
+Every line the bakery changes lives in one of two typed files. Neither requires touching layout.
 
 | What | Where |
 |---|---|
-| **"In the case today"** — the weekly line under the hero | `src/data/menu.ts` → `inTheCaseToday` |
-| Menu items, prices, descriptions, seasonal flags, photos | `src/data/menu.ts` → `menuItems` |
-| The six-item Home rail | `src/data/menu.ts` → `caseRail` |
-| "Current favorites" on the menu | `src/data/menu.ts` → `currentFavorites` |
-| Press mentions | `src/data/menu.ts` → `press` |
-| Hours, address, ordering and social links | `src/data/site.ts` |
+| Menu categories, items, tags, descriptions, prices | `src/data/menu.ts` → `menu` |
+| The photograph, caption and italic note per category | `src/data/menu.ts` → `menu[].img` / `.caption` / `.note` |
+| Hours, address, ordering and social links, "Est." year | `src/data/site.ts` |
+| Press mentions | `src/data/site.ts` → `press` |
 
-Adding a photo to a menu item: put the original in `assets-source/`, add it to the `PHOTOS` list in `scripts/build-assets.mjs`, run `npm run assets`, then set `img` on the item to the base name. Items with `img: null` render the designed "Photograph coming" panel — that is intentional voice, not a gap to paper over with stock imagery.
+**Prices appear on `/menu` and nowhere else.** A test asserts this — Home renders zero `$` amounts.
+
+Adding a photo: drop the original in `assets-source/`, add it to `PHOTOS` in `scripts/build-assets.mjs`, run `npm run assets`, then reference it by base name.
+
+## Design system
+
+Six colours, two faces, no shadows and no borders except 1px rules.
+
+- **Schibsted Grotesk** 400/500/600 — everything not italic.
+- **Newsreader italic**, with the **optical-size axis** — statements, captions, descriptions, notes. The axis is what makes the 70px hero statement a display cut rather than an enlarged text cut; it is visibly finer, and it is kept deliberately (see the performance note below).
+- Teal and gold are accents only — section labels, one footer line, link hovers. Never a fill.
+
+The bee glyph is the spine motif beside every section label. The supplied file is white on transparent, so it ships as-is on the dark ground and is recoloured teal on the light ground with a CSS `mask` — never `filter: invert`, which would only give black.
 
 ## Assets
 
-`assets-source/` holds the client's originals. `npm run assets` derives everything the site actually serves into `public/assets/`, and writes `src/lib/image-manifest.json`, which the `Photo` component reads to build `srcset`. Derivatives are committed, so a deploy never needs `sharp`.
+`assets-source/` holds the client's originals. `npm run assets` derives what the site serves into `public/assets/` and writes `src/lib/image-manifest.json`, which the `Photo` component reads to build `srcset`. Derivatives are committed, so a deploy never needs `sharp`.
 
 - Photography → AVIF + WebP + JPEG at 320/480/640/800/1000/1280 px
-- Wordmarks and bee marks → background keyed out to transparency, trimmed, and (for the glyph) lifted off its disc so it reads on teal
-- Favicon and apple-touch-icon
+- Wordmarks and bee glyph → background keyed to transparency and trimmed
+- Favicons
 
-The hero video was cut once, by hand, from the client's 29-second reel — a 5.7-second silent loop of the single continuous pan along the pastry case (source 4.6s–10.9s), cross-dissolved tail-to-head so it loops without a visible cut:
+`case-overhead.jpg`, `fig-ricotta.jpg`, `sandwiches.jpg` and `bee-disc.png` are unused by this direction and are kept in the repo but never rendered (the bee disc still backs the favicon).
 
-```sh
-ffmpeg -ss 4.6 -t 6.3 -i <source>.mp4 -an -vf "scale=720:1280:flags=lanczos" \
-  -c:v libx264 -crf 18 -preset slow -pix_fmt yuv420p seg.mp4
-ffmpeg -i seg.mp4 -filter_complex "\
-  [0:v]trim=0.6:5.7,setpts=PTS-STARTPTS[body];\
-  [0:v]trim=5.7:6.3,setpts=PTS-STARTPTS[tail];\
-  [0:v]trim=0:0.6,setpts=PTS-STARTPTS[head];\
-  [tail][head]blend=all_expr='A*(1-(T/0.6))+B*(T/0.6)'[seam];\
-  [seam][body]concat=n=2:v=1:a=0[out]" -map "[out]" -an \
-  -c:v libx264 -crf 32 -preset veryslow -pix_fmt yuv420p -movflags +faststart \
-  public/video/bakery.mp4
-```
-
-The poster is a mid-loop frame, not frame zero: it is the LCP image, so it should be the most appetising frame, and the frames at the head of the clip have customers' faces in them.
+The hero loop is a 5.7-second silent cut of the one continuous pan along the case, cross-dissolved tail-to-head so it loops without a visible cut. It is skipped entirely under `prefers-reduced-motion`, Save-Data, or a 2G/3G connection — those visitors keep the still and lose nothing. The full `ffmpeg` recipe is in the previous revision of this file in git history.
 
 ## Deviations from the handoff
 
-Three, all deliberate:
+Two, both deliberate:
 
-1. **`subtle` and `faint` were darkened.** The handoff's `#8A8078` and `#B0A79E` measure 3.6:1 and 2.2:1 on cream. Both are used for text under 18.66px, where AA needs 4.5:1, and the handoff's own acceptance criteria call for AA throughout. They are now `#726A63` (4.97:1) and `#786F68` (4.61:1) — same warm grey, three tiers preserved.
-2. **Closed days are no longer dimmed with `opacity`.** 45% opacity on the Visit panel and 55% in the footer dragged cream on teal below 3.1:1. Closed rows now carry their own quieter colour (`rgba(251,247,241,.66)`, 4.7:1) so they still read as secondary — the point of stating them rather than omitting them.
-3. **No WebM.** At matched quality the VP9 cut came out the same size as H.264, so the second file bought nothing but a larger download in Chrome. The hero ships one 668KB MP4, and it is skipped entirely under `prefers-reduced-motion`, Save-Data, or a 2G/3G connection.
+1. **Tags on the dark ground sit at 52% rather than 45%.** Canvas at 45% over ink measures 4.26:1, which misses AA at 10.5px. Every other tint in the handoff's dark scale already clears 4.5:1 and is used as specified.
+2. **The hero wordmark is fluid between 390 and 1024.** The handoff draws it at 300px wide on mobile and 132px tall on desktop with nothing in between; held at 300px, it reads undersized across the tablet range. It now grows to 460px at 768 and pins to the specified 132px from 1024 up.
+
+## Performance
+
+Lighthouse, mobile, on the production build:
+
+| | Performance | Accessibility | Best practices | SEO | CLS |
+|---|---|---|---|---|---|
+| Home | 90 | 100 | 100 | 100 | 0 |
+| Menu | 90 | 100 | 100 | 100 | 0 |
+
+LCP is 2.1s (Home) and 1.8s (Menu) under real 4G throttling, and ~3.7s under Lighthouse's simulated pipe, which serialises the whole page against a 1.6 Mbps link.
+
+Performance is short of the ≥95 target, and the gap is almost entirely the Newsreader variable font: carrying the optical-size axis costs 81KB and about three Lighthouse points. Dropping the axis was measured — it reaches 93 — but it visibly coarsens the hero statement, which is the single most prominent piece of typography on the site. The axis was kept. Deferring its preload instead was also measured and is worse: FCP goes from 0.8s to 1.7s. Recovering the remaining points means giving up one of the two specified typefaces or the photography itself.
 
 ## Still needed from the client
 
-- Exact CultureMap and Texas Monthly citation titles, dates and URLs. Until `confirmed: true` is set on those entries, the press section renders a visible note and no fabricated citations.
-- A public email address and phone number. Both are `null` in `src/data/site.ts` and the Visit panel shows the "to be confirmed" placeholder rather than inventing contact details.
-- Photographs for the eight unshot menu items and most of the Sweets.
-- Confirmation that Thu–Sat hours are current.
+- Confirmation of both press lines. They carry `confirmed: false`, so the rows render as plain text with a visible note rather than as citations, and no URLs are invented.
+- Confirmation of the menu items and prices, which were carried over from the previous build and re-cut into four categories.
+- A public email address and phone number. Both are `null` in `src/data/site.ts` and nothing is shown in their place.
+- Confirmation that Tuesday / Thursday / Saturday hours are current.

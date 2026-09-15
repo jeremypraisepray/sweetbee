@@ -1,10 +1,7 @@
 import { site, hours } from '@/data/site';
-import { menuItems, groups } from '@/data/menu';
+import { menu } from '@/data/menu';
 
-const priceNumber = (p: string) => {
-  const m = p.match(/\$([\d.]+)/);
-  return m ? m[1] : undefined;
-};
+const priceNumber = (p: string) => p.match(/\$([\d.]+)/)?.[1];
 
 export const bakerySchema = {
   '@context': 'https://schema.org',
@@ -12,9 +9,10 @@ export const bakerySchema = {
   '@id': `${site.url}/#bakery`,
   name: site.name,
   url: site.url,
-  image: `${site.url}/assets/pistachio-1000.jpg`,
+  image: `${site.url}/assets/choc-croissants-1000.jpg`,
   servesCuisine: 'Bakery',
   priceRange: '$$',
+  foundingDate: site.established,
   address: {
     '@type': 'PostalAddress',
     streetAddress: `${site.address.street}, ${site.address.unit}`,
@@ -24,14 +22,12 @@ export const bakerySchema = {
     addressCountry: 'US',
   },
   // Only the days the bakery is actually open are declared.
-  openingHoursSpecification: hours
-    .filter((h) => !h.closed)
-    .map((h) => ({
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: h.schemaDay,
-      opens: h.opens,
-      closes: h.closes,
-    })),
+  openingHoursSpecification: hours.map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.schemaDay,
+    opens: h.opens,
+    closes: h.closes,
+  })),
   hasMenu: `${site.url}/menu`,
   sameAs: [site.instagram],
 };
@@ -42,18 +38,17 @@ export const menuSchema = {
   '@id': `${site.url}/menu#menu`,
   name: `${site.name} menu`,
   url: `${site.url}/menu`,
-  hasMenuSection: groups.map((g) => ({
+  hasMenuSection: menu.map((cat) => ({
     '@type': 'MenuSection',
-    name: g.title,
-    hasMenuItem: menuItems
-      .filter((i) => i.cat === g.cat)
-      .map((i) => ({
-        '@type': 'MenuItem',
-        name: i.name,
-        ...(i.desc ? { description: i.desc } : {}),
-        ...(priceNumber(i.price)
-          ? { offers: { '@type': 'Offer', price: priceNumber(i.price), priceCurrency: 'USD' } }
-          : {}),
-      })),
+    name: cat.label,
+    description: cat.note,
+    hasMenuItem: cat.items.map((i) => ({
+      '@type': 'MenuItem',
+      name: i.name,
+      description: i.desc,
+      ...(priceNumber(i.price)
+        ? { offers: { '@type': 'Offer', price: priceNumber(i.price), priceCurrency: 'USD' } }
+        : {}),
+    })),
   })),
 };

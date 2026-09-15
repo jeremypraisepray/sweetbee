@@ -1,26 +1,24 @@
 import type { Metadata, Viewport } from 'next';
-import { Newsreader, Archivo } from 'next/font/google';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { Schibsted_Grotesk, Newsreader } from 'next/font/google';
 import { bakerySchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { site } from '@/data/site';
 import './globals.css';
 
-const newsreader = Newsreader({
+const schibsted = Schibsted_Grotesk({
   subsets: ['latin'],
-  style: ['normal', 'italic'],
-  // Only the weights the type scale uses: 300 for the statement, 400 everywhere
-  // else, each with its italic. Every extra axis value is bytes on the phone.
-  weight: ['300', '400'],
-  variable: '--font-newsreader',
+  weight: ['400', '500', '600'],
+  variable: '--font-schibsted',
   display: 'swap',
 });
 
-const archivo = Archivo({
+// Italic only — the roman face is never used. The optical-size axis rides along
+// so the 70px statement and the 14px caption are cut differently.
+const newsreader = Newsreader({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-archivo',
+  style: ['italic'],
+  axes: ['opsz'],
+  variable: '--font-newsreader',
   display: 'swap',
 });
 
@@ -31,35 +29,37 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description:
-    'A croissant-focused bakehouse on Broadway in Pearland, Texas. Three-day laminated dough, seasonal flavors that rotate without warning, Thursday through Saturday until the trays are empty.',
+    'A croissant-focused bakehouse on Broadway in Pearland, Texas. Three days per batch of dough, a small case, and a menu that changes without warning. Tuesday, Thursday and Saturday.',
   openGraph: {
     type: 'website',
     siteName: site.name,
     url: site.url,
     title: `${site.name} — Croissants in Pearland, Texas`,
     description:
-      'Three-day laminated dough, seasonal flavors that rotate without warning. Thursday through Saturday in Pearland, Texas.',
-    images: [{ url: '/assets/pistachio-1000.jpg', width: 1000, height: 1333, alt: 'Bi-color pistachio croissants on a sheet tray' }],
+      'Three days per batch of dough, a small case, and a menu that changes without warning. Pearland, Texas.',
+    images: [
+      {
+        url: '/assets/choc-croissants-1000.jpg',
+        width: 1000,
+        height: 1333,
+        alt: 'Bi-color chocolate croissants on a sheet tray',
+      },
+    ],
   },
   twitter: { card: 'summary_large_image' },
   alternates: { canonical: '/' },
   icons: { icon: '/icon.png', apple: '/apple-touch-icon.png' },
 };
 
-export const viewport: Viewport = { themeColor: '#FBF7F1' };
+export const viewport: Viewport = { themeColor: '#1D1C19' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${archivo.variable}`}>
+    <html lang="en" className={`${schibsted.variable} ${newsreader.variable}`}>
       <head>
         <JsonLd data={bakerySchema} />
       </head>
-      <body>
-        <a href="#main" className="skip-link">Skip to content</a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

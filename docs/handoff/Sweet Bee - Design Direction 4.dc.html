@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,200..500&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;background:#E9E5DC;font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#1D1C19;-webkit-font-smoothing:antialiased}
+    a{color:#1D1C19;text-decoration:none}a:hover{color:#00707A}
+    img,video{display:block}
+    ::selection{background:#F4E07B;color:#1D1C19}
+  </style>
+</helmet>
+
+<section style="padding:64px 64px 100px;display:flex;flex-direction:column;gap:56px">
+
+  <div style="display:flex;align-items:flex-end;gap:20px;border-bottom:1px solid rgba(29,28,25,.2);padding-bottom:18px;max-width:1900px">
+    <div id="4b" style="font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;border:1px solid #00707A;padding:6px 10px">4b</div>
+    <div style="font-size:30px;font-weight:600;letter-spacing:-.02em">The Menu</div>
+    <div style="font-family:Newsreader,Georgia,serif;font-style:italic;font-size:18px;color:#6E6A61;padding-bottom:4px">Dark ground. One photograph per category. Prices live here and nowhere else.</div>
+    <div style="margin-left:auto;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6A61;padding-bottom:6px">Pairs with <a href="#4a" style="color:#00707A">4a</a></div>
+  </div>
+
+  <div style="display:flex;gap:64px;align-items:flex-start;flex-wrap:wrap">
+
+    <!-- ================= DESKTOP MENU ================= -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E6A61">Menu · Desktop 1440</div>
+      <div data-screen-label="Menu / Desktop" style="width:1440px;background:#1D1C19;color:#FAF8F2;border:1px solid rgba(29,28,25,.16);overflow:hidden">
+
+        <div style="padding:34px 48px;display:flex;align-items:center;justify-content:space-between;font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase">
+          <div style="display:flex;gap:36px">
+            <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B">Menu</a>
+            <a href="#" style="color:rgba(250,248,242,.7);padding-bottom:3px;border-bottom:1px solid transparent" style-hover="color:#FAF8F2;border-bottom:1px solid #F4E07B">Story</a>
+            <a href="#" style="color:rgba(250,248,242,.7);padding-bottom:3px;border-bottom:1px solid transparent" style-hover="color:#FAF8F2;border-bottom:1px solid #F4E07B">Visit</a>
+          </div>
+          <img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="height:34px;width:auto" />
+          <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B" style-hover="color:#F4E07B">Order ahead ↗</a>
+        </div>
+
+        <div style="padding:130px 48px 110px;display:flex;flex-direction:column;align-items:center;text-align:center">
+          <div style="display:flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#F4E07B">
+            <img src="assets/bee-glyph.png" alt="" style="height:14px;width:auto" />The Menu
+          </div>
+          <div style="margin-top:40px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:64px;line-height:1.08;letter-spacing:-.02em;max-width:20ch;text-wrap:balance">What's in the case this week.</div>
+          <p style="margin:30px 0 0;font-size:16px;line-height:1.7;color:rgba(250,248,242,.68);max-width:48ch;text-wrap:pretty">Updated Tuesday morning. Seasonal items rotate without notice; when something's gone, it's gone.</p>
+          <div style="margin-top:56px;display:flex;gap:44px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase">
+            <sc-for list="{{ menuNav }}" as="n" hint-placeholder-count="4">
+              <a href="#" style="color:rgba(250,248,242,.6);padding-bottom:6px;border-bottom:1px solid transparent" style-hover="color:#FAF8F2;border-bottom:1px solid #F4E07B">{{ n }}</a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="padding:0 48px 140px;display:flex;flex-direction:column;gap:150px">
+          <sc-for list="{{ menu }}" as="cat" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;gap:72px">
+            <div>
+              <img src="{{ cat.img }}" alt="" style="width:100%;height:620px;object-fit:cover;object-position:{{ cat.pos }}" />
+              <div style="margin-top:14px;display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,248,242,.5)"><span>{{ cat.label }}</span><span style="font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:400;font-size:14px;letter-spacing:0;text-transform:none">{{ cat.caption }}</span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:24px">
+              <div style="grid-column:1 / span 3;align-self:start">
+                <div style="display:flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#F4E07B">
+                  <img src="assets/bee-glyph.png" alt="" style="height:14px;width:auto" />{{ cat.label }}
+                </div>
+                <div style="margin-top:22px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:22px;line-height:1.35;color:rgba(250,248,242,.62);max-width:20ch;text-wrap:pretty">{{ cat.note }}</div>
+              </div>
+              <div style="grid-column:4 / span 8">
+                <div style="border-top:1px solid rgba(250,248,242,.22)"></div>
+                <sc-for list="{{ cat.items }}" as="it" hint-placeholder-count="4">
+                  <div style="display:grid;grid-template-columns:1fr 2fr auto;gap:40px;align-items:baseline;padding:26px 0;border-bottom:1px solid rgba(250,248,242,.14)">
+                    <div style="display:flex;flex-direction:column;gap:6px">
+                      <div style="font-size:22px;font-weight:500;letter-spacing:-.01em">{{ it.name }}</div>
+                      <div style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.45)">{{ it.tag }}</div>
+                    </div>
+                    <div style="font-family:Newsreader,Georgia,serif;font-style:italic;font-size:18px;line-height:1.5;color:rgba(250,248,242,.72)">{{ it.desc }}</div>
+                    <div style="font-size:18px;font-variant-numeric:tabular-nums;color:#FAF8F2;min-width:44px;text-align:right">{{ it.price }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:0 48px 140px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px">
+          <div style="font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:34px;line-height:1.2;color:#F4E07B;max-width:26ch;text-wrap:balance">Pre-orders open Sunday night. Walk-ins until the case is empty.</div>
+          <a href="#" style="font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#FAF8F2;padding-bottom:4px;border-bottom:1px solid #F4E07B" style-hover="color:#F4E07B">Order on Hotplate ↗</a>
+        </div>
+
+        <div style="padding:0 48px 44px">
+          <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding-top:60px;border-top:1px solid rgba(250,248,242,.16)">
+            <div style="grid-column:1 / span 5"><img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="height:44px;width:auto" /></div>
+            <div style="grid-column:7 / span 2">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Hours</div>
+              <div style="margin-top:18px;font-size:14.5px;line-height:2.1;color:rgba(250,248,242,.92)">Tuesday 10 – 6<br />Thursday 10 – 6<br />Saturday 10 – 4<br /><span style="color:rgba(250,248,242,.45)">Otherwise closed</span></div>
+            </div>
+            <div style="grid-column:9 / span 2">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Find us</div>
+              <div style="margin-top:18px;font-size:14.5px;line-height:1.7;color:rgba(250,248,242,.92)">2540 E Broadway St, Ste A<br />Pearland, TX 77581</div>
+              <a href="#" style="display:inline-block;margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B" style-hover="color:#F4E07B">Directions ↗</a>
+            </div>
+            <div style="grid-column:11 / span 2">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Elsewhere</div>
+              <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;font-size:14.5px">
+                <a href="#" style="color:rgba(250,248,242,.92)" style-hover="color:#F4E07B">Instagram ↗</a>
+                <a href="#" style="color:rgba(250,248,242,.92)" style-hover="color:#F4E07B">Order on Hotplate ↗</a>
+                <a href="#" style="color:rgba(250,248,242,.92)" style-hover="color:#F4E07B">Home</a>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:80px;padding-top:22px;border-top:1px solid rgba(250,248,242,.16);display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.5)">
+            <div style="display:flex;align-items:center;gap:12px"><img src="assets/bee-glyph.png" alt="" style="height:14px;width:auto;opacity:.7" />Sweet Bee Bakehouse — 2540 E Broadway St, Ste A, Pearland, TX 77581</div>
+            <div>© 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MOBILE MENU ================= -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E6A61">Menu · Mobile 390</div>
+      <div data-screen-label="Menu / Mobile" style="width:390px;background:#1D1C19;color:#FAF8F2;border:1px solid rgba(29,28,25,.16);overflow:hidden">
+
+        <div style="padding:22px 20px;display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase">
+          <div style="display:flex;flex-direction:column;gap:5px;width:22px;padding:8px 0"><div style="height:1px;background:#FAF8F2"></div><div style="height:1px;background:#FAF8F2"></div></div>
+          <img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="height:24px;width:auto" />
+          <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B">Order ↗</a>
+        </div>
+
+        <div style="padding:64px 20px 56px;display:flex;flex-direction:column;align-items:center;text-align:center">
+          <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#F4E07B">
+            <img src="assets/bee-glyph.png" alt="" style="height:12px;width:auto" />The Menu
+          </div>
+          <div style="margin-top:26px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:36px;line-height:1.1;letter-spacing:-.015em;text-wrap:balance">What's in the case this week.</div>
+          <p style="margin:20px 0 0;font-size:15px;line-height:1.7;color:rgba(250,248,242,.68);text-wrap:pretty">Updated Tuesday morning. Seasonal items rotate without notice; when something's gone, it's gone.</p>
+          <div style="margin-top:40px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase">
+            <sc-for list="{{ menuNav }}" as="n" hint-placeholder-count="4">
+              <a href="#" style="color:rgba(250,248,242,.6);padding-bottom:5px;border-bottom:1px solid transparent">{{ n }}</a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="padding:0 20px 80px;display:flex;flex-direction:column;gap:88px">
+          <sc-for list="{{ menu }}" as="cat" hint-placeholder-count="4">
+            <div>
+              <img src="{{ cat.img }}" alt="" style="width:100%;height:300px;object-fit:cover;object-position:{{ cat.pos }};margin-bottom:12px" />
+              <div style="margin-bottom:36px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:13.5px;color:rgba(250,248,242,.5)">{{ cat.caption }}</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#F4E07B">
+                <img src="assets/bee-glyph.png" alt="" style="height:12px;width:auto" />{{ cat.label }}
+              </div>
+              <div style="margin-top:16px;margin-bottom:28px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:19px;line-height:1.35;color:rgba(250,248,242,.62);text-wrap:pretty">{{ cat.note }}</div>
+              <div style="border-top:1px solid rgba(250,248,242,.22)"></div>
+              <sc-for list="{{ cat.items }}" as="it" hint-placeholder-count="4">
+                <div style="padding:20px 0;border-bottom:1px solid rgba(250,248,242,.14)">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px">
+                    <div style="font-size:18px;font-weight:500;letter-spacing:-.01em">{{ it.name }}</div>
+                    <div style="font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap">{{ it.price }}</div>
+                  </div>
+                  <div style="margin-top:6px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:15.5px;line-height:1.5;color:rgba(250,248,242,.72)">{{ it.desc }}</div>
+                  <div style="margin-top:8px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.45)">{{ it.tag }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:0 20px 80px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px">
+          <div style="font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:26px;line-height:1.2;color:#F4E07B;text-wrap:balance">Pre-orders open Sunday night. Walk-ins until the case is empty.</div>
+          <a href="#" style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#FAF8F2;padding-bottom:4px;border-bottom:1px solid #F4E07B">Order on Hotplate ↗</a>
+        </div>
+
+        <div style="padding:48px 20px 30px;border-top:1px solid rgba(250,248,242,.16)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+            <div>
+              <div style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Hours</div>
+              <div style="margin-top:14px;font-size:14px;line-height:2;color:rgba(250,248,242,.92)">Tue 10 – 6<br />Thu 10 – 6<br />Sat 10 – 4<br /><span style="color:rgba(250,248,242,.45)">Otherwise closed</span></div>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Find us</div>
+              <div style="margin-top:14px;font-size:14px;line-height:1.7;color:rgba(250,248,242,.92)">2540 E Broadway St<br />Ste A<br />Pearland, TX 77581</div>
+              <a href="#" style="display:inline-block;margin-top:12px;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B">Directions ↗</a>
+            </div>
+          </div>
+          <div style="margin-top:56px;padding-top:18px;border-top:1px solid rgba(250,248,242,.16);display:flex;justify-content:space-between;align-items:center;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.5)">
+            <div style="display:flex;align-items:center;gap:10px"><img src="assets/bee-glyph.png" alt="" style="height:12px;width:auto;opacity:.7" />Pearland, TX</div>
+            <div>© 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding:0 64px 140px;display:flex;flex-direction:column;gap:56px">
+
+  <div style="display:flex;align-items:flex-end;gap:20px;border-bottom:1px solid rgba(29,28,25,.2);padding-bottom:18px;max-width:1900px">
+    <div id="4a" style="font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00707A;border:1px solid #00707A;padding:6px 10px">4a</div>
+    <div style="font-size:30px;font-weight:600;letter-spacing:-.02em">The Quiet Case</div>
+    <div style="font-family:Newsreader,Georgia,serif;font-style:italic;font-size:18px;color:#6E6A61;padding-bottom:4px">One photograph per screen. One sentence. Nothing moves except the scroll.</div>
+    <div style="margin-left:auto;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6A61;padding-bottom:6px">After Doko · Aiko · Tatemó · Maximo</div>
+  </div>
+
+  <div style="display:flex;gap:64px;align-items:flex-start;flex-wrap:wrap">
+
+    <!-- ================= DESKTOP HOME ================= -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E6A61">Home · Desktop 1440</div>
+      <div data-screen-label="Home / Desktop" style="width:1440px;background:#FAF8F2;border:1px solid rgba(29,28,25,.16);overflow:hidden">
+
+        <!-- HERO -->
+        <div style="position:relative;height:900px;overflow:hidden;background:#1D1C19">
+          <sc-if value="{{ heroIsVideo }}" hint-placeholder-val="{{ true }}">
+            <video src="assets/bakery.mp4" poster="assets/choc-croissants.jpg" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </sc-if>
+          <sc-if value="{{ heroIsStill }}" hint-placeholder-val="{{ false }}">
+            <img src="assets/choc-croissants.jpg" alt="Chocolate croissants" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+          </sc-if>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(29,28,25,.42) 0%, rgba(29,28,25,.08) 35%, rgba(29,28,25,.08) 65%, rgba(29,28,25,.5) 100%)"></div>
+          <div style="position:absolute;top:0;left:0;right:0;padding:34px 48px;display:flex;align-items:center;justify-content:space-between;color:#FAF8F2;font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase">
+            <div style="display:flex;gap:36px">
+              <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid transparent" style-hover="border-bottom:1px solid #F4E07B">Menu</a>
+              <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid transparent" style-hover="border-bottom:1px solid #F4E07B">Story</a>
+              <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid transparent" style-hover="border-bottom:1px solid #F4E07B">Visit</a>
+            </div>
+            <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B" style-hover="color:#F4E07B">Order ahead ↗</a>
+          </div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px">
+            <img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="height:132px;width:auto;filter:drop-shadow(0 2px 18px rgba(0,0,0,.25))" />
+          </div>
+          <div style="position:absolute;left:48px;right:48px;bottom:36px;display:flex;align-items:flex-end;justify-content:space-between;color:rgba(250,248,242,.92);font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase">
+            <div style="line-height:1.9">2540 E Broadway St, Ste A<br />Pearland, TX 77581</div>
+            <div style="font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:20px;letter-spacing:0;text-transform:none">Tuesday &amp; Thursday 10–6 · Saturday 10–4</div>
+            <div>Est. 2020</div>
+          </div>
+        </div>
+
+        <!-- DEFINITION -->
+        <div data-reveal style="padding:170px 48px 150px;display:flex;flex-direction:column;align-items:center;text-align:center">
+          <div style="display:flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A">
+            <span aria-hidden="true" style="display:inline-block;width:15px;height:15px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>Sweet Bee
+          </div>
+          <div style="margin-top:44px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:70px;line-height:1.08;letter-spacing:-.02em;max-width:18ch;text-wrap:balance">Your neighborhood croissant maker.</div>
+          <div style="margin-top:38px;font-size:13px;letter-spacing:.06em;color:#6E6A61">/swēt bē/ · noun</div>
+          <p style="margin:18px 0 0;font-size:18px;line-height:1.7;color:#3F3C36;max-width:52ch;text-wrap:pretty">A croissant-focused bakehouse in Pearland. Six years in a home kitchen, now a storefront on Broadway. Three days per batch of dough, a small case, and a menu that changes without warning.</p>
+        </div>
+
+        <!-- THE CASE -->
+        <div data-reveal style="padding:0 48px">
+          <img src="assets/choc-croissants.jpg" alt="Chocolate croissants on a sheet tray" style="width:100%;height:820px;object-fit:cover;object-position:50% 60%" />
+        </div>
+        <div data-reveal style="padding:96px 48px 0;display:flex;flex-direction:column;align-items:center;text-align:center">
+          <div style="display:flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A">
+            <span aria-hidden="true" style="display:inline-block;width:15px;height:15px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>The Case
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="margin-top:36px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:46px;line-height:1.15;letter-spacing:-.015em;text-wrap:balance">Six things worth driving for.</div>
+            <p style="margin:30px 0 0;font-size:17px;line-height:1.7;color:#3F3C36;max-width:50ch;text-wrap:pretty">The traditional butter croissant is always here. Everything around it rotates — what's in the case Thursday morning may be gone by Saturday noon.</p>
+            <a href="#" style="display:inline-block;margin-top:34px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding-bottom:4px;border-bottom:1px solid #1D1C19" style-hover="border-bottom:1px solid #00707A">See the menu</a>
+          </div>
+        </div>
+
+        <!-- PAIR -->
+        <div data-reveal style="margin-top:170px;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <img src="assets/pistachio.jpg" alt="Pistachio croissants" style="width:100%;height:760px;object-fit:cover;object-position:50% 50%" />
+            <div style="margin-top:14px;display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6E6A61"><span>Pistachio</span><span style="font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:400;font-size:14px;letter-spacing:0;text-transform:none">Spring</span></div>
+          </div>
+          <div>
+            <img src="assets/buckeye-buns.jpg" alt="Buckeye buns" style="width:100%;height:760px;object-fit:cover;object-position:50% 50%" />
+            <div style="margin-top:14px;display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6E6A61"><span>Buckeye Bun</span><span style="font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:400;font-size:14px;letter-spacing:0;text-transform:none">Always</span></div>
+          </div>
+        </div>
+
+        <!-- ALLY -->
+        <div data-reveal style="margin-top:180px;padding:0 48px;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center">
+          <div style="grid-column:1 / span 6">
+            <img src="assets/ally.jpg" alt="Ally B. in the Sweet Bee kitchen" style="width:100%;height:840px;object-fit:cover;object-position:50% 22%" />
+          </div>
+          <div style="grid-column:8 / span 4;padding-right:24px">
+            <div style="display:flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A">
+              <span aria-hidden="true" style="display:inline-block;width:15px;height:15px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>Our story
+            </div>
+            <div style="margin-top:36px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:46px;line-height:1.15;letter-spacing:-.015em">Hi, I'm Ally.</div>
+            <p style="margin:30px 0 0;font-size:17px;line-height:1.7;color:#3F3C36;text-wrap:pretty">Sweet Bee started in my kitchen at home — six years of baking for friends, neighbors, and anyone who'd take a box off my hands. Now there's a storefront, a case, and a line on Saturdays.</p>
+            <p style="margin:18px 0 0;font-size:17px;line-height:1.7;color:#3F3C36;text-wrap:pretty">Croissants are the thing I care most about. Three days of folding, an unreasonable amount of butter, and then whatever flavor I couldn't stop thinking about that week.</p>
+            <img src="assets/wordmark-dark.png" alt="Sweet Bee" style="height:30px;width:auto;margin-top:40px;opacity:.9" />
+          </div>
+        </div>
+
+        <!-- PRESS -->
+        <div data-reveal style="margin-top:180px;padding:0 48px;display:grid;grid-template-columns:repeat(12,1fr);gap:24px">
+          <div style="grid-column:1 / span 3;display:flex;align-items:center;gap:12px;align-self:start;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A">
+            <span aria-hidden="true" style="display:inline-block;width:15px;height:15px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>Press
+          </div>
+          <div style="grid-column:4 / span 8">
+            <sc-for list="{{ press }}" as="p" hint-placeholder-count="2">
+              <a href="#" style="display:flex;justify-content:space-between;align-items:baseline;gap:32px;padding:26px 0;border-top:1px solid rgba(29,28,25,.18);color:#1D1C19" style-hover="color:#00707A">
+                <span style="font-size:26px;font-weight:500;letter-spacing:-.01em">{{ p.pub }}</span>
+                <span style="font-family:Newsreader,Georgia,serif;font-style:italic;font-size:19px;color:#6E6A61;text-align:right">{{ p.award }}</span>
+              </a>
+            </sc-for>
+            <div style="border-top:1px solid rgba(29,28,25,.18)"></div>
+          </div>
+        </div>
+
+        <!-- CLOSING IMAGE -->
+        <div data-reveal style="margin-top:170px">
+          <img src="assets/case-counter.jpg" alt="The Sweet Bee counter" style="width:100%;height:760px;object-fit:cover;object-position:50% 45%" />
+        </div>
+
+        <!-- FOOTER -->
+        <div style="background:#1D1C19;color:#FAF8F2;padding:120px 48px 44px">
+          <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start">
+            <div style="grid-column:1 / span 5">
+              <img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="height:58px;width:auto" />
+              <div style="margin-top:34px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:30px;line-height:1.2;color:#F4E07B">Get here before they're gone.</div>
+            </div>
+            <div style="grid-column:7 / span 2">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Hours</div>
+              <div style="margin-top:18px;font-size:14.5px;line-height:2.1;color:rgba(250,248,242,.92)">Tuesday 10 – 6<br />Thursday 10 – 6<br />Saturday 10 – 4<br /><span style="color:rgba(250,248,242,.45)">Otherwise closed</span></div>
+            </div>
+            <div style="grid-column:9 / span 2">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Find us</div>
+              <div style="margin-top:18px;font-size:14.5px;line-height:1.7;color:rgba(250,248,242,.92)">2540 E Broadway St, Ste A<br />Pearland, TX 77581</div>
+              <a href="#" style="display:inline-block;margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B" style-hover="color:#F4E07B">Directions ↗</a>
+            </div>
+            <div style="grid-column:11 / span 2">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Elsewhere</div>
+              <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;font-size:14.5px">
+                <a href="#" style="color:rgba(250,248,242,.92)" style-hover="color:#F4E07B">Instagram ↗</a>
+                <a href="#" style="color:rgba(250,248,242,.92)" style-hover="color:#F4E07B">Order on Hotplate ↗</a>
+                <a href="#" style="color:rgba(250,248,242,.92)" style-hover="color:#F4E07B">Menu</a>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:96px;padding-top:22px;border-top:1px solid rgba(250,248,242,.16);display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.5)">
+            <div style="display:flex;align-items:center;gap:12px"><img src="assets/bee-glyph.png" alt="" style="height:14px;width:auto;opacity:.7" />Sweet Bee Bakehouse — 2540 E Broadway St, Ste A, Pearland, TX 77581</div>
+            <div>© 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MOBILE HOME ================= -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E6A61">Home · Mobile 390</div>
+      <div data-screen-label="Home / Mobile" style="width:390px;background:#FAF8F2;border:1px solid rgba(29,28,25,.16);overflow:hidden">
+
+        <div style="position:relative;height:720px;overflow:hidden;background:#1D1C19">
+          <sc-if value="{{ heroIsVideo }}" hint-placeholder-val="{{ true }}">
+            <video src="assets/bakery.mp4" poster="assets/choc-croissants.jpg" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </sc-if>
+          <sc-if value="{{ heroIsStill }}" hint-placeholder-val="{{ false }}">
+            <img src="assets/choc-croissants.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+          </sc-if>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(29,28,25,.45) 0%, rgba(29,28,25,.1) 35%, rgba(29,28,25,.1) 60%, rgba(29,28,25,.55) 100%)"></div>
+          <div style="position:absolute;top:0;left:0;right:0;padding:22px 20px;display:flex;align-items:center;justify-content:space-between;color:#FAF8F2;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase">
+            <div style="display:flex;flex-direction:column;gap:5px;width:22px;padding:8px 0"><div style="height:1px;background:#FAF8F2"></div><div style="height:1px;background:#FAF8F2"></div></div>
+            <a href="#" style="color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B">Order ↗</a>
+          </div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+            <img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="width:300px;max-width:82%;height:auto;filter:drop-shadow(0 2px 14px rgba(0,0,0,.25))" />
+          </div>
+          <div style="position:absolute;left:20px;right:20px;bottom:26px;text-align:center;color:rgba(250,248,242,.92);font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:17px;line-height:1.35">Tue &amp; Thu 10–6 · Sat 10–4</div>
+        </div>
+
+        <div style="padding:84px 20px 76px;display:flex;flex-direction:column;align-items:center;text-align:center">
+          <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A">
+            <span aria-hidden="true" style="display:inline-block;width:13px;height:13px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>Sweet Bee
+          </div>
+          <div style="margin-top:28px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:38px;line-height:1.1;letter-spacing:-.015em;text-wrap:balance">Your neighborhood croissant maker.</div>
+          <div style="margin-top:24px;font-size:12px;letter-spacing:.06em;color:#6E6A61">/swēt bē/ · noun</div>
+          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.7;color:#3F3C36;text-wrap:pretty">A croissant-focused bakehouse in Pearland. Six years in a home kitchen, now a storefront on Broadway. Three days per batch of dough, a small case, and a menu that changes without warning.</p>
+        </div>
+
+        <img src="assets/choc-croissants.jpg" alt="" style="width:100%;height:470px;object-fit:cover;object-position:50% 60%" />
+        <div style="padding:44px 20px 0;text-align:center;display:flex;flex-direction:column;align-items:center">
+          <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A">
+            <span aria-hidden="true" style="display:inline-block;width:13px;height:13px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>The Case
+          </div>
+          <div style="margin-top:22px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:32px;line-height:1.15;letter-spacing:-.015em">Six things worth driving for.</div>
+          <p style="margin:20px 0 0;font-size:15.5px;line-height:1.7;color:#3F3C36;text-wrap:pretty">The traditional butter croissant is always here. Everything around it rotates — what's in the case Thursday morning may be gone by Saturday noon.</p>
+          <a href="#" style="display:inline-block;margin-top:26px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding-bottom:4px;border-bottom:1px solid #1D1C19">See the menu</a>
+        </div>
+
+        <div style="margin-top:96px;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <img src="assets/pistachio.jpg" alt="" style="width:100%;height:240px;object-fit:cover" />
+            <div style="margin-top:10px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E6A61">Pistachio</div>
+          </div>
+          <div>
+            <img src="assets/buckeye-buns.jpg" alt="" style="width:100%;height:240px;object-fit:cover" />
+            <div style="margin-top:10px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E6A61">Buckeye Bun</div>
+          </div>
+        </div>
+
+        <img src="assets/ally.jpg" alt="" style="width:100%;height:520px;object-fit:cover;object-position:50% 20%;margin-top:96px" />
+        <div style="padding:44px 20px 0">
+          <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A">
+            <span aria-hidden="true" style="display:inline-block;width:13px;height:13px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>Our story
+          </div>
+          <div style="margin-top:22px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:32px;line-height:1.15">Hi, I'm Ally.</div>
+          <p style="margin:20px 0 0;font-size:15.5px;line-height:1.7;color:#3F3C36;text-wrap:pretty">Sweet Bee started in my kitchen at home — six years of baking for friends, neighbors, and anyone who'd take a box off my hands. Now there's a storefront, a case, and a line on Saturdays.</p>
+          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.7;color:#3F3C36;text-wrap:pretty">Croissants are the thing I care most about. Three days of folding, an unreasonable amount of butter, and then whatever flavor I couldn't stop thinking about that week.</p>
+          <img src="assets/wordmark-dark.png" alt="" style="height:24px;width:auto;margin-top:28px;opacity:.9" />
+        </div>
+
+        <div style="margin-top:96px;padding:0 20px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#00707A;margin-bottom:22px">
+            <span aria-hidden="true" style="display:inline-block;width:13px;height:13px;background:#00707A;-webkit-mask:url(assets/bee-glyph.png) center / contain no-repeat;mask:url(assets/bee-glyph.png) center / contain no-repeat"></span>Press
+          </div>
+          <sc-for list="{{ press }}" as="p" hint-placeholder-count="2">
+            <a href="#" style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid rgba(29,28,25,.18);color:#1D1C19">
+              <span style="font-size:20px;font-weight:500;letter-spacing:-.01em">{{ p.pub }}</span>
+              <span style="font-family:Newsreader,Georgia,serif;font-style:italic;font-size:16px;color:#6E6A61">{{ p.award }}</span>
+            </a>
+          </sc-for>
+          <div style="border-top:1px solid rgba(29,28,25,.18)"></div>
+        </div>
+
+        <img src="assets/case-counter.jpg" alt="" style="width:100%;height:420px;object-fit:cover;object-position:50% 45%;margin-top:96px" />
+
+        <div style="background:#1D1C19;color:#FAF8F2;padding:72px 20px 30px">
+          <img src="assets/wordmark-light.png" alt="Sweet Bee Bakehouse" style="height:44px;width:auto" />
+          <div style="margin-top:24px;font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:24px;line-height:1.2;color:#F4E07B">Get here before they're gone.</div>
+          <div style="margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:28px">
+            <div>
+              <div style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Hours</div>
+              <div style="margin-top:14px;font-size:14px;line-height:2;color:rgba(250,248,242,.92)">Tue 10 – 6<br />Thu 10 – 6<br />Sat 10 – 4<br /><span style="color:rgba(250,248,242,.45)">Otherwise closed</span></div>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.55)">Find us</div>
+              <div style="margin-top:14px;font-size:14px;line-height:1.7;color:rgba(250,248,242,.92)">2540 E Broadway St<br />Ste A<br />Pearland, TX 77581</div>
+              <a href="#" style="display:inline-block;margin-top:12px;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FAF8F2;padding-bottom:3px;border-bottom:1px solid #F4E07B">Directions ↗</a>
+            </div>
+          </div>
+          <div style="margin-top:40px;display:flex;gap:24px;font-size:14px">
+            <a href="#" style="color:rgba(250,248,242,.92)">Instagram ↗</a>
+            <a href="#" style="color:rgba(250,248,242,.92)">Hotplate ↗</a>
+            <a href="#" style="color:rgba(250,248,242,.92)">Menu</a>
+          </div>
+          <div style="margin-top:64px;padding-top:18px;border-top:1px solid rgba(250,248,242,.16);display:flex;justify-content:space-between;align-items:center;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.5)">
+            <div style="display:flex;align-items:center;gap:10px"><img src="assets/bee-glyph.png" alt="" style="height:12px;width:auto;opacity:.7" />2540 E Broadway St, Ste A · Pearland, TX</div>
+            <div>© 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NOTES -->
+  <div style="max-width:1440px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;padding-top:40px;border-top:1px solid rgba(29,28,25,.2)">
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A">What changed from Direction 3</div>
+      <p style="margin:16px 0 0;font-size:15px;line-height:1.7;color:#3F3C36">The Case rail, the Counter annotations, the live menu preview and the hero parallax are gone. Five photographs total: video, chocolate tray, pistachio + buckeye pair, Ally, the counter. Everything centered or split 50/50. The scroll is the only interaction.</p>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A">Borrowed from the references</div>
+      <p style="margin:16px 0 0;font-size:15px;line-height:1.7;color:#3F3C36">Aiko's spine motif → the bee glyph beside every label. Tatemó's definition footer → the /swēt bē/ line under the hero. Doko's full-bleed video with the wordmark centered. Maximo's plain hours-and-address block. Prices live on the menu page only.</p>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#00707A">Color budget</div>
+      <p style="margin:16px 0 0;font-size:15px;line-height:1.7;color:#3F3C36">Teal: section labels and link hover only. Gold: the nav underline, one italic line in the footer, link hover on dark. Everything else is canvas, ink and photography. Type sits beside photos, never on them — except the hero.</p>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;hero&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;still&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;'video' | 'still'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;reveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this.props.reveal === false) return;
+    const els = document.querySelectorAll('[data-reveal]');
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(16px)'; el.style.transition = 'opacity 900ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1)'; });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+    this._io = io;
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+  renderVals() {
+    const hero = this.props.hero ?? 'video';
+    return {
+      heroIsVideo: hero === 'video',
+      heroIsStill: hero !== 'video',
+      menuNav: ['Originals', 'Seasonal', 'Savory', 'Sweets'],
+      menu: [
+        { label: 'Originals', note: 'Always in the case. Three days per batch.', img: 'assets/choc-croissants.jpg', pos: '50% 60%', caption: 'Chocolate, bi-color lamination', items: [
+          { name: 'Traditional Butter', tag: 'Every day', desc: 'Three days of folding. Nothing added.', price: '$5' },
+          { name: 'Chocolate', tag: 'Every day', desc: 'Bi-color dough, Callebaut center.', price: '$6' },
+          { name: 'Almond Raspberry', tag: 'Every day', desc: 'Twice baked with frangipane and raspberry gel.', price: '$6' },
+          { name: 'Croissant Loaf', tag: 'Saturday only', desc: 'A whole laminated loaf. Six per Saturday.', price: '$14' }
+        ]},
+        { label: 'Seasonal', note: 'Rotates without notice. Gone when it\u2019s gone.', img: 'assets/pistachio.jpg', pos: '50% 50%', caption: 'Pistachio cream, this week', items: [
+          { name: 'Pistachio Cream', tag: 'This week', desc: 'Pistachio pastry cream, laminated green and gold.', price: '$7' },
+          { name: 'Fig & Ricotta', tag: 'This week', desc: 'Whipped ricotta, roasted fig, honey, black pepper.', price: '$7' },
+          { name: 'Strawberry Shortcake', tag: 'Under glass', desc: 'Macerated strawberries, vanilla bean cream.', price: '$7' }
+        ]},
+        { label: 'Savory', note: 'Good at ten in the morning. Better at noon.', img: 'assets/crab-rangoon.jpg', pos: '50% 45%', caption: 'Crab rangoon, cooling', items: [
+          { name: 'Ham & Gruy\u00e8re', tag: 'Every day', desc: 'B\u00e9chamel, shaved ham, aged gruy\u00e8re on top.', price: '$8' },
+          { name: 'Crab Rangoon', tag: 'This week', desc: 'Cream cheese, scallion, sweet chili. Yes, really.', price: '$8' },
+          { name: 'Pepperoni Hot Honey', tag: 'This week', desc: 'Cup-and-char pepperoni, mozzarella, hot honey.', price: '$8' },
+          { name: 'Focaccia Sandwich', tag: 'Every day', desc: 'House focaccia, turkey, herb aioli.', price: '$12' }
+        ]},
+        { label: 'Sweets', note: 'For the box on the way out.', img: 'assets/macarons.jpg', pos: '50% 50%', caption: 'Macarons, four flavors', items: [
+          { name: 'Macarons', tag: 'Four flavors', desc: 'Biscoff, coconut ube, birthday cake, chocolate ganache.', price: '$3' },
+          { name: 'Buckeye Buns', tag: 'Every day', desc: 'Peanut butter filling, dark chocolate glaze.', price: '$4' },
+          { name: 'Cookie of the Week', tag: 'Rotating', desc: 'Whatever Ally can\u2019t stop thinking about.', price: '$4' }
+        ]}
+      ],
+      press: [
+        { pub: 'CultureMap', award: 'Tastemaker Awards 2026' },
+        { pub: 'Texas Monthly', award: 'The 50 Best Bakeries in Texas' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
