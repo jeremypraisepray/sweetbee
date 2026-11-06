@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sweet Bee Bakehouse catering: croissant, cookie and macaron packages by the dozen. 6-day notice, Monday to Saturday pickup.">
+<meta property="og:title" content="Sweet Bee Catering">
+<meta property="og:description" content="Croissants, cookies, macarons and sweets by the dozen. Pick a package and send us your order slip.">
+<meta property="og:image" content="glazed.jpg">
+<link rel="icon" href="bee.png">
+<style>:root{color-scheme:light; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+<title>Sweet Bee Catering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow column like a bakery order slip. Photo-led hero, package cards, a honeycomb that fills as dozens are added, a sticky tally, and a printed-style order slip at the end. */
+:root{
+  --bg:#F3EFE9; --surface:#FBF9F5; --fg:#1C1916; --muted:#6F665C; --line:#DDD5CA;
+  --honey:#B9762A; --honey-soft:#E7C58C; --cocoa:#5E3A1E; --ink:#1C1916; --on-ink:#F3EFE9; --danger:#A8402C;
+  --display:"Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --body:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#151311; --surface:#1F1C19; --fg:#F1ECE4; --muted:#A99F93; --line:#3A342E;
+  --honey:#E3A64E; --honey-soft:#8A6A3A; --cocoa:#B9875A; --ink:#F1ECE4; --on-ink:#151311; --danger:#E58B78; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#151311; --surface:#1F1C19; --fg:#F1ECE4; --muted:#A99F93; --line:#3A342E;
+  --honey:#E3A64E; --honey-soft:#8A6A3A; --cocoa:#B9875A; --ink:#F1ECE4; --on-ink:#151311; --danger:#E58B78; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important} }
+body{background:var(--bg); color:var(--fg); font-family:var(--body); font-size:16px; line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 120px}
+.wrap{max-width:640px; margin:0 auto}
+h1,h2,h3{font-family:var(--display); font-weight:500; text-wrap:balance; margin:0; line-height:1.05}
+.eyebrow{font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--honey); font-weight:500}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:lining-nums tabular-nums}
+
+/* header */
+.top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:18px}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
+.badge{width:40px; height:40px; border-radius:50%; background:#1C1916; display:grid; place-items:center; flex:none; box-shadow:0 0 0 3px var(--bg), 0 0 0 4px var(--line)}
+.badge img{width:28px; height:28px}
+.wm{display:block; width:168px; aspect-ratio:700/108; background:var(--fg);
+  -webkit-mask:url(wordmark-ink.png) left center/contain no-repeat; mask:url(wordmark-ink.png) left center/contain no-repeat}
+.pill{font-size:12px; letter-spacing:.16em; text-transform:uppercase; border:1px solid var(--line); border-radius:99px; padding:6px 12px; color:var(--muted); white-space:nowrap}
+
+/* hero */
+.hero{display:grid; gap:22px; padding-block:6px 8px}
+.hero-photo{position:relative; margin:0}
+.hero-photo img{display:block; width:100%; max-width:100%; aspect-ratio:4/4.3; object-fit:cover; border-radius:4px}
+.seal{position:absolute; right:-6px; bottom:-30px; width:120px; height:120px; display:grid; place-items:center; text-align:center;
+  background:var(--ink); color:var(--on-ink); clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%); transform:rotate(-6deg)}
+.seal b{display:block; font-family:var(--display); font-weight:600; font-size:46px; line-height:.85; font-variant-numeric:lining-nums}
+.seal span{display:block; font-size:9px; letter-spacing:.16em; text-transform:uppercase; margin-top:5px; color:var(--honey)}
+.hero h1{font-size:clamp(46px, 12vw, 76px); letter-spacing:-.01em}
+.hero h1 em{font-style:italic; color:var(--honey)}
+.lede{font-size:17px; max-width:34em; margin:0}
+.facts{display:grid; grid-template-columns:repeat(3,1fr); border-block:1px solid var(--line)}
+.facts div{padding:14px 8px; display:grid; gap:2px; min-width:0}
+.facts div + div{border-left:1px solid var(--line)}
+.facts b{font-family:var(--display); font-size:24px; font-weight:600; line-height:1; font-variant-numeric:lining-nums}
+.facts span{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.cta{display:inline-flex; align-items:center; justify-content:center; gap:10px; background:var(--ink); color:var(--on-ink); border:0; border-radius:99px;
+  padding:15px 26px; font:600 15px/1 var(--body); letter-spacing:.04em; text-decoration:none; cursor:pointer}
+.cta:focus-visible,.step-btn:focus-visible,.ghost:focus-visible,.chip input:focus-visible + span,.pkg input:focus-visible + .pkg-body{outline:2px solid var(--honey); outline-offset:3px}
+
+/* craft strip */
+.craft{display:grid; grid-template-columns:1fr 1.1fr; gap:18px; align-items:end; margin-block:56px 8px}
+.craft img{width:100%; max-width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block}
+.craft-text{display:grid; gap:6px; min-width:0}
+.craft h2{font-size:32px}
+.craft .q{font-family:var(--display); font-style:italic; font-size:20px; line-height:1.3; margin-top:10px; color:var(--muted)}
+.craft .q small{font-family:var(--body); font-style:normal; font-size:12px; letter-spacing:.14em}
+
+/* terms */
+.terms{margin-top:52px; background:var(--ink); color:var(--on-ink); border-radius:6px; padding:22px; display:grid; gap:14px}
+.terms h2{font-size:28px}
+.terms ul{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.terms li{display:grid; grid-template-columns:22px 1fr; gap:8px; align-items:baseline; font-size:15px}
+.terms li::before{content:""; width:10px; height:11px; background:var(--honey); clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%); transform:translateY(1px)}
+.terms .eyebrow{color:var(--honey)}
+
+/* form */
+form{margin-top:52px; display:grid; gap:50px}
+.sec{display:grid; gap:18px}
+.sec-head{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--fg); padding-bottom:10px}
+.sec-head .n{font-family:var(--display); font-size:22px; color:var(--honey); font-variant-numeric:lining-nums}
+.sec-head h2{font-size:34px}
+.sec-head .opt{margin-left:auto; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.field{display:grid; gap:6px; min-width:0}
+.field.full{grid-column:1/-1}
+.l{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.hint{font-size:13px; color:var(--muted)}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=time],input[type=number],select,textarea{
+  width:100%; font:400 16px/1.4 var(--body); color:var(--fg); background:transparent; border:0; border-bottom:1px solid var(--line);
+  padding:8px 0 10px; border-radius:0; outline:none; min-width:0}
+textarea{resize:vertical; min-height:96px; border:1px solid var(--line); padding:12px; border-radius:4px}
+input:focus,select:focus,textarea:focus{border-color:var(--honey)}
+.err{color:var(--danger); font-size:14px}
+.err:empty{display:none}
+
+/* packages */
+.pkgs{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.pkg{position:relative; display:block; cursor:pointer; min-width:0}
+.pkg input{position:absolute; opacity:0; inset:0; cursor:pointer}
+.pkg-body{height:100%; border:1px solid var(--line); background:var(--surface); border-radius:6px; padding:16px; display:grid; gap:8px; align-content:start; transition:border-color .15s, box-shadow .15s}
+.pkg input:checked + .pkg-body{border-color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink)}
+.pkg-no{display:flex; justify-content:space-between; align-items:center; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted)}
+.pkg-no .tick{width:18px; height:18px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; font-size:11px; color:transparent}
+.pkg input:checked + .pkg-body .tick{background:var(--ink); border-color:var(--ink); color:var(--on-ink)}
+.pkg h3{font-size:24px; line-height:1.1}
+.pkg ul{margin:0; padding:0 0 0 16px; font-size:13px; color:var(--muted); display:grid; gap:2px}
+.pkg .price{font-family:var(--display); font-size:24px; font-weight:600; margin-top:auto; font-variant-numeric:lining-nums}
+.pkg.byo .pkg-body{background:transparent; border-style:dashed}
+
+.picks{border-left:2px solid var(--honey); padding:4px 0 4px 16px; display:grid; gap:14px}
+.picks h3{font-size:26px}
+.picks .rule{font-size:13px; color:var(--muted); margin-top:-8px}
+.counter{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--honey); font-variant-numeric:tabular-nums}
+.included{display:grid; gap:4px; font-size:15px}
+.included div{display:flex; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); padding-block:8px}
+
+.choices{display:flex; flex-wrap:wrap; gap:8px}
+.chip{position:relative}
+.chip input{position:absolute; opacity:0; inset:0; cursor:pointer; margin:0}
+.chip span{display:inline-block; border:1px solid var(--line); border-radius:99px; padding:8px 14px; font-size:14px; background:var(--surface); transition:background .15s, color .15s, border-color .15s}
+.chip input:checked + span{background:var(--ink); color:var(--on-ink); border-color:var(--ink)}
+.chip input:disabled + span{opacity:.4}
+.chip small{font-size:11px; opacity:.75}
+
+/* honeycomb */
+.comb-card{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px; display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center}
+#comb{width:150px; height:auto; display:block}
+#comb polygon{stroke:var(--line); stroke-width:1.2; fill:transparent; transition:fill .25s, stroke .25s}
+#comb polygon.croissant{fill:var(--honey); stroke:var(--honey)}
+#comb polygon.cookie{fill:var(--cocoa); stroke:var(--cocoa)}
+#comb polygon.sweet{fill:var(--honey-soft); stroke:var(--honey-soft)}
+#comb polygon.pending{stroke:var(--honey); stroke-dasharray:3 2}
+.comb-read{display:grid; gap:6px; min-width:0}
+.comb-read .big{font-family:var(--display); font-size:46px; line-height:.9; font-variant-numeric:lining-nums}
+.comb-read .big small{font-size:22px; color:var(--muted)}
+.comb-read .msg{font-size:14px; color:var(--muted)}
+.legend{display:flex; gap:12px; font-size:12px; color:var(--muted); flex-wrap:wrap}
+.legend i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:6px; vertical-align:-1px}
+
+.group-label{font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin:10px 0 -8px; display:flex; justify-content:space-between; gap:10px}
+.items{display:grid}
+.item{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:13px 0; border-bottom:1px solid var(--line)}
+.item .name{font-family:var(--display); font-size:22px; line-height:1.15}
+.item .price{font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums}
+.item .allergen{font-size:12px; color:var(--honey); letter-spacing:.04em}
+.stepper{display:flex; align-items:center; gap:4px}
+.step-btn{width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--fg); font:500 20px/1 var(--body); cursor:pointer; display:grid; place-items:center}
+.step-btn:disabled{opacity:.35; cursor:default}
+.qty{min-width:56px; text-align:center; font-variant-numeric:tabular-nums; font-size:14px}
+.qty b{font-family:var(--display); font-size:24px; font-weight:600}
+.item.on .name{color:var(--honey)}
+
+.grp{border-bottom:1px solid var(--line)}
+.grp summary{list-style:none; cursor:pointer; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; padding:14px 0; border-top:1px solid var(--fg)}
+.grp summary::-webkit-details-marker{display:none}
+.grp summary::after{content:"+"; margin-left:auto; font-size:20px; line-height:1; color:var(--muted)}
+.grp[open] summary::after{content:"−"}
+.grp summary:focus-visible{outline:2px solid var(--honey); outline-offset:3px}
+.gname{font-family:var(--display); font-size:24px}
+.gmeta{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.gcount{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--honey)}
+.grp .item:last-child{border-bottom:0}
+
+/* sticky tally */
+.tally{position:fixed; left:0; right:0; bottom:0; z-index:20; background:var(--ink); color:var(--on-ink);
+  padding:12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+.tally-in{max-width:640px; margin:0 auto; display:flex; align-items:center; gap:14px}
+.meter{flex:1; min-width:0; display:grid; gap:2px; font-variant-numeric:tabular-nums}
+.meter b{font-size:15px; font-weight:600}
+.meter span{font-size:12px; opacity:.75; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.tally .cta{background:var(--honey); color:#1C1916; padding:12px 18px; white-space:nowrap}
+
+/* order slip */
+#slip-wrap{margin-top:56px}
+.slip{background:var(--surface); border:1px solid var(--line); padding:28px 22px 24px; border-radius:2px;
+  -webkit-mask:radial-gradient(circle 7px at 50% 0,transparent 98%,#000) top/22px 51% repeat-x, radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) bottom/22px 51% repeat-x;
+          mask:radial-gradient(circle 7px at 50% 0,transparent 98%,#000) top/22px 51% repeat-x, radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) bottom/22px 51% repeat-x}
+.slip-head{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; border-bottom:1px dashed var(--line); padding-bottom:14px}
+.slip-head .wm{width:150px}
+.slip-head small{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); text-align:right}
+.slip pre{white-space:pre-wrap; word-break:break-word; font:400 14px/1.7 var(--body); margin:16px 0 0; font-variant-numeric:tabular-nums}
+.slip-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px}
+.ghost{background:transparent; color:var(--fg); border:1px solid var(--line); border-radius:99px; padding:13px 20px; font:500 14px/1 var(--body); cursor:pointer}
+.how{display:grid; gap:10px; margin-top:22px; padding:0; list-style:none; counter-reset:s}
+.how li{counter-increment:s; display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:baseline}
+.how li::before{content:counter(s); font-family:var(--display); font-size:22px; color:var(--honey)}
+.dm{font-weight:600; letter-spacing:.06em}
+footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); display:grid; justify-items:center; gap:10px; text-align:center}
+footer .wm{width:200px; -webkit-mask-position:center; mask-position:center}
+
+@media (max-width:460px){
+  .grid2{grid-template-columns:1fr}
+  .pkgs{grid-template-columns:1fr 1fr; gap:10px}
+  .pkg-body{padding:13px}
+  .pkg h3{font-size:21px}
+  .craft{grid-template-columns:1fr; gap:16px}
+  .craft img{aspect-ratio:4/3}
+  .craft h2{font-size:30px}
+  .comb-card{grid-template-columns:104px 1fr; padding:14px; gap:14px}
+  #comb{width:104px}
+  .comb-read .big{font-size:38px}
+  .item .name{font-size:20px}
+  .seal{width:104px; height:104px; bottom:-26px}
+  .seal b{font-size:40px}
+  .wm{width:140px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Sweet Bee Bakehouse">
+      <span class="badge"><img src="bee.png" alt=""></span>
+      <span class="wm" role="img" aria-label="Sweet Bee Bakehouse"></span>
+    </a>
+    <span class="pill">Catering</span>
+  </header>
+
+  <section class="hero" id="top">
+    <figure class="hero-photo">
+      <img src="glazed.jpg" alt="A tray of chocolate-striped croissants being brushed with glaze">
+      <div class="seal" aria-label="Six day order notice"><div><b>6</b><span>day notice</span></div></div>
+    </figure>
+    <div class="eyebrow">Sweet Bee Catering</div>
+    <h1>Catering, <em>by the dozen.</em></h1>
+    <p class="lede">Croissants, cookies, macarons and sweets for your next gathering. Pick a package or build your own, then send us your order slip. We'll confirm the details and the final price.</p>
+    <div class="facts">
+      <div><b>4</b><span>Packages</span></div>
+      <div><b>6 days</b><span>Notice</span></div>
+      <div><b>Mon–Sat</b><span>Pickup</span></div>
+    </div>
+    <div><a class="cta" href="#order">Start your order slip</a></div>
+  </section>
+
+  <section class="craft">
+    <img src="rolled.jpg" alt="Bakers hand-rolling croissant dough on a granite counter">
+    <div class="craft-text">
+      <span class="eyebrow">Made by hand</span>
+      <h2>Rolled one by one, baked fresh.</h2>
+      <span class="muted">Every catering order is baked by our team for your pickup day.</span>
+      <span class="q">“Everything is baked fresh and the menu is constantly changing.” <small>— JIMMY D.</small></span>
+    </div>
+  </section>
+
+  <section class="terms" aria-labelledby="h-terms">
+    <span class="eyebrow">Before you order</span>
+    <h2 id="h-terms">Good to know</h2>
+    <ul>
+      <li><span><b>6-day order notice required.</b> The earliest date you can request is shown in the form.</span></li>
+      <li><span><b>Pickup Monday to Saturday only.</b> No Sunday pickups available.</span></li>
+      <li><span>Everything is priced by the dozen. Macarons come in sets of 24, flavors are baker's choice.</span></li>
+      <li><span>Allergens: Chunky Monkey cookies contain walnuts, Almond cookies contain almonds, Cowboy cookies contain pecans.</span></li>
+      <li><span>Prices are before tax. Sweet Bee confirms every order and the final total.</span></li>
+    </ul>
+  </section>
+
+  <form id="order" novalidate>
+    <section class="sec" aria-labelledby="h-event">
+      <div class="sec-head"><span class="n">1</span><h2 id="h-event">Your pickup</h2></div>
+      <div class="grid2">
+        <div class="field"><label class="l" for="f-name">Name</label><input id="f-name" type="text" autocomplete="name" placeholder="Full name"></div>
+        <div class="field"><label class="l" for="f-phone">Phone</label><input id="f-phone" type="tel" autocomplete="tel" placeholder="(832) 555-0123"></div>
+        <div class="field"><label class="l" for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" placeholder="you@email.com"></div>
+        <div class="field"><label class="l" for="f-ig">Instagram <span style="text-transform:none;letter-spacing:0">(optional)</span></label><input id="f-ig" type="text" placeholder="@yourhandle"></div>
+        <div class="field"><label class="l" for="f-date">Pickup date</label><input id="f-date" type="date"><span class="hint" id="date-hint">Monday to Saturday, at least 6 days out.</span></div>
+        <div class="field"><label class="l" for="f-time">Pickup time</label><input id="f-time" type="time"></div>
+        <div class="field"><label class="l" for="f-guests">Guests</label><input id="f-guests" type="number" inputmode="numeric" min="1" placeholder="About how many?"></div>
+        <div class="field"><label class="l" for="f-type">Occasion</label>
+          <select id="f-type"><option value="">Choose one</option><option>Office or meeting</option><option>Birthday or party</option><option>Baby or bridal shower</option><option>Wedding</option><option>Church or school event</option><option>Holiday gathering</option><option>Something else</option></select></div>
+      </div>
+      <div class="err" id="err-event" aria-live="polite"></div>
+    </section>
+
+    <section class="sec" aria-labelledby="h-pkg">
+      <div class="sec-head"><span class="n">2</span><h2 id="h-pkg">Choose a package</h2></div>
+      <div class="pkgs" id="pkgs" role="radiogroup" aria-label="Packages"></div>
+      <div class="picks" id="picks" hidden></div>
+      <div class="err" id="err-pkg" aria-live="polite"></div>
+    </section>
+
+    <section class="sec" aria-labelledby="h-comb">
+      <div class="sec-head"><span class="n">3</span><h2 id="h-comb">Fill the comb</h2><span class="opt" id="comb-opt">Add by the dozen</span></div>
+      <div class="comb-card">
+        <svg id="comb" viewBox="0 0 120 130" role="img" aria-label="Honeycomb showing the dozens in your order"></svg>
+        <div class="comb-read">
+          <div class="big" id="comb-big">0 <small>dozen</small></div>
+          <div class="msg" id="comb-msg">Every two rows of the comb is one dozen.</div>
+          <div class="legend"><span><i style="background:var(--honey)"></i>Croissants</span><span><i style="background:var(--cocoa)"></i>Cookies</span><span><i style="background:var(--honey-soft)"></i>Sweets</span></div>
+        </div>
+      </div>
+      <div id="alc"></div>
+      <div class="err" id="err-comb" aria-live="polite"></div>
+    </section>
+
+    <section class="sec" aria-labelledby="h-notes">
+      <div class="sec-head"><span class="n">4</span><h2 id="h-notes">Notes</h2><span class="opt">Optional</span></div>
+      <div class="field"><label class="l" for="f-notes">Anything you'd like us to know</label><textarea id="f-notes"></textarea></div>
+    </section>
+  </form>
+
+  <section id="slip-wrap" hidden aria-labelledby="h-slip">
+    <div class="sec-head" style="margin-bottom:18px"><span class="n">✓</span><h2 id="h-slip">Your order slip</h2></div>
+    <div class="slip">
+      <div class="slip-head"><span class="wm" role="img" aria-label="Sweet Bee Bakehouse"></span><small>Catering<br>request</small></div>
+      <pre id="slip-text"></pre>
+    </div>
+    <div class="slip-actions">
+      <button class="cta" type="button" id="copy">Copy order slip</button>
+      <button class="ghost" type="button" id="edit">Edit order</button>
+    </div>
+    <ol class="how">
+      <li><span>Copy your order slip.</span></li>
+      <li><span>Send us an Instagram DM with the word <span class="dm">CATERING</span> and paste the slip.</span></li>
+      <li><span>We'll reply to confirm your pickup date and final price.</span></li>
+    </ol>
+    <p class="hint" id="copy-status" aria-live="polite"></p>
+  </section>
+
+  <footer>
+    <span class="badge"><img src="bee.png" alt=""></span>
+    <span class="wm" role="img" aria-label="Sweet Bee Bakehouse"></span>
+    <span class="muted" style="font-size:13px">6-day order notice · Monday to Saturday pickup · No Sunday pickups</span>
+  </footer>
+</div>
+
+<div class="tally" role="region" aria-label="Order tally">
+  <div class="tally-in">
+    <div class="meter"><b id="t-main">Nothing added yet</b><span id="t-sub">Pick a package or add by the dozen</span></div>
+    <button class="cta" type="button" id="review">Review slip</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const CROISSANTS=[
+    {id:'butter',name:'Traditional Butter',price:60},{id:'chocolate',name:'Chocolate',price:72},
+    {id:'almondrasp',name:'Almond Raspberry',price:72},{id:'cinnamon',name:'Cinnamon Roll',price:72},
+    {id:'sausage',name:'Sausage & Cheese',price:75},{id:'ham',name:'Ham & Cheese',price:75},
+    {id:'kouign',name:'Kouign Amann',price:54},{id:'guava',name:'Guava Cream Cheese',price:60},
+    {id:'monkey',name:'Monkey Bread',price:60}];
+  const COOKIES=[
+    {id:'oreo',name:'Oreo Chocolate Chip',price:48},{id:'caramel',name:'Caramel Crunch',price:48},
+    {id:'biscoff',name:'Biscoff',price:48},{id:'triple',name:'Triple Chocolate',price:48},
+    {id:'chunky',name:'Chunky Monkey',price:48,allergen:'Contains walnuts'},
+    {id:'almondck',name:'Almond',price:48,allergen:'Contains almonds'},
+    {id:'cowboy',name:'Cowboy',price:48,allergen:'Contains pecans'}];
+  const SWEETS=[
+    {id:'macarons',name:'Macarons, baker’s choice',price:48,per:24},
+    {id:'scones',name:'Scones, savory',price:48},
+    {id:'alfajores',name:'Alfajores',price:24},
+    {id:'muffins',name:'Muffins',price:66}];
+  const ALL={}; [['croissant',CROISSANTS],['cookie',COOKIES],['sweet',SWEETS]].forEach(([k,l])=>l.forEach(o=>{o.kind=k; o.per=o.per||12; ALL[o.id]=o;}));
+  const PKGS=[
+    {id:1,title:'3 dozen croissants',rules:['1 dozen minimum per flavor'],price:'$162–$225',note:'Price set by your flavors',croiss:3},
+    {id:2,title:'2 dozen cookies',rules:['1 to 3 flavors'],price:'$96',fixed:96,cookieMax:3,cookieDoz:2},
+    {id:3,title:'2 dozen croissants + 1 dozen cookies',rules:['1 dozen minimum per flavor'],price:'$156–$198',note:'Price set by your croissant flavors',croiss:2,cookieMax:1,cookieDoz:1},
+    {id:4,title:'2 dozen cookies, 2 dozen macarons, 2 dozen alfajores',rules:['Cookies: 1 to 3 flavors'],price:'$120',fixed:120,cookieMax:3,cookieDoz:2,includes:[['Macarons, baker’s choice','2 dozen','sweet',2],['Alfajores','2 dozen','sweet',2]]}];
+  const KEY='sweetbee-catering-v2';
+  const $=id=>document.getElementById(id);
+  const money=n=>'$'+(Math.round(n*100)/100).toFixed(2).replace(/\.00$/,'');
+  const st={pkg:0, pc:{}, ck:[], alc:{}};
+  CROISSANTS.forEach(o=>st.pc[o.id]=0); Object.keys(ALL).forEach(k=>st.alc[k]=0);
+
+  let groups=[];
+  // ---- package cards
+  const pkgHost=$('pkgs');
+  PKGS.concat([{id:0}]).forEach(p=>{
+    const l=document.createElement('label'); l.className='pkg'+(p.id?'':' byo');
+    l.innerHTML = p.id ? `<input type="radio" name="pkg" id="pkg-${p.id}" value="${p.id}"><div class="pkg-body">
+        <div class="pkg-no"><span>Package ${p.id}</span><span class="tick">✓</span></div>
+        <h3>${p.title}</h3><ul>${p.rules.map(r=>`<li>${r}</li>`).join('')}${p.note?`<li>${p.note}</li>`:''}</ul>
+        <div class="price">${p.price}</div></div>`
+      : `<input type="radio" name="pkg" id="pkg-0" value="0" checked><div class="pkg-body">
+        <div class="pkg-no"><span>No package</span><span class="tick">✓</span></div>
+        <h3>Build your own</h3><ul><li>Add anything by the dozen in the comb below</li></ul></div>`;
+    l.querySelector('input').onchange=()=>{ st.pkg=p.id; st.ck=[]; CROISSANTS.forEach(o=>st.pc[o.id]=0); groups.forEach(([d,list])=>d.open = !p.id || list.some(o=>st.alc[o.id]>0)); renderPicks(); update(); };
+    pkgHost.appendChild(l);
+  });
+
+  function stepRow(o,prefix,getter,onChange,unit){
+    const row=document.createElement('div'); row.className='item'; row.id=`${prefix}-row-${o.id}`;
+    const priceTxt = o.per===24 ? `${money(o.price)} per 24` : `${money(o.price)} per dozen`;
+    row.innerHTML=`<div><div class="name">${o.name}</div>${unit===false?'':`<div class="price">${priceTxt}</div>`}${o.allergen?`<div class="allergen">${o.allergen}</div>`:''}</div>
+      <div class="stepper"><button type="button" class="step-btn" id="${prefix}-m-${o.id}" aria-label="Remove ${o.name}">−</button>
+      <span class="qty" id="${prefix}-q-${o.id}"><b>0</b> doz</span>
+      <button type="button" class="step-btn" id="${prefix}-p-${o.id}" aria-label="Add ${o.name}">+</button></div>`;
+    row.querySelector(`#${prefix}-m-${o.id}`).onclick=()=>onChange(o,-1);
+    row.querySelector(`#${prefix}-p-${o.id}`).onclick=()=>onChange(o,+1);
+    return row;
+  }
+  function setRow(prefix,o,n,canAdd){
+    const doz = o.per===24 ? n*2 : n;
+    $(`${prefix}-q-${o.id}`).innerHTML = o.per===24 ? `<b>${n*24}</b> pcs` : `<b>${doz}</b> doz`;
+    $(`${prefix}-m-${o.id}`).disabled = n===0;
+    $(`${prefix}-p-${o.id}`).disabled = canAdd===false;
+    $(`${prefix}-row-${o.id}`).classList.toggle('on',n>0);
+  }
+
+  // ---- package picks panel
+  function renderPicks(){
+    const host=$('picks'); host.innerHTML='';
+    const p=PKGS.find(x=>x.id===st.pkg);
+    host.hidden=!p; $('err-pkg').textContent='';
+    $('comb-opt').textContent = p ? 'Add more' : 'Add by the dozen';
+    if(!p) return;
+    const h=document.createElement('h3'); h.textContent=`Package ${p.id} picks`; host.appendChild(h);
+    if(p.croiss){
+      const g=document.createElement('div');
+      g.innerHTML=`<div class="group-label"><span>Croissant flavors</span><span class="counter" id="pc-count"></span></div><div class="rule" style="margin-top:12px">Choose ${p.croiss} dozen, 1 dozen minimum per flavor.</div>`;
+      const items=document.createElement('div'); items.className='items';
+      CROISSANTS.forEach(o=>items.appendChild(stepRow(o,'pc',null,(o,d)=>{
+        const tot=Object.values(st.pc).reduce((a,b)=>a+b,0);
+        if(d>0 && tot>=p.croiss) return; st.pc[o.id]=Math.max(0,st.pc[o.id]+d); update();
+      })));
+      g.appendChild(items); host.appendChild(g);
+    }
+    if(p.cookieMax){
+      const g=document.createElement('div'); g.style.display='grid'; g.style.gap='12px';
+      const label = p.cookieMax===1 ? `Choose 1 cookie flavor for your dozen.` : `Choose 1 to 3 flavors for your ${p.cookieDoz} dozen cookies.`;
+      g.innerHTML=`<div class="group-label"><span>Cookie flavors</span><span class="counter" id="ck-count"></span></div><div class="rule" style="margin-top:4px">${label}</div>`;
+      const ch=document.createElement('div'); ch.className='choices';
+      COOKIES.forEach(o=>{
+        const l=document.createElement('label'); l.className='chip';
+        l.innerHTML=`<input type="${p.cookieMax===1?'radio':'checkbox'}" name="ck" id="ck-${o.id}" value="${o.id}"><span>${o.name}${o.allergen?` <small>· ${o.allergen.replace('Contains ','')}</small>`:''}</span>`;
+        l.querySelector('input').onchange=e=>{
+          if(p.cookieMax===1) st.ck=[o.id];
+          else if(e.target.checked){ if(st.ck.length>=p.cookieMax){ e.target.checked=false; return; } st.ck.push(o.id); }
+          else st.ck=st.ck.filter(x=>x!==o.id);
+          update();
+        };
+        ch.appendChild(l);
+      });
+      g.appendChild(ch); host.appendChild(g);
+    }
+    if(p.includes){
+      const g=document.createElement('div'); g.className='included';
+      g.innerHTML=`<div class="group-label" style="margin:6px 0 0"><span>Included</span></div>`+p.includes.map(i=>`<div><span>${i[0]}</span><span class="muted">${i[1]}</span></div>`).join('');
+      host.appendChild(g);
+    }
+  }
+
+  // ---- a la carte comb items
+  const alc=$('alc');
+  [['Croissants',CROISSANTS,'9 flavors'],['Cookies',COOKIES,'7 flavors · $48 per dozen'],['Macarons & sweet add-ons',SWEETS,'4 options']].forEach(([label,list,meta])=>{
+    const det=document.createElement('details'); det.className='grp'; det.open=true; det.id='grp-'+label.split(' ')[0].toLowerCase();
+    det.innerHTML=`<summary><span class="gname">${label}</span><span class="gmeta">${meta}</span><span class="gcount"></span></summary>`;
+    const items=document.createElement('div'); items.className='items';
+    list.forEach(o=>items.appendChild(stepRow(o,'a',null,(o,d)=>{ st.alc[o.id]=Math.max(0,Math.min(40,st.alc[o.id]+d)); update(); })));
+    det.appendChild(items); alc.appendChild(det); groups.push([det,list]);
+  });
+
+  // ---- comb drawing
+  const comb=$('comb'), NS='http://www.w3.org/2000/svg';
+  function hex(cx,cy,r){let p=[];for(let k=0;k<6;k++){const a=Math.PI/180*(60*k+30);p.push((cx+r*Math.cos(a)).toFixed(2)+','+(cy+r*Math.sin(a)).toFixed(2));}return p.join(' ');}
+  function drawComb(dozens){ // array of kind per dozen ('croissant'|'cookie'|'sweet'|'pending')
+    const shown=dozens.slice(0,8), rows=Math.max(6,shown.length*2);
+    const r=10, w=Math.sqrt(3)*r, h=1.5*r;
+    comb.setAttribute('viewBox',`0 0 ${(6.5*w+2).toFixed(1)} ${(rows*h+r/2+2).toFixed(1)}`);
+    comb.innerHTML='';
+    for(let row=0;row<rows;row++)for(let c=0;c<6;c++){
+      const cx=1+w/2+c*w+(row%2?w/2:0), cy=1+r+row*h;
+      const p=document.createElementNS(NS,'polygon'); p.setAttribute('points',hex(cx,cy,r-1.2));
+      const k=shown[Math.floor(row/2)]; if(k) p.setAttribute('class',k);
+      comb.appendChild(p);
+    }
+  }
+
+  // ---- totals
+  function compute(){
+    const p=PKGS.find(x=>x.id===st.pkg);
+    const dozens=[]; let pkgPrice=0, pkgDone=true, pkgLines=[], pkgProblem='';
+    if(p){
+      if(p.croiss){
+        const tot=Object.values(st.pc).reduce((a,b)=>a+b,0);
+        CROISSANTS.forEach(o=>{ for(let i=0;i<st.pc[o.id];i++) dozens.push('croissant'); if(st.pc[o.id]){ pkgPrice+=st.pc[o.id]*o.price; pkgLines.push(`${st.pc[o.id]} doz ${o.name} croissants`);} });
+        for(let i=tot;i<p.croiss;i++) dozens.push('pending');
+        if(tot<p.croiss){ pkgDone=false; pkgProblem=`Choose ${p.croiss-tot} more dozen croissants for Package ${p.id}.`; }
+      }
+      if(p.cookieMax){
+        for(let i=0;i<p.cookieDoz;i++) dozens.push(st.ck.length?'cookie':'pending');
+        if(st.ck.length){ pkgLines.push(`${p.cookieDoz} doz cookies: ${st.ck.map(id=>ALL[id].name).join(', ')}`); if(p.id===3) pkgPrice+=48; }
+        else { pkgDone=false; pkgProblem = pkgProblem || `Choose ${p.cookieMax===1?'a cookie flavor':'your cookie flavors'} for Package ${p.id}.`; }
+      }
+      if(p.includes) p.includes.forEach(i=>{ for(let k=0;k<i[3];k++) dozens.push(i[2]); pkgLines.push(`${i[1]} ${i[0]}`); });
+      if(p.fixed) pkgPrice=p.fixed;
+    }
+    let alcPrice=0; const alcLines=[];
+    Object.keys(st.alc).forEach(id=>{ const n=st.alc[id]; if(!n) return; const o=ALL[id];
+      const dz=o.per===24?n*2:n; for(let i=0;i<dz;i++) dozens.push(o.kind);
+      alcPrice+=n*o.price; alcLines.push(`${o.per===24? (n*24)+' pcs' : n+' doz'} ${o.name}  ·  ${money(n*o.price)}`); });
+    const filled=dozens.filter(k=>k!=='pending').length;
+    return {p,dozens,filled,pkgPrice,pkgDone,pkgLines,pkgProblem,alcPrice,alcLines};
+  }
+
+  function update(){
+    const c=compute(), p=c.p;
+    if(p && p.croiss){ const tot=Object.values(st.pc).reduce((a,b)=>a+b,0);
+      CROISSANTS.forEach(o=>setRow('pc',o,st.pc[o.id],tot<p.croiss)); $('pc-count').textContent=`${tot} of ${p.croiss} dozen`; }
+    if(p && p.cookieMax){ $('ck-count').textContent=`${st.ck.length} of ${p.cookieMax===1?1:'up to 3'}`;
+      if(p.cookieMax>1) COOKIES.forEach(o=>{ const i=$('ck-'+o.id); i.disabled=!i.checked && st.ck.length>=p.cookieMax; }); }
+    Object.keys(st.alc).forEach(id=>setRow('a',ALL[id],st.alc[id]));
+    groups.forEach(([d,list])=>{ const n=list.reduce((a,o)=>a+(o.per===24?st.alc[o.id]*2:st.alc[o.id]),0); d.querySelector('.gcount').textContent = n ? n+' doz added' : ''; });
+    drawComb(c.dozens);
+    $('comb-big').innerHTML=`${c.filled} <small>dozen</small>`;
+    $('comb-msg').textContent = c.dozens.length===0 ? 'Every two rows of the comb is one dozen. Pick a package or add below.'
+      : !c.pkgDone ? c.pkgProblem
+      : c.dozens.length>8 ? `${c.filled} dozen in your order. The comb shows the first eight.` : 'Every two rows of the comb is one dozen.';
+    const total=c.pkgPrice+c.alcPrice;
+    if(c.filled===0 && !p){ $('t-main').textContent='Nothing added yet'; $('t-sub').textContent='Pick a package or add by the dozen'; }
+    else {
+      $('t-main').textContent = (p && !c.pkgDone && p.croiss) ? `Package ${p.id} · from ${p.price.split('–')[0]}` : `${c.filled} dozen · est. ${money(total + ((p&&!c.pkgDone&&p.fixed)?0:0))}`;
+      $('t-sub').textContent = p ? (c.pkgDone ? `Package ${p.id}${c.alcPrice?' + add-ons':''}` : 'Finish your package picks') : 'Build your own';
+    }
+    if(c.pkgDone) $('err-pkg').textContent='';
+    if(c.filled) $('err-comb').textContent='';
+    save();
+    return c;
+  }
+
+  // ---- dates: 6-day notice, no Sundays
+  const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  const earliest=new Date(); earliest.setHours(12,0,0,0); earliest.setDate(earliest.getDate()+6);
+  if(earliest.getDay()===0) earliest.setDate(earliest.getDate()+1);
+  $('f-date').min=iso(earliest);
+  const niceDate=d=>d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  $('date-hint').textContent=`Monday to Saturday. Earliest pickup: ${niceDate(earliest)}.`;
+  function dateProblem(v){
+    if(!v) return 'your pickup date';
+    const d=new Date(v+'T12:00:00');
+    if(d<earliest) return `a pickup date on or after ${niceDate(earliest)} (6-day notice)`;
+    if(d.getDay()===0) return 'a pickup date from Monday to Saturday (no Sunday pickups)';
+    return '';
+  }
+  $('f-date').addEventListener('change',()=>{ const pr=dateProblem($('f-date').value);
+    $('err-event').textContent = pr && $('f-date').value ? 'Choose '+pr+'.' : ''; });
+
+  // ---- draft (this browser only)
+  const FIELDS=['f-name','f-phone','f-email','f-ig','f-date','f-time','f-guests','f-type','f-notes'];
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify({st,f:Object.fromEntries(FIELDS.map(id=>[id,$(id).value]))})); }catch(e){} }
+  function load(){ try{ const d=JSON.parse(localStorage.getItem(KEY)||'null'); if(!d) return;
+      FIELDS.forEach(id=>{ if(d.f&&d.f[id]!=null) $(id).value=d.f[id]; });
+      const s=d.st||{}; Object.keys(s.alc||{}).forEach(k=>{ if(k in st.alc) st.alc[k]=s.alc[k]|0; });
+      if(s.pkg && PKGS.some(p=>p.id===s.pkg)){ st.pkg=s.pkg; $('pkg-'+s.pkg).checked=true; renderPicks();
+        Object.keys(s.pc||{}).forEach(k=>{ if(k in st.pc) st.pc[k]=s.pc[k]|0; });
+        st.ck=(s.ck||[]).filter(id=>ALL[id]&&ALL[id].kind==='cookie'); st.ck.forEach(id=>{ const i=$('ck-'+id); if(i) i.checked=true; }); }
+    }catch(e){} }
+  FIELDS.forEach(id=>$(id).addEventListener('input',save));
+
+  const fmtTime=v=>{ if(!v) return ''; const [h,m]=v.split(':').map(Number); return ((h%12)||12)+':'+String(m).padStart(2,'0')+(h<12?' AM':' PM'); };
+
+  function review(){
+    const c=update();
+    const name=$('f-name').value.trim(), phone=$('f-phone').value.trim(), email=$('f-email').value.trim(), date=$('f-date').value;
+    const probs=[]; if(!name) probs.push('your name'); if(!phone&&!email) probs.push('a phone number or email');
+    const dp=dateProblem(date); if(dp) probs.push(dp);
+    $('err-event').textContent = probs.length ? 'Add '+probs.join(', ').replace(/, ([^,]*)$/,' and $1')+'.' : '';
+    $('err-pkg').textContent = c.p && !c.pkgDone ? c.pkgProblem : '';
+    $('err-comb').textContent = !c.p && c.filled===0 ? 'Choose a package or add at least one dozen to the comb.' : '';
+    if(probs.length){ $('h-event').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    if(c.p && !c.pkgDone){ $('h-pkg').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    if(!c.p && c.filled===0){ $('h-comb').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    const d=new Date(date+'T12:00:00'), L=[];
+    L.push('SWEET BEE CATERING REQUEST','');
+    L.push('Name: '+name); if(phone) L.push('Phone: '+phone); if(email) L.push('Email: '+email);
+    if($('f-ig').value.trim()) L.push('Instagram: '+$('f-ig').value.trim());
+    L.push('Pickup: '+d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+($('f-time').value?' at '+fmtTime($('f-time').value):''));
+    if($('f-type').value) L.push('Occasion: '+$('f-type').value);
+    if($('f-guests').value) L.push('Guests: about '+$('f-guests').value);
+    if(c.p){ L.push('',`PACKAGE ${c.p.id}  ·  ${money(c.pkgPrice)}`); c.pkgLines.forEach(x=>L.push('  '+x)); }
+    if(c.alcLines.length){ L.push('', c.p?'ADDED TO THE COMB':'BUILD YOUR OWN'); c.alcLines.forEach(x=>L.push('  '+x)); }
+    L.push('',`Estimated total: ${money(c.pkgPrice+c.alcPrice)} before tax  ·  ${c.filled} dozen`);
+    if($('f-notes').value.trim()) L.push('','Notes: '+$('f-notes').value.trim());
+    $('slip-text').textContent=L.join('\n');
+    $('slip-wrap').hidden=false; $('copy-status').textContent='';
+    $('slip-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  $('order').addEventListener('submit',e=>{e.preventDefault(); review();});
+  $('review').onclick=review;
+  $('edit').onclick=()=>$('h-pkg').scrollIntoView({behavior:'smooth',block:'start'});
+  $('copy').onclick=()=>{
+    const txt=$('slip-text').textContent;
+    const done=()=>{ $('copy-status').textContent='Copied. Now DM us “CATERING” on Instagram and paste your slip.'; };
+    const fallback=()=>{ const r=document.createRange(); r.selectNodeContents($('slip-text')); const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+      $('copy-status').textContent='Your slip is selected. Copy it, then DM us “CATERING” on Instagram and paste it.'; };
+    try{ navigator.clipboard.writeText(txt).then(done,fallback); }catch(e){ fallback(); }
+  };
+
+  load(); update();
+})();
+</script>
+
+</body>
+</html>
